@@ -15,6 +15,10 @@ source venv_fonty/bin/activate
 ./run.sh
 deactivate
 ```
+## Dependencies
+
+There is no dependency other than [`nototools`](https://github.com/googlefonts/nototools) and
+[`fonttools`](https://github.com/fonttools/fonttools/). Both are automatically fetched and used.
 
 ## Coverage
 

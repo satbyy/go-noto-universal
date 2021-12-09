@@ -9,11 +9,157 @@ import merge_noto
 all_regions = {
     'GoNotoSouthAsia.ttf': [
         "NotoSans-Regular.ttf",
+        "NotoNastaliqUrdu-Regular.ttf",
+        "NotoSansBengali-Regular.ttf",
+        "NotoSansChakma-Regular.ttf",
         "NotoSansDevanagari-Regular.ttf",
+        "NotoSansGujarati-Regular.ttf",
+        "NotoSansGunjalaGondi-Regular.ttf",
+        "NotoSansGurmukhi-Regular.ttf",
+        "NotoSansKannada-Regular.ttf",
+        "NotoSansLepcha-Regular.ttf",
+        "NotoSansLimbu-Regular.ttf",
+        "NotoSansMalayalam-Regular.ttf",
+        "NotoSansMasaramGondi-Regular.ttf",
+        "NotoSansMeeteiMayek-Regular.ttf",
+        "NotoSansMro-Regular.ttf",
+        "NotoSansNewa-Regular.ttf",
+        "NotoSansOlChiki-Regular.ttf",
+        "NotoSansOriya-Regular.ttf",
+        "NotoSansSaurashtra-Regular.ttf",
+        "NotoSansSinhala-Regular.ttf",
+        "NotoSansTamil-Regular.ttf",
+        "NotoSansTelugu-Regular.ttf",
+        "NotoSansThaana-Regular.ttf",
+        "NotoSerifTibetan-Regular.ttf",
+        "NotoSansWancho-Regular.ttf",
+        "NotoSansWarangCiti-Regular.ttf",
+        # Common for all scripts
+        "NotoSansSymbols-Regular.ttf",
+        "NotoSansSymbols2-Regular.ttf",
+        "NotoSansMath-Regular.ttf",
+    ],
+    'GoNotoAsiaHistorical.ttf': [
+        "NotoSansBhaiksuki-Regular.ttf",
+        "NotoSansBrahmi-Regular.ttf",
+        "NotoSansGrantha-Regular.ttf",
+        "NotoSansKaithi-Regular.ttf",
+        "NotoSansKharoshthi-Regular.ttf",
+        "NotoSansKhudawadi-Regular.ttf",
+        "NotoSansMahajani-Regular.ttf",
+        "NotoSansMarchen-Regular.ttf",
+        "NotoSansModi-Regular.ttf",
+        "NotoSansMultani-Regular.ttf",
+        # "NotoSansNandinagari-Regular.ttf", # doesn't exist
+        "NotoSansOldSogdian-Regular.ttf",
+        "NotoSansOldTurkic-Regular.ttf",
+        "NotoSansPhagsPa-Regular.ttf",
+        "NotoSansSharada-Regular.ttf",
+        "NotoSansSiddham-Regular.ttf",
+        "NotoSansSogdian-Regular.ttf",
+        "NotoSansSoraSompeng-Regular.ttf",
+        "NotoSansSoyombo-Regular.ttf",
+        "NotoSansSylotiNagri-Regular.ttf",
+        "NotoSansTakri-Regular.ttf",
+        "NotoSansTirhuta-Regular.ttf",
+        "NotoSansZanabazarSquare-Regular.ttf",
+        "NotoSerifAhom-Regular.ttf",
+        "NotoSerifDogra-Regular.ttf",
+        "NotoSerifKhojki-Regular.ttf",
+        # Common for all scripts
+        "NotoSansSymbols-Regular.ttf",
+        "NotoSansSymbols2-Regular.ttf",
+        "NotoSansMath-Regular.ttf",
     ],
     'GoNotoSouthEastAsia.ttf': [
         "NotoSans-Regular.ttf",
+        "NotoSansBalinese-Regular.ttf",
+        "NotoSansBatak-Regular.ttf",
+        "NotoSansBuginese-Regular.ttf",
+        "NotoSansBuhid-Regular.ttf",
+        "NotoSansCham-Regular.ttf",
+        "NotoSansHanifiRohingya-Regular.ttf",
+        "NotoSansHanunoo-Regular.ttf",
+        "NotoSansJavanese-Regular.ttf",
+        "NotoSansKayahLi-Regular.ttf",
+        "NotoSansKhmer-Regular.ttf",
+        "NotoSansLao-Regular.ttf",
+        # "NotoSansMakasar-Regular.ttf", # doesn't exist
+        "NotoSansMyanmar-Regular.ttf",
+        "NotoSansNewTaiLue-Regular.ttf",
+        "NotoSansPahawhHmong-Regular.ttf",
+        "NotoSansPauCinHau-Regular.ttf",
+        "NotoSansRejang-Regular.ttf",
+        "NotoSansSundanese-Regular.ttf",
+        "NotoSansTagalog-Regular.ttf",
+        "NotoSansTagbanwa-Regular.ttf",
+        "NotoSansTaiLe-Regular.ttf",
+        "NotoSansTaiTham-Regular.ttf",
+        "NotoSansTaiViet-Regular.ttf",
         "NotoSansThai-Regular.ttf",
+        # Common for all scripts
+        "NotoSansSymbols-Regular.ttf",
+        "NotoSansSymbols2-Regular.ttf",
+        "NotoSansMath-Regular.ttf",
+    ],
+    'GoNotoEuropeAmericas.ttf': [
+        "NotoSans-Regular.ttf",
+        "NotoSansArmenian-Regular.ttf",
+        "NotoSansCanadianAboriginal-Regular.ttf",
+        "NotoSansCarian-Regular.ttf",
+        "NotoSansCaucasianAlbanian-Regular.ttf",
+        "NotoSansCherokee-Regular.ttf",
+        "NotoSansCoptic-Regular.ttf",
+        "NotoSansCypriot-Regular.ttf",
+        "NotoSansDeseret-Regular.ttf",
+        "NotoSansGeorgian-Regular.ttf",
+        "NotoSansGlagolitic-Regular.ttf",
+        "NotoSansOsage-Regular.ttf",
+        # TODO: Add Chapter 8 scripts
+        # Common for all scripts
+        "NotoSansSymbols-Regular.ttf",
+        "NotoSansSymbols2-Regular.ttf",
+        "NotoSansMath-Regular.ttf",
+    ],
+    'GoNotoAfricaMiddleEast.ttf': [
+        "NotoSans-Regular.ttf",
+        "NotoNaskhArabic-Regular.ttf", # or "NotoSansArabic-Regular.ttf"
+        "NotoSansAdlam-Regular.ttf",
+        "NotoSansAvestan-Regular.ttf",
+        "NotoSansBamum-Regular.ttf",
+        "NotoSansBassaVah-Regular.ttf",
+        "NotoSansCuneiform-Regular.ttf",
+        "NotoSansHebrew-Regular.ttf",
+        "NotoSansSyriac-Regular.ttf",
+        "NotoSansSamaritan-Regular.ttf",
+        "NotoSansMandaic-Regular.ttf",
+        "NotoSerifYezidi-Regular.ttf"
+        # TODO: Add Chapter 10 scripts
+        # Common for all scripts
+        "NotoSansSymbols-Regular.ttf",
+        "NotoSansSymbols2-Regular.ttf",
+        "NotoSansMath-Regular.ttf",
+    ],
+    'GoNotoEastAsia.ttf': [
+        "NotoSans-Regular.ttf",
+        "NotoSansMarchen-Regular.ttf",
+        "NotoSansMongolian-Regular.ttf",
+        "NotoSansOldSogdian-Regular.ttf",
+        "NotoSansOldTurkic-Regular.ttf",
+        "NotoSansPhagsPa-Regular.ttf",
+        "NotoSansSogdian-Regular.ttf",
+        "NotoSansSoyombo-Regular.ttf",
+        "NotoSansZanabazarSquare-Regular.ttf",
+        "NotoSerifTibetan-Regular.ttf",
+        "NotoSansYi-Regular.ttf",
+        "NotoSansNushu-Regular.ttf",
+        "NotoSansLisu-Regular.ttf",
+        "NotoSansMiao-Regular.ttf",
+        "NotoSerifTangut-Regular.ttf",
+        # Common for all scripts
+        "NotoSansSymbols-Regular.ttf",
+        "NotoSansSymbols2-Regular.ttf",
+        "NotoSansMath-Regular.ttf",
     ],
 }
 
@@ -27,7 +173,10 @@ def download_fonts(directory="./"):
         if os.path.exists(outfile): continue
         url = url_base % (ttf.split('-')[0], ttf)
         print("Fetching %s" % url)
-        urlretrieve(url, outfile)
+        try:
+            urlretrieve(url, outfile)
+        except:
+            print("Could not retrieve %s. Please check if it exists", ttf)
         sleep(0.5)
 
 # append new entries from # https://docs.microsoft.com/en-gb/typography/opentype/spec/scripttags

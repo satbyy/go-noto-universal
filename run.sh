@@ -11,19 +11,27 @@ else
 fi
 
 # Patch merge_fonts.py to be callable by external script
-sed -e 's/from nototools.substitute_linemetrics/from substitute_linemetrics/g' \
-    -e 's/build_valid_filenames(directory=args.directory)/build_valid_filenames(directory=args.directory, files=files)/g' \
-    -i nototools/nototools/merge_fonts.py
+cd nototools/
+if ! git apply --reverse --check ../merge_fonts.patch 2> /dev/null; then
+    echo "applying patch"
+    git apply ../merge_fonts.patch
+else
+    echo "patch already applied"
+fi
+cd -
 
-declare -a fonts=(GoNotoSouthAsia.ttf
-                  GoNotoSouthEastAsia.ttf)
+declare -a fonts=(
+    GoNotoSouthAsia.ttf
+    GoNotoAsiaHistorical.ttf
+    GoNotoSouthEastAsia.ttf
+)
 
 for font in "${fonts[@]}"; do
     if [[ -e "$font" ]]; then
         echo "Not overwriting existing font $font"
         continue
     fi
-    printf "Generating font $font.\n"
+    printf "Generating font $font. Current time: $(date)\n"
     mkdir -p cached_fonts
-    PYTHONPATH="nototools/nototools" python3 generate.py -o "$font" -d cached_fonts
+    time PYTHONPATH="nototools/nototools" python3 generate.py -o "$font" -d cached_fonts
 done

@@ -1,0 +1,50 @@
+diff --git a/nototools/merge_fonts.py b/nototools/merge_fonts.py
+index 266b5971..420ade04 100755
+--- a/nototools/merge_fonts.py
++++ b/nototools/merge_fonts.py
+@@ -31,14 +31,15 @@ Sample Usage:
+ 
+ """
+ import sys
+-import os.path
++import os
+ import logging
++import pickle
+ from argparse import ArgumentParser
+ 
+ from fontTools import ttLib
+ from fontTools import merge
+ from merge_noto import add_gsub_to_font, has_gsub_table
+-from nototools.substitute_linemetrics import read_line_metrics, set_line_metrics
++from substitute_linemetrics import read_line_metrics, set_line_metrics
+ from fontTools.misc.loggingTools import Timer
+ 
+ log = logging.getLogger("nototools.merge_fonts")
+@@ -175,7 +176,6 @@ files = [
+ 
+ 
+ def build_valid_filenames(files=files, directory=directory):
+-    files = list(files)
+     directory = directory.rstrip("/")
+     if directory == "" or directory is None:
+         directory = "."
+@@ -216,7 +216,7 @@ def main():
+ 
+     logging.basicConfig(level=logging.INFO if args.verbose else logging.WARNING)
+ 
+-    valid_files = build_valid_filenames(directory=args.directory)
++    valid_files = build_valid_filenames(directory=args.directory, files=files)
+     if len(valid_files) <= 1:
+         log.warning(
+             "expecting at least two fonts to merge, but only got %d " + "font(s).",
+@@ -235,8 +235,10 @@ def main():
+     # Use the line metric in the first font to replace the one in final result.
+     metrics = read_line_metrics(ttLib.TTFont(valid_files[0]))
+     set_line_metrics(font, metrics)
++    with open(args.output + '.pickle', 'wb') as fh: pickle.dump(font, fh)
+     font.save(args.output)
+     font.close()
++    os.remove(args.output + '.pickle')
+ 
+     print(
+         "%d fonts are merged. %d fonts are skipped. Cost %0.3f s."
