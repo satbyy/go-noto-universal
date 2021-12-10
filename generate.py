@@ -31,7 +31,7 @@ all_regions = {
         "NotoSansTamil-Regular.ttf",
         "NotoSansTelugu-Regular.ttf",
         "NotoSansThaana-Regular.ttf",
-        # "NotoSerifTibetan-Regular.ttf", # OTLOffsetOverflowError: ('GSUB', 'LookupIndex:', 1293,
+        "NotoSerifTibetanSubset-Regular.ttf", # Tibetan subset ok
         "NotoSansWancho-Regular.ttf",
         "NotoSansWarangCiti-Regular.ttf",
         # Common for all scripts
@@ -150,7 +150,7 @@ all_regions = {
         "NotoSansSogdian-Regular.ttf",
         "NotoSansSoyombo-Regular.ttf",
         "NotoSansZanabazarSquare-Regular.ttf",
-        "NotoSerifTibetan-Regular.ttf",
+        "NotoSerifTibetanSubset-Regular.ttf",
         "NotoSansYi-Regular.ttf",
         # "NotoSansNushu-Regular.ttf", # not working
         "NotoSansLisu-Regular.ttf",

@@ -1,6 +1,6 @@
 #!/bin/bash -e
 
-[[ -z "$VIRTUAL_ENV" ]] && echo "Refusing to run outside of venv. See README.md" && exit 1
+[[ -z "$VIRTUAL_ENV" ]] && echo "Refusing to run outside of venv. See README.md." && exit 1
 
 python3 -m pip install fonttools
 
@@ -18,7 +18,23 @@ if ! git apply --reverse --check ../merge_fonts.patch 2> /dev/null; then
 else
     echo "patch already applied"
 fi
-cd -
+cd "$OLDPWD"
+
+# create tibetan subset so that GSUB is not overflow'ed.
+subset_tibetan() {
+    mkdir -p cached_fonts/ && cd cached_fonts/
+    if [[ ! -e NotoSerifTibetanSubset-Regular.ttf ]]; then
+        if [[ ! -e NotoSerifTibetan-Regular.ttf ]]; then
+            wget https://github.com/googlefonts/noto-fonts/raw/main/hinted/ttf/NotoSerifTibetan/NotoSerifTibetan-Regular.ttf
+        fi
+        echo "Creating a smaller subset of Tibetan glyphs..."
+        $VIRTUAL_ENV/bin/pyftsubset NotoSerifTibetan-Regular.ttf --output-file=NotoSerifTibetanSubset-Regular.ttf \
+                   --unicodes=U+0F00-0F8C,U+0FBA-0FDA
+    fi
+    cd "$OLDPWD"
+}
+
+subset_tibetan
 
 declare -a fonts=(
     GoNotoSouthAsia.ttf
