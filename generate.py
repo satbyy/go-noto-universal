@@ -31,7 +31,7 @@ all_regions = {
         "NotoSansTamil-Regular.ttf",
         "NotoSansTelugu-Regular.ttf",
         "NotoSansThaana-Regular.ttf",
-        "NotoSerifTibetan-Regular.ttf",
+        # "NotoSerifTibetan-Regular.ttf", # OTLOffsetOverflowError: ('GSUB', 'LookupIndex:', 1293,
         "NotoSansWancho-Regular.ttf",
         "NotoSansWarangCiti-Regular.ttf",
         # Common for all scripts
@@ -133,7 +133,7 @@ all_regions = {
         "NotoSansSyriac-Regular.ttf",
         "NotoSansSamaritan-Regular.ttf",
         "NotoSansMandaic-Regular.ttf",
-        "NotoSerifYezidi-Regular.ttf"
+        "NotoSerifYezidi-Regular.ttf",
         # TODO: Add Chapter 10 scripts
         # Common for all scripts
         "NotoSansSymbols-Regular.ttf",
@@ -143,7 +143,7 @@ all_regions = {
     'GoNotoEastAsia.ttf': [
         "NotoSans-Regular.ttf",
         "NotoSansMarchen-Regular.ttf",
-        "NotoSansMongolian-Regular.ttf",
+        # "NotoSansMongolian-Regular.ttf", # not working
         "NotoSansOldSogdian-Regular.ttf",
         "NotoSansOldTurkic-Regular.ttf",
         "NotoSansPhagsPa-Regular.ttf",
@@ -152,10 +152,10 @@ all_regions = {
         "NotoSansZanabazarSquare-Regular.ttf",
         "NotoSerifTibetan-Regular.ttf",
         "NotoSansYi-Regular.ttf",
-        "NotoSansNushu-Regular.ttf",
+        # "NotoSansNushu-Regular.ttf", # not working
         "NotoSansLisu-Regular.ttf",
         "NotoSansMiao-Regular.ttf",
-        "NotoSerifTangut-Regular.ttf",
+        # "NotoSerifTangut-Regular.ttf", # not working
         # Common for all scripts
         "NotoSansSymbols-Regular.ttf",
         "NotoSansSymbols2-Regular.ttf",
@@ -191,6 +191,9 @@ merge_noto.SCRIPT_TO_OPENTYPE_SCRIPT_TAG['Tagbanwa'] = 'tagb'
 merge_noto.SCRIPT_TO_OPENTYPE_SCRIPT_TAG['Thaana'] = 'thaa'
 merge_noto.SCRIPT_TO_OPENTYPE_SCRIPT_TAG['Mro'] = 'mroo'
 merge_noto.SCRIPT_TO_OPENTYPE_SCRIPT_TAG['PahawhHmong'] = "hmng"
+merge_noto.SCRIPT_TO_OPENTYPE_SCRIPT_TAG['Bamum'] = "bamu"
+merge_noto.SCRIPT_TO_OPENTYPE_SCRIPT_TAG['NotoSerifYezidi'] = "yezi"
+merge_noto.SCRIPT_TO_OPENTYPE_SCRIPT_TAG['Nushul'] = "nshu"
 
 if __name__ == "__main__":
     merge_fonts.files = all_regions[sys.argv[2]]

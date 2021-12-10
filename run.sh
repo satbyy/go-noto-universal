@@ -24,6 +24,9 @@ declare -a fonts=(
     GoNotoSouthAsia.ttf
     GoNotoAsiaHistorical.ttf
     GoNotoSouthEastAsia.ttf
+    GoNotoEastAsia.ttf
+    GoNotoEuropeAmericas.ttf
+    GoNotoAfricaMiddleEast.ttf
 )
 
 for font in "${fonts[@]}"; do
