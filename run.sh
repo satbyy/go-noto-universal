@@ -29,12 +29,26 @@ subset_tibetan() {
         fi
         echo "Creating a smaller subset of Tibetan glyphs..."
         $VIRTUAL_ENV/bin/pyftsubset NotoSerifTibetan-Regular.ttf --output-file=NotoSerifTibetanSubset-Regular.ttf \
-                   --unicodes=U+0F00-0F8C,U+0F90,U+0F92,U+0F94,U+0FF99,U+0FAD,U+0FB1-0FB3,U+0FBA-0FDA
+                  --unicodes=U+0F00-0F8C,U+0F90,U+0F92,U+0F94,U+0F99,U+0F9F,U+0FA4,U+0FA9,U+0FAD,U+0FB1-0FB3,U+0FBA-0FDA
     fi
     cd "$OLDPWD"
 }
 
 subset_tibetan
+
+edit_font_info() {
+    local fontname="$1"
+    local without_spaces="${fontname%%.*}"
+    local with_spaces=$(echo "$without_spaces" | sed -E 's/([a-z])([A-Z])/\1 \2/g')
+    local xml_file="$without_spaces".ttx
+    echo "Editing font metadata for $fontname"
+    $VIRTUAL_ENV/bin/ttx -o "$xml_file" "$fontname" 2> /dev/null
+    [[ $? -ne 0 ]] && echo "ERROR: Could not dump $fontname to xml" && return 1
+    sed -i -e "s/Noto Sans/$with_spaces/g" -e "s/NotoSans/$without_spaces/g" "$xml_file"
+    $VIRTUAL_ENV/bin/ttx -o "$fontname" "$xml_file" 2> /dev/null
+    [[ $? -ne 0 ]] && echo "ERROR: Could not dump xml to $fontname" && return 2
+    rm -f "$xml_file"
+}
 
 declare -a fonts=(
     GoNotoSouthAsia.ttf
@@ -53,4 +67,5 @@ for font in "${fonts[@]}"; do
     printf "Generating font $font. Current time: $(date)\n"
     mkdir -p cached_fonts
     time PYTHONPATH="nototools/nototools" python3 generate.py -o "$font" -d cached_fonts
+    edit_font_info "$font"
 done
