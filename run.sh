@@ -29,7 +29,7 @@ subset_tibetan() {
         fi
         echo "Creating a smaller subset of Tibetan glyphs..."
         $VIRTUAL_ENV/bin/pyftsubset NotoSerifTibetan-Regular.ttf --output-file=NotoSerifTibetanSubset-Regular.ttf \
-                   --unicodes=U+0F00-0F8C,U+0FBA-0FDA
+                   --unicodes=U+0F00-0F8C,U+0F90,U+0F92,U+0F94,U+0FF99,U+0FAD,U+0FB1-0FB3,U+0FBA-0FDA
     fi
     cd "$OLDPWD"
 }
