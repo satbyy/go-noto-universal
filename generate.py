@@ -179,6 +179,26 @@ def download_fonts(directory="./"):
             print("Could not retrieve %s. Please check if it exists", ttf)
         sleep(0.5)
 
+def edit_font_info(fontname):
+    from fontTools import ttLib
+    import re
+    print("editing font info %s" % fontname)
+    name_without_spaces = fontname.split('.')[0]
+    name_with_spaces = ' '.join(re.split('(?=[A-Z])', name_without_spaces)).strip()
+    font = ttLib.TTFont(fontname)
+    names = font['name'].names
+    for i in range(len(names)):
+        print(i, names[i].toStr())
+
+    encoding = names[0].getEncoding()
+    names[0].string += "; Copyright 2021 Satish B.; SIL Open Font License v1.1".encode(encoding)
+    names[1].string = name_with_spaces.encode(encoding)
+    names[3].string = names[3].toStr().replace('NotoSans', name_without_spaces).encode(encoding)
+    names[4].string = (name_with_spaces + ' ' + names[2].toStr()).encode(encoding)
+    names[6].string = (name_without_spaces + '-' + names[2].toStr()).encode(encoding)
+    font.save(fontname)
+    font.close()
+
 # append new entries from # https://docs.microsoft.com/en-gb/typography/opentype/spec/scripttags
 merge_noto.SCRIPT_TO_OPENTYPE_SCRIPT_TAG['TaiLe'] = 'tale'
 merge_noto.SCRIPT_TO_OPENTYPE_SCRIPT_TAG['Multani'] = 'mult'
