@@ -22,17 +22,34 @@ There is no dependency other than [`nototools`](https://github.com/googlefonts/n
 
 ## Coverage
 
+Fonts are merged/combined as per the regions defined in the [Unicode Standard
+(pdf)](https://www.unicode.org/versions/Unicode14.0.0/UnicodeStandard-14.0.pdf) Chapter numbers
+refer to that spec.
+
 | Regional font              | Coverage                                                                             |
 |----------------------------|--------------------------------------------------------------------------------------|
-| GoNotoSouthAsia.ttf        |                                                                                      |
-| GoNotoSouthEastAsia.ttf    |                                                                                      |
-| GoNotoEuropeAmericas.ttf   |                                                                                      |
-| GoNotoAfricaMiddleEast.ttf |                                                                                      |
-| GoNotoAsiaHistorical.ttf   |                                                                                      |
-| GoNotoEastAsia.ttf         |                                                                                      |
+| GoNotoSouthAsia.ttf        | "South and Central Asia" - ch. 12 and 13                                             |
+| GoNotoAsiaHistorical.ttf   | "South and Central Asia" - ch. 14 and 15                                             |
+| GoNotoSouthEastAsia.ttf    | "Southeast Asia" ch. 16 and "Indonesia and Ocenia" - ch 17                           |
+| GoNotoEuropeAmericas.ttf   | "Europe" - ch. 7 and 8                                                               |
+| GoNotoAfricaMiddleEast.ttf | "Africa" - ch. 19 and "Middle East" - ch. 9 and 10                                   |
+| GoNotoEastAsia.ttf         | "East Asia" - ch 18. everything other than Han (CJK)                                 |
 | GoNotoCJK.ttf              | [Noto CJK](https://github.com/googlefonts/noto-cjk/blob/main/Sans/README-formats.md) |
-|                            |                                                                                      |
 
+
+All of the above fonts include LGC (Latin-Greek-Cyrillic) as default, same coverage as `Noto Sans
+Regular`.
+
+## Caveats
+
+1. You might have to increase line spacing or line margins in your application to avoid some
+   characters appearing "clipped". This is because many Asian scripts stack letters vertically
+   (e.g. Indic scripts, Thai, Balinese etc.) but the line metrics of the merged font are
+   optimized for LGC.
+2. Tibetan has limited glyphs, otherwise GSUB table gets "overrflow"ed. Only the most frequently
+   occuring "subjoined consonants" are included. Those characters are displayed ok, but just that
+   the glyphs appear to be "pushed up" compared to their neighbours.
+3. Certain fonts just refuse to cooperate, e.g. Mongolian, Nushu.
 
 <!--
 1891 glyphs -> GSUB LookupIndex 1293 fails
