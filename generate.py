@@ -115,7 +115,20 @@ all_regions = {
         "NotoSansGeorgian-Regular.ttf",
         "NotoSansGlagolitic-Regular.ttf",
         "NotoSansOsage-Regular.ttf",
-        # TODO: Add Chapter 8 scripts
+        # Historical
+        "NotoSansLinearA-Regular.ttf",
+        "NotoSansLinearB-Regular.ttf",
+        "NotoSansAnatolianHieroglyphs-Regular.ttf",
+        "NotoSansOldItalic-Regular.ttf",
+        "NotoSansRunic-Regular.ttf",
+        "NotoSansOldHungarian-Regular.ttf",
+        "NotoSansGothic-Regular.ttf",
+        "NotoSansElbasan-Regular.ttf",
+        "NotoSansCaucasianAlbanian-Regular.ttf",
+        "NotoSansVithkuqi-Regular.ttf",
+        "NotoSansOgham-Regular.ttf",
+        "NotoSansOldPermic-Regular.ttf",
+        "NotoSansShavian-Regular.ttf",
         # Common for all scripts
         "NotoSansSymbols-Regular.ttf",
         "NotoSansSymbols2-Regular.ttf",
@@ -125,16 +138,35 @@ all_regions = {
         "NotoSans-Regular.ttf",
         "NotoNaskhArabic-Regular.ttf", # or "NotoSansArabic-Regular.ttf"
         "NotoSansAdlam-Regular.ttf",
-        "NotoSansAvestan-Regular.ttf",
         "NotoSansBamum-Regular.ttf",
         "NotoSansBassaVah-Regular.ttf",
-        "NotoSansCuneiform-Regular.ttf",
         "NotoSansHebrew-Regular.ttf",
         "NotoSansSyriac-Regular.ttf",
         "NotoSansSamaritan-Regular.ttf",
         "NotoSansMandaic-Regular.ttf",
         "NotoSerifYezidi-Regular.ttf",
-        # TODO: Add Chapter 10 scripts
+        # Historical scripts
+        "NotoSansOldNorthArabian-Regular.ttf",
+        "NotoSansOldSouthArabian-Regular.ttf",
+        "NotoSansPhoenician-Regular.ttf",
+        "NotoSansImperialAramaic-Regular.ttf",
+        "NotoSansManichaean-Regular.ttf",
+        "NotoSansInscriptionalParthian-Regular.ttf",
+        "NotoSansInscriptionalPahlavi-Regular.ttf",
+        "NotoSansPsalterPahlavi-Regular.ttf",
+        "NotoSansAvestan-Regular.ttf",
+        # "NotoSansChorasmian-Regular.ttf", # doesn't exist
+        "NotoSansElymaic-Regular.ttf",
+        "NotoSansNabataean-Regular.ttf",
+        "NotoSansPalmyrene-Regular.ttf",
+        "NotoSansHatran-Regular.ttf",
+        # Cuneiform and Hieroglyphs
+        "NotoSansCuneiform-Regular.ttf",
+        "NotoSansUgaritic-Regular.ttf",
+        "NotoSansOldPersian-Regular.ttf",
+        "NotoSansEgyptianHieroglyphs-Regular.ttf",
+        "NotoSansMeroitic-Regular.ttf",
+        "NotoSansAnatolianHieroglyphs-Regular.ttf",
         # Common for all scripts
         "NotoSansSymbols-Regular.ttf",
         "NotoSansSymbols2-Regular.ttf",
@@ -177,7 +209,7 @@ def download_fonts(directory="./"):
             urlretrieve(url, outfile)
         except:
             print("Could not retrieve %s. Please check if it exists", ttf)
-        sleep(0.5)
+        sleep(0.5) # poor man's rate-limiting
 
 # append new entries from # https://docs.microsoft.com/en-gb/typography/opentype/spec/scripttags
 merge_noto.SCRIPT_TO_OPENTYPE_SCRIPT_TAG['TaiLe'] = 'tale'
@@ -194,6 +226,13 @@ merge_noto.SCRIPT_TO_OPENTYPE_SCRIPT_TAG['PahawhHmong'] = "hmng"
 merge_noto.SCRIPT_TO_OPENTYPE_SCRIPT_TAG['Bamum'] = "bamu"
 merge_noto.SCRIPT_TO_OPENTYPE_SCRIPT_TAG['NotoSerifYezidi'] = "yezi"
 merge_noto.SCRIPT_TO_OPENTYPE_SCRIPT_TAG['Nushul'] = "nshu"
+merge_noto.SCRIPT_TO_OPENTYPE_SCRIPT_TAG['LinearA'] = "lina"
+merge_noto.SCRIPT_TO_OPENTYPE_SCRIPT_TAG['AnatolianHieroglyphs'] = 'hluw'
+merge_noto.SCRIPT_TO_OPENTYPE_SCRIPT_TAG['Vithkuqi'] = 'vith'
+merge_noto.SCRIPT_TO_OPENTYPE_SCRIPT_TAG['OldPermic'] = 'perm'
+merge_noto.SCRIPT_TO_OPENTYPE_SCRIPT_TAG['OldNorthArabian'] = 'narb'
+merge_noto.SCRIPT_TO_OPENTYPE_SCRIPT_TAG['Nabataean'] ='nbat'
+merge_noto.SCRIPT_TO_OPENTYPE_SCRIPT_TAG['Hatran'] = 'hatr'
 
 if __name__ == "__main__":
     merge_fonts.files = all_regions[sys.argv[2]]
