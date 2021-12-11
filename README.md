@@ -104,7 +104,29 @@ Hieroglyphics.
 
 ### Go Noto East Asia
 
-Tibetan, Yi, Tangut, etc. excluding Han/CJK (Chinese-Japanese-Korean).
+Tibetan, Lisu, Marchen, Miao, Yi, etc. excluding Han/CJK (Chinese-Japanese-Korean).
+
+Mongolian, Nushu and Tangut could not be included.
+
+## Font Statistics
+
+
+| Regional font              | Code blocks | Codepoints | Glyphs |
+|----------------------------|-------------|------------|--------|
+| GoNotoEuropeAmericas.ttf   | 111         | 11896      | 14780  |
+| GoNotoAfricaMiddleEast.ttf | 125         | 15506      | 19750  |
+| GoNotoSouthAsia.ttf        | 114         | 10922      | 20879  |
+| GoNotoAsiaHistorical.ttf   | 114         | 10261      | 16767  |
+| GoNotoSouthEastAsia.ttf    | 107         | 10168      | 14358  |
+| GoNotoEastAsia.ttf         | 96          | 10522      | 15081  |
+
+Note that each of the above include statistics of:
+| Noto Sans           | 37 blocks  | 2840 codepoints | 3317 glyphs |
+| Noto Sans Math      | 22 blocks  | 2472 codepoints | 2655 glyphs |
+| Noto Sans Symbols   | 15 blocks  | 840 codepoints  | 1218 glyphs |
+| Noto Sans Symbols 2 | 37 blocks  | 2655 codepoints | 2674 glyphs |
+| Total               | 111 blocks | 8807 codepoints | 9864 glyphs |
+>>>>>>> 7f18a88a... Blah
 
 ## Caveats
 

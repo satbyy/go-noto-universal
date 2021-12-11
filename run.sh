@@ -51,12 +51,12 @@ edit_font_info() {
 }
 
 declare -a fonts=(
+    GoNotoAfricaMiddleEast.ttf
     GoNotoSouthAsia.ttf
     GoNotoAsiaHistorical.ttf
     GoNotoSouthEastAsia.ttf
     GoNotoEastAsia.ttf
     GoNotoEuropeAmericas.ttf
-    GoNotoAfricaMiddleEast.ttf
 )
 
 for font in "${fonts[@]}"; do

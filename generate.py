@@ -40,6 +40,7 @@ all_regions = {
         "NotoSansMath-Regular.ttf",
     ],
     'GoNotoAsiaHistorical.ttf': [
+        "NotoSans-Regular.ttf",
         "NotoSansBhaiksuki-Regular.ttf",
         "NotoSansBrahmi-Regular.ttf",
         "NotoSansGrantha-Regular.ttf",
@@ -167,6 +168,14 @@ all_regions = {
         "NotoSansEgyptianHieroglyphs-Regular.ttf",
         "NotoSansMeroitic-Regular.ttf",
         "NotoSansAnatolianHieroglyphs-Regular.ttf",
+        # Africa
+        "NotoSansEthiopic-Regular.ttf",
+        "NotoSansOsmanya-Regular.ttf",
+        "NotoSansTifinagh-Regular.ttf", # TODO: check Tifinagh variants
+        "NotoSansNKo-Regular.ttf",
+        "NotoSansVai-Regular.ttf",
+        "NotoSansMendeKikakui-Regular.ttf",
+        "NotoSansMedefaidrin-Regular.ttf",
         # Common for all scripts
         "NotoSansSymbols-Regular.ttf",
         "NotoSansSymbols2-Regular.ttf",
@@ -233,6 +242,7 @@ merge_noto.SCRIPT_TO_OPENTYPE_SCRIPT_TAG['OldPermic'] = 'perm'
 merge_noto.SCRIPT_TO_OPENTYPE_SCRIPT_TAG['OldNorthArabian'] = 'narb'
 merge_noto.SCRIPT_TO_OPENTYPE_SCRIPT_TAG['Nabataean'] ='nbat'
 merge_noto.SCRIPT_TO_OPENTYPE_SCRIPT_TAG['Hatran'] = 'hatr'
+merge_noto.SCRIPT_TO_OPENTYPE_SCRIPT_TAG['Medefaidrin'] = 'medf'
 
 if __name__ == "__main__":
     merge_fonts.files = all_regions[sys.argv[2]]
