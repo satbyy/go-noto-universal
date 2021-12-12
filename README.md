@@ -3,9 +3,8 @@
 Noto fonts go universal! Download Noto fonts combined to suit your region (South Asia, SE Asia,
 Africa-MiddleEast, Europe-Americas).
 
-Utility to combine/merge multiple [Noto
-Fonts](https://github.com/googlefonts/noto-fonts) to regional
-variants.
+This software combines/merges multiple [Noto Fonts](https://github.com/googlefonts/noto-fonts) to a
+single, region-specific font.
 
 ## Download
 
@@ -34,6 +33,9 @@ deactivate
 Font generation can take a few minutes to several hours, depending on your computer's capabilities.
 The Go Noto South Asia takes the longest time to generate.
 
+`run.sh` is designed to be reentrant, so you can run it multiple times without altering the working
+state of the repository or downloading stuff again and again.
+
 ## Dependencies
 
 There is no dependency other than [`nototools`](https://github.com/googlefonts/nototools) and
@@ -47,7 +49,7 @@ refer to that spec.
 
 | Regional font              | Coverage                                                                             |
 |----------------------------|--------------------------------------------------------------------------------------|
-| GoNotoEuropeAmericas.ttf   | "Europe" - ch. 7 and 8                                                               |
+| GoNotoEuropeAmericas.ttf   | "Europe" - ch. 7, 8 and "Americas" - ch 20                                           |
 | GoNotoAfricaMiddleEast.ttf | "Middle East" - ch. 9, 10, 11 and "Africa" - ch. 19                                  |
 | GoNotoSouthAsia.ttf        | "South and Central Asia" - ch. 12 and 13                                             |
 | GoNotoAsiaHistorical.ttf   | "South and Central Asia" - ch. 14 and 15                                             |
@@ -66,7 +68,7 @@ Following are included: Devanagari (Hindi, Marathi, Nepali, etc), Bengali, Punja
 Gujarati, Oriya, Tamil, Telugu, Kannada, Malayalam, Thaana, Sinhala, Newa, Tibetan, Limbu, Meetei
 Mayek, Mro, Warang Citi, Ol Chiki, Chakma, Lepcha, Saurashtra, Masaram Gondi, Gunjala Gondi, Wancho.
 
-Urdu (NotoSansNastaliq), though not a written in an Indic script, is included for practical
+Urdu (NotoSansNastaliq), though not written in an Indic script, is included for practical
 reasons. Mongolian is currently not included because of issue with vmtx (vertical metrics). Noto
 fonts do not exist for Toto and Tangsa.
 
@@ -94,13 +96,15 @@ Deseret, Glagolitic, Osage, Old Italic, Runic, Anatolian Hieroglyphics, Carian, 
 Cherokee, Old Hungarian, Gothic, Elbasan, Caucasian Albanian, Vithkuqi, Ogham, Old Permic, Shavian,
 Linear A and Linear B.
 
-### Go Noto Afric Middle East
+### Go Noto Africa Middle East
 
 The following are included: Arabic (Naskh-style), Adlam, Avestan, Bamum, Bassa Vah, Cuneiform,
 Hebrew, Syriac, Samaritan, Mandaic, Yezidi, Old North Arabian, Old South Arabian, Phoenician,
 Imperial Aramaic, Manichaean, Inscriptional Parthian, Inscriptional Pahlavi, Psalter Pahlavi,
 Elymaic, Nabataean, Palmyrene, Hatran, Ugaritic, Old Persian, Egyptian, Meroitic, Anatolian
 Hieroglyphics.
+
+Noto fonts do not exist for Chorasmian.
 
 ### Go Noto East Asia
 
@@ -121,12 +125,14 @@ Mongolian, Nushu and Tangut could not be included.
 | GoNotoEastAsia.ttf         | 96          | 10522      | 15081  |
 
 Note that each of the above include statistics of:
-| Noto Sans           | 37 blocks  | 2840 codepoints | 3317 glyphs |
-| Noto Sans Math      | 22 blocks  | 2472 codepoints | 2655 glyphs |
-| Noto Sans Symbols   | 15 blocks  | 840 codepoints  | 1218 glyphs |
-| Noto Sans Symbols 2 | 37 blocks  | 2655 codepoints | 2674 glyphs |
-| Total               | 111 blocks | 8807 codepoints | 9864 glyphs |
->>>>>>> 7f18a88a... Blah
+
+| Upstream font       | Code blocks | Codepoints      | Glyphs      |
+|---------------------|-------------|-----------------|-------------|
+| Noto Sans           | 37 blocks   | 2840 codepoints | 3317 glyphs |
+| Noto Sans Math      | 22 blocks   | 2472 codepoints | 2655 glyphs |
+| Noto Sans Symbols   | 15 blocks   | 840 codepoints  | 1218 glyphs |
+| Noto Sans Symbols 2 | 37 blocks   | 2655 codepoints | 2674 glyphs |
+| Total               | 111 blocks  | 8807 codepoints | 9864 glyphs |
 
 ## Caveats
 
@@ -134,10 +140,17 @@ Note that each of the above include statistics of:
    characters appearing "clipped". This is because many Asian scripts stack letters vertically
    (e.g. Indic scripts, Thai, Balinese etc.) but the line metrics of the merged font are
    optimized for LGC.
-2. Tibetan has limited glyphs, otherwise GSUB table gets "overrflow"ed. Only the most frequently
+2. Tibetan has limited glyphs, otherwise GSUB table gets "overflow"ed. Only the most frequently
    occuring "subjoined consonants" are included. Those characters are displayed ok, but just that
    the glyphs appear to be "pushed up" compared to their neighbours.
 3. Certain fonts just refuse to cooperate, e.g. Mongolian, Nushu.
+
+### Others
+
+FontTools package comes with nice utilities `ttx` (ttf to xml and back), `pyftsubset` (create font
+with subset of given font) and `pyftmerge` (merging fonts, basically same as this repo).
+
+`otfinfo` gives useful info about glyphs, codepoints, scripts and more.
 
 <!--
 1891 glyphs -> GSUB LookupIndex 1293 fails
@@ -179,7 +192,7 @@ Bhutanese/Tibetan only:
 (added TA, PA) 178 codepoints, 1170 glyphs, 330KB, GSUB 749
 
  --unicodes=U+0F00-0F8C,U+0F90,U+0F92,U+0F94,U+0F99,U+0F9F,U+0FA4,U+0FA9,U+0FAD,U+0FB1-0FB3,U+0FBA-0FDA
-(added TA, PA, TSA) 179 codepoints, 1204 glyphs, 343KB, GSUB 771 ==> WORKS!
+(added TA, PA, TSA) 179 codepoints, 1204 glyphs, 343KB, GSUB 771 ==> WORKS with both South Asia!
 
   --unicodes=U+0F00-0F8C,U+0F90,U+0F92,U+0F94,U+0F99,U+0F9F,U+0FA1,U+0FA4,U+0FA9,U+0FAD,U+0FB1-0FB3,U+0FBA-0FDA
 (added TA, PA, TSA, DA) 180 codepoints, 1297 glyphs, 374KB, GSUB 845
