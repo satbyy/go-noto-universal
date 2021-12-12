@@ -41,10 +41,12 @@ edit_font_info() {
     local without_spaces="${fontname%%.*}"
     local with_spaces=$(echo "$without_spaces" | sed -E 's/([a-z])([A-Z])/\1 \2/g')
     local xml_file="$without_spaces".ttx
+    local xml_file_bak="$xml_file".bak
     echo "Editing font metadata for $fontname"
     $VIRTUAL_ENV/bin/ttx -o "$xml_file" "$fontname" 2> /dev/null
     [[ $? -ne 0 ]] && echo "ERROR: Could not dump $fontname to xml" && return 1
-    sed -i -e "s/Noto Sans/$with_spaces/g" -e "s/NotoSans/$without_spaces/g" "$xml_file"
+    sed -e "s/Noto Sans/$with_spaces/g" -e "s/NotoSans/$without_spaces/g" "$xml_file" > "$xml_file_bak"
+    mv "$xml_file_bak" "$xml_file"
     $VIRTUAL_ENV/bin/ttx -o "$fontname" "$xml_file" 2> /dev/null
     [[ $? -ne 0 ]] && echo "ERROR: Could not dump xml to $fontname" && return 2
     rm -f "$xml_file"
