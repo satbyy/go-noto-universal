@@ -47,15 +47,15 @@ Fonts are merged/combined as per the regions defined in the [Unicode Standard
 (pdf)](https://www.unicode.org/versions/Unicode14.0.0/UnicodeStandard-14.0.pdf). Chapter numbers
 refer to that spec.
 
-| Regional font              | Coverage                                                                                  |
-|----------------------------|-------------------------------------------------------------------------------------------|
-| GoNotoEuropeAmericas.ttf   | "Europe" - ch. 7, 8 and "Americas" - ch 20                                                |
-| GoNotoAfricaMiddleEast.ttf | "Middle East" - ch. 9, 10, 11 and "Africa" - ch. 19                                       |
-| GoNotoSouthAsia.ttf        | "South and Central Asia" - ch. 12 and 13                                                  |
-| GoNotoAsiaHistorical.ttf   | "South and Central Asia" - ch. 14 and 15                                                  |
-| GoNotoSouthEastAsia.ttf    | "Southeast Asia" - ch. 16 and "Indonesia and Ocenia" - ch 17                              |
-| GoNotoEastAsia.ttf         | "East Asia" - ch 18. everything other than Han (CJK)                                      |
-| GoNotoCJKCore2003.ttf      | [Unicode IICore][1] subset of CJK (~10K ideographs). See [Noto CJK][2] for full coverage |
+| Regional font              | Coverage                                                                                |
+|----------------------------|-----------------------------------------------------------------------------------------|
+| GoNotoEuropeAmericas.ttf   | "Europe" - ch. 7, 8 and "Americas" - ch 20                                              |
+| GoNotoAfricaMiddleEast.ttf | "Middle East" - ch. 9, 10, 11 and "Africa" - ch. 19                                     |
+| GoNotoSouthAsia.ttf        | "South and Central Asia" - ch. 12 and 13                                                |
+| GoNotoAsiaHistorical.ttf   | "South and Central Asia" - ch. 14 and 15                                                |
+| GoNotoSouthEastAsia.ttf    | "Southeast Asia" - ch. 16 and "Indonesia and Ocenia" - ch 17                            |
+| GoNotoCJKCore2005.ttf      | [Unihan IICore][1] subset of CJK (~10K ideographs). Use [Noto CJK][2] for full coverage |
+| GoNotoEastAsia.ttf         | "East Asia" - ch 18. everything other than Han (CJK)                                    |
 
 Each of the above fonts includes LGC (Latin-Greek-Cyrillic) as default, same coverage as `Noto Sans
 Regular`. Each one also includes Noto Sans Math, Noto Sans Symbols and Noto Sans Symbols 2 to give
@@ -67,9 +67,9 @@ Following are included: Devanagari (Hindi, Marathi, Nepali, etc), Bengali, Punja
 Gujarati, Oriya, Tamil, Telugu, Kannada, Malayalam, Thaana, Sinhala, Newa, Tibetan, Limbu, Meetei
 Mayek, Mro, Warang Citi, Ol Chiki, Chakma, Lepcha, Saurashtra, Masaram Gondi, Gunjala Gondi, Wancho.
 
-Urdu (NotoSansNastaliq), though not written in an Indic script, is included for practical
-reasons. Mongolian is currently not included because of issue with vmtx (vertical metrics). Noto
-fonts do not exist for Toto and Tangsa.
+Urdu (NotoNastaliq), though not written in an Indic script and not part of "South Asia" chapters in
+the Unicode spec, is included for practical reasons. Mongolian is currently not included because of
+issue with vmtx (vertical metrics). Noto fonts do not exist for Toto and Tangsa.
 
 ### Go Noto Asia Historical
 
@@ -111,13 +111,18 @@ Tibetan, Lisu, Marchen, Miao, Yi, etc. excluding Han/CJK (Chinese-Japanese-Korea
 
 Mongolian, Nushu and Tangut could not be included.
 
-### Go Noto CJK Core 2003
+### Go Noto CJK Core 2005
 
-[Unicode IICore][1] is a minimal subset of CJK specified in 2003 for memory-constrained systems. It
-standardizes about 9800 codepoints. The generated font has about 20000 glyphs.
+[Unihan IICore][1] is a minimal, region-agnostic subset of Han/CJK specified in 2005 for
+memory-constrained systems. It standardizes about 9800 codepoints, covering basic use cases of
+Chinese (Traditional, Simplified), Japanese and Korean. Recently [Unihan Core
+2020](https://unicode.org/charts/unihan.html) superseded and expanded the minimal subset to about
+20000 codepoints.
 
-Recently [Unihan Core 2020](https://unicode.org/charts/unihan.html) upgrades the minimal subset to
-about 20000 codepoints.
+The generated font does _not_ contain Noto Sans Math, Noto Sans Symbols, Noto Sans Symbols 2 because
+[fonttools does not support](https://fonttools.readthedocs.io/en/latest/merge.html) merging fonts
+with CFF outlines (which is the case for .otf).
+
 
 ## Font Statistics
 
@@ -129,8 +134,9 @@ about 20000 codepoints.
 | GoNotoAsiaHistorical.ttf   | 114         | 10261      | 16767  |
 | GoNotoSouthEastAsia.ttf    | 107         | 10168      | 14358  |
 | GoNotoEastAsia.ttf         | 96          | 10522      | 15081  |
+| GoNotoCJKCore2005.ttf      | 20          | 10338      | 20099  |
 
-Note that each of the above include statistics of:
+Note that each of the above (except CJKCore2005) include statistics of:
 
 | Upstream font       | Code blocks | Codepoints      | Glyphs      |
 |---------------------|-------------|-----------------|-------------|

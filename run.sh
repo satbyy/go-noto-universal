@@ -37,7 +37,7 @@ main() {
             echo "Not overwriting existing font $font."
             continue
         fi
-        echo "Generating font $font. Current time: $(date).\n"
+        echo "Generating font $font. Current time: $(date)."
         mkdir -p cached_fonts
         time PYTHONPATH="nototools/nototools" python3 generate.py -o "$font" -d cached_fonts
         edit_font_info "$font"
@@ -70,31 +70,39 @@ edit_font_info() {
     echo "Editing font metadata for $fontname..."
     "$VIRTUAL_ENV"/bin/ttx -o "$xml_file" "$fontname" 2> /dev/null
     [[ $? -ne 0 ]] && echo "ERROR: Could not dump $fontname to xml." && return 1
-    sed -e "s/Noto Sans/$with_spaces/g" -e "s/NotoSans/$without_spaces/g" "$xml_file" > "$xml_file_bak"
+    sed -e "s/Noto Sans CJK SC/$with_spaces/g" \
+        -e "s/NotoSansCJKsc/$without_spaces/g" \
+        -e "s/Noto Sans/$with_spaces/g" \
+        -e "s/NotoSans/$without_spaces/g" \
+        "$xml_file" > "$xml_file_bak"
     mv "$xml_file_bak" "$xml_file"
     "$VIRTUAL_ENV"/bin/ttx -o "$fontname" "$xml_file" 2> /dev/null
     [[ $? -ne 0 ]] && echo "ERROR: Could not dump xml to $fontname." && return 2
     rm -f "$xml_file"
 }
 
-# Unicode IICore 2003 is a small subsetof CJK (~10k codepoints).
-# Recently is has been superceded by UnihanCore2020.
+# Unihan IICore 2005 is a small subset of CJK (~10k codepoints).
+# Recently it has been superseded by UnihanCore2020, which is double in size.
 create_cjk_subset() {
-    local fontname=GoNotoCJKCore2003.otf
+    local input_font=NotoSansCJKsc-Regular.otf
+    local output_font=GoNotoCJKCore2005.otf
+    local subset_codepoints=unihan_iicore.txt
 
     cd cached_fonts/
     [[ ! -e Unihan.zip ]] && wget https://www.unicode.org/Public/UCD/latest/ucd/Unihan.zip
     python3 -m zipfile -e Unihan.zip .
-    grep kIICore Unihan_IRGSources.txt | cut -f1 > unicode_points.txt
-    if [[ ! -e NotoSansCJKsc-Regular.otf ]]; then
-        wget https://github.com/googlefonts/noto-cjk/raw/main/Sans/OTF/SimplifiedChinese/NotoSansCJKsc-Regular.otf
+    grep kIICore Unihan_IRGSources.txt | cut -f1 > "$subset_codepoints"
+    python3 ../get_codepoints.py NotoSans-Regular.ttf >> "$subset_codepoints"
+    if [[ ! -e "$input_font" ]]; then
+        wget https://github.com/googlefonts/noto-cjk/raw/main/Sans/OTF/SimplifiedChinese/"$input_font"
     fi
     cd "$OLDPWD"
-    echo "Generating font $fontname."
-    "$VIRTUAL_ENV"/bin/pyftsubset cached_fonts/NotoSansCJKsc-Regular.otf \
-                  --unicodes-file=cached_fonts/unicode_points.txt \
-                  --output-file="$fontname"
-    edit_font_info "$fontname"
+
+    echo "Generating font $output_font. Current time: $(date)."
+    "$VIRTUAL_ENV"/bin/pyftsubset cached_fonts/"$input_font" \
+                  --unicodes-file=cached_fonts/"$subset_codepoints" \
+                  --output-file="$output_font"
+    edit_font_info "$output_font"
 }
 
 # execution starts here
