@@ -11,6 +11,10 @@ single, region-specific font.
 If you simply want to _use_ the fonts, go to [Releases
 page](https://github.com/satbyy/go-noto-universal/releases/) and download what you need.
 
+Development builds are available from [GitHub
+Actions](https://github.com/satbyy/go-noto-universal/actions) page.
+Click on any workflow with green checkmark ✅ and under "Artifacts", download "GoNotoUniversal.zip"
+
 ## Build
 
 If you want to _build_ the fonts yourself, create a virtual environment (venv) and call `./run.sh`.
