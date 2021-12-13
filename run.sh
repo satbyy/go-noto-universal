@@ -65,20 +65,8 @@ edit_font_info() {
     local fontname="$1"
     local without_spaces="${fontname%%.*}"
     local with_spaces=$(echo "$without_spaces" | sed -E 's/([a-z])([A-Z])/\1 \2/g')
-    local xml_file="$without_spaces".ttx
-    local xml_file_bak="$xml_file".bak
-    echo "Editing font metadata for $fontname..."
-    "$VIRTUAL_ENV"/bin/ttx -o "$xml_file" "$fontname" 2> /dev/null
-    [[ $? -ne 0 ]] && echo "ERROR: Could not dump $fontname to xml." && return 1
-    sed -e "s/Noto Sans CJK SC/$with_spaces/g" \
-        -e "s/NotoSansCJKsc/$without_spaces/g" \
-        -e "s/Noto Sans/$with_spaces/g" \
-        -e "s/NotoSans/$without_spaces/g" \
-        "$xml_file" > "$xml_file_bak"
-    mv "$xml_file_bak" "$xml_file"
-    "$VIRTUAL_ENV"/bin/ttx -o "$fontname" "$xml_file" 2> /dev/null
-    [[ $? -ne 0 ]] && echo "ERROR: Could not dump xml to $fontname." && return 2
-    rm -f "$xml_file"
+
+    python3 ./rename_font.py "$fontname" "$with_spaces" "$without_spaces"
 }
 
 # Unihan IICore 2005 is a small subset of CJK (~10k codepoints).
@@ -87,6 +75,11 @@ create_cjk_subset() {
     local input_font=NotoSansCJKsc-Regular.otf
     local output_font=GoNotoCJKCore2005.otf
     local subset_codepoints=unihan_iicore.txt
+
+    if [[ -e "$output_font" ]]; then
+        echo "Not overwriting existing font $output_font."
+        return
+    fi
 
     cd cached_fonts/
     [[ ! -e Unihan.zip ]] && wget https://www.unicode.org/Public/UCD/latest/ucd/Unihan.zip
@@ -102,7 +95,10 @@ create_cjk_subset() {
     "$VIRTUAL_ENV"/bin/pyftsubset cached_fonts/"$input_font" \
                   --unicodes-file=cached_fonts/"$subset_codepoints" \
                   --output-file="$output_font"
-    edit_font_info "$output_font"
+
+    python3 ./rename_font.py "$output_font" \
+                             "Go Noto CJK Core 2005" \
+                             "${output_font%%.*}"
 }
 
 # execution starts here
