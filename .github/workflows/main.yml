@@ -34,9 +34,7 @@ jobs:
         run: |
             python3 -m venv venv
             source venv/bin/activate
-
-      - name: Run the main job
-        run: ./run.sh
+            ./run.sh
 
       - name: Upload generated fonts
         uses: actions/upload-artifact@v2
