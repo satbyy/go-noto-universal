@@ -55,7 +55,10 @@ subset_tibetan() {
         fi
         echo "Creating a smaller subset of Tibetan glyphs..."
         "$VIRTUAL_ENV"/bin/pyftsubset NotoSerifTibetan-Regular.ttf --output-file=NotoSerifTibetanSubset-Regular.ttf \
-                  --unicodes=U+0F00-0F8C,U+0F90,U+0F92,U+0F94,U+0F99,U+0F9F,U+0FA4,U+0FA9,U+0FAD,U+0FB1-0FB3,U+0FBA-0FDA
+                --glyph-names --no-layout-closure --glyphs="$(
+                    "$VIRTUAL_ENV"/bin/ttx -o - -q -t GlyphOrder NotoSerifTibetan-Regular.ttf \
+                    | grep '<GlyphID ' | cut -f4 -d'"' | grep -Ev '^uni0F([45].|6[013-9ABC])0F(9.|A[^D]|B[^12])'
+                )"
     fi
     cd "$OLDPWD"
 }
