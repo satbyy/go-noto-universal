@@ -75,26 +75,27 @@ issue with vmtx (vertical metrics). Noto fonts do not exist for Toto and Tangsa.
 ### Go Noto Asia Historical
 
 Following are included: Brahmi, Kharoshthi, Bhaiksuki, Phags-Pa, Marchen, Zanabazar Square, Soyombo,
-Old Turkic, Old Sogdian, Sogdian, Old Uyghur, Syloti Nagri, Kaithi, Sharada, Takri, Siddham,
-Mahajani, Khojki, Khudawadi, Multani, Tirhuta, Modi, Grantha, Ahom, Sora Sompeng, Dogra.
+Old Turkic, Old Sogdian, Sogdian, Old Uyghur, Indic Siyaq Numbers, Syloti Nagri, Kaithi, Sharada,
+Takri, Siddham, Mahajani, Khojki, Khudawadi, Multani, Tirhuta, Modi, Grantha, Ahom, Sora Sompeng,
+Dogra.
 
-Nandinagari is currently not included. Noto fonts do not exist for Dives Akuru. An older version of
-NotoSansDogra is included.
+Nandinagari is currently not included. Noto fonts do not exist for Dives Akuru and Ottoman Siyaq
+Numbers. An older version of NotoSansDogra is included.
 
 ### Go Noto South East Asia
 
 Following are included: Thai, Lao, Myanmar, Khmer, Tai Le, New Tai Lue, Tai Tham, Tai Viet, Kayah
-Li, Cham, Pahawh Hmong, Pau Cin Hau, Hanifi Rohingya, Tagalog, Hanunoo, Buhid, Tagbanwa, Buginese,
-Balinese, Javanese, Sundanese, Rejang, Batak.
+Li, Cham, Pahawh Hmong, Nyiakeng Puache Hmong, Pau Cin Hau, Hanifi Rohingya, Tagalog, Hanunoo,
+Buhid, Tagbanwa, Buginese, Balinese, Javanese, Sundanese, Rejang, Batak.
 
-Noto fonts do not exist for Makasar and Nyiakeng Puache Hmong.
+Noto fonts do not exist for Makasar.
 
 ### Go Noto Europe Americas
 
 Everything covered by NotoSans (Latin-Greek-Cyrillic etc.) plus Armenian, Coptic, Cypriot, Georgian,
-Deseret, Glagolitic, Osage, Old Italic, Runic, Anatolian Hieroglyphics, Carian, Canadian Aboriginal,
-Cherokee, Old Hungarian, Gothic, Elbasan, Caucasian Albanian, Vithkuqi, Ogham, Old Permic, Shavian,
-Linear A and Linear B.
+Deseret, Glagolitic, Osage, Old Italic, Runic, Duployan, Anatolian Hieroglyphics, Carian, Canadian
+Aboriginal, Cherokee, Mayan Numerals, Nyiakeng Puachue Hmong,Old Hungarian, Gothic, Elbasan,
+Caucasian Albanian, Vithkuqi, Ogham, Old Permic, Shavian, Linear A and Linear B.
 
 ### Go Noto Africa Middle East
 
