@@ -13,7 +13,7 @@ page](https://github.com/satbyy/go-noto-universal/releases/) and download what y
 
 Development builds are available from [GitHub
 Actions](https://github.com/satbyy/go-noto-universal/actions) page. Click on any workflow with green
-checkmark ✅ (pipeline passed) and under "Artifacts", download "GoNotoUniversal.zip (login
+checkmark ✅ (pipeline passed) and under "Artifacts", download "GoNotoUniversal.zip" (login
 required).
 
 ## Build
@@ -32,6 +32,10 @@ The Go Noto South Asia takes the longest time to generate.
 
 `run.sh` is designed to be reentrant, so you can run it multiple times without altering the working
 state of the repository or downloading stuff again and again.
+
+Latest CI status:
+
+[![CI](https://github.com/satbyy/go-noto-universal/actions/workflows/main.yml/badge.svg?branch=master)](https://github.com/satbyy/go-noto-universal/actions/workflows/main.yml)
 
 ## Dependencies
 
@@ -128,16 +132,16 @@ problem because CJK fonts have "vmtx" table, which is absent in other fonts, thu
 
 ## Font Statistics
 
-Statistics below correspond to release v2.1.
+Statistics below correspond to release v2.2.
 
 | Regional font              | Code blocks | Codepoints | Glyphs |
 |----------------------------|-------------|------------|--------|
 | GoNotoEuropeAmericas.ttf   | 111         | 11896      | 14780  |
 | GoNotoAfricaMiddleEast.ttf | 125         | 15506      | 19750  |
-| GoNotoSouthAsia.ttf        | 114         | 10922      | 20879  |
+| GoNotoSouthAsia.ttf        | 114         | 10955      | 20974  |
 | GoNotoAsiaHistorical.ttf   | 114         | 10261      | 16767  |
 | GoNotoSouthEastAsia.ttf    | 107         | 10168      | 14358  |
-| GoNotoEastAsia.ttf         | 96          | 10522      | 15081  |
+| GoNotoEastAsia.ttf         | 96          | 10559      | 15357  |
 | GoNotoCJKCore2005.ttf      | 20          | 10338      | 20099  |
 
 Note that each of the above (except CJKCore2005) include statistics of:

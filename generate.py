@@ -31,7 +31,7 @@ all_regions = {
         "NotoSansTamil-Regular.ttf",
         "NotoSansTelugu-Regular.ttf",
         "NotoSansThaana-Regular.ttf",
-        "NotoSerifTibetanSubset-Regular.ttf", # Tibetan subset ok
+        "NotoSerifTibetanSubset-Regular.ttf",
         "NotoSansWancho-Regular.ttf",
         "NotoSansWarangCiti-Regular.ttf",
         # Common for all scripts
@@ -51,7 +51,7 @@ all_regions = {
         "NotoSansMarchen-Regular.ttf",
         "NotoSansModi-Regular.ttf",
         "NotoSansMultani-Regular.ttf",
-        # "NotoSansNandinagari-Regular.ttf", # doesn't exist
+        # "NotoSansNandinagari-Regular.ttf", # TODO: not working
         "NotoSansOldSogdian-Regular.ttf",
         "NotoSansOldTurkic-Regular.ttf",
         "NotoSansPhagsPa-Regular.ttf",
@@ -184,7 +184,7 @@ all_regions = {
     'GoNotoEastAsia.ttf': [
         "NotoSans-Regular.ttf",
         "NotoSansMarchen-Regular.ttf",
-        # "NotoSansMongolian-Regular.ttf", # not working
+        # "NotoSansMongolian-Regular.ttf", # TODO: not working
         "NotoSansOldSogdian-Regular.ttf",
         "NotoSansOldTurkic-Regular.ttf",
         "NotoSansPhagsPa-Regular.ttf",
@@ -193,10 +193,10 @@ all_regions = {
         "NotoSansZanabazarSquare-Regular.ttf",
         "NotoSerifTibetanSubset-Regular.ttf",
         "NotoSansYi-Regular.ttf",
-        # "NotoSansNushu-Regular.ttf", # not working
+        # "NotoSansNushu-Regular.ttf", # TODO: not working
         "NotoSansLisu-Regular.ttf",
         "NotoSansMiao-Regular.ttf",
-        # "NotoSerifTangut-Regular.ttf", # not working
+        # "NotoSerifTangut-Regular.ttf", # TODO: not working
         # Common for all scripts
         "NotoSansSymbols-Regular.ttf",
         "NotoSansSymbols2-Regular.ttf",
