@@ -12,8 +12,9 @@ If you simply want to _use_ the fonts, go to [Releases
 page](https://github.com/satbyy/go-noto-universal/releases/) and download what you need.
 
 Development builds are available from [GitHub
-Actions](https://github.com/satbyy/go-noto-universal/actions) page.
-Click on any workflow with green checkmark ✅ and under "Artifacts", download "GoNotoUniversal.zip"
+Actions](https://github.com/satbyy/go-noto-universal/actions) page. Click on any workflow with green
+checkmark ✅ (pipeline passed) and under "Artifacts", download "GoNotoUniversal.zip (login
+required).
 
 ## Build
 
@@ -174,60 +175,6 @@ FontTools package comes with nice utilities `ttx` (ttf to xml and back), `pyftsu
 with subset of given font) and `pyftmerge` (merging fonts, basically same as this repo).
 
 `otfinfo` gives useful info about glyphs, codepoints, scripts and more.
-
-<!--
-1891 glyphs -> GSUB LookupIndex 1293 fails
-1575 glyphs -> GSUB LookupIndex 646 fails. Max Lookuptable size = 1651
-(NoSubjoined) 168 code points, 688 glpyhs -> GSUB LookupCount 1680
-
-../venv_fonty/bin/pyftsubset  NotoSerifTibetan-Regular.ttf \
-    --unicodes=U+0F00-0F8C,U+0F90,U+0F94,U+0F95,U+0F97,U+0F9F,U+0FA1,U+0FA3,U+0FA4,\
-    U+0FA6,U+0FA9,U+0FAB,U+0FAD,U+0FAF,U+0FB1-0FB3,U+0FB06-0FB8,U+0FBE-0FDA
-=> gives 181 codepoints, 1380 glyphs, 401KB size, GSUB LookupCount 915
-
-In comparison, Devanagari has GSUB LookupCount = 120 just!
-
---unicodes=U+0F00-0F68,U+0F6B-0F87,U+0F90,U+0F94,U+0F95,U+0F97,U+0F
-9F,U+0FA1,U+0FA3,U+0FA4,U+0FA6,U+0FA9,U+0FAB,U+0FAD,U+0FAF,U+0FB1-0FB3,U+0FB06-0FB8,U+0FBE-0FDA
-
-=> gives 174 codepoints, 1322 glyphs, 385KB size, GSUB LookupCount 892
-
--ka, -ga, -ja, -ta, -da, -na, -pa, -ba, -ma, -ya, -ra, -la, -wa, -tsa, -ha
-
-Bhutanese/Tibetan only:
-
- --unicodes=U+0F00-0F8F,U+0F90,U+0F92,U+0F97,U+0F9F,u+0FA1,U+0FA3,U+0FA4,U+0FA6,U+0FA8,U+0FA9,U+0FAD,U+0FB1-0FB3,U+0FB7
-
-155 codepoints, 1435 glyphs, 426 KB,
-
- --unicodes=U+0F00-0F8C,U+0F90,U+0F92,U+0F97,U+0F9F,u+0FA1,U+0FA3,U+0FA4,U+0FA6,U+0FA8,U+0FA9,U+0FAD,U+0FB1-0FB3,U+0FB8,U+0FBE-0FDA
-
-180 codepoints, 1456 glyphs, 431KB, GSUB 988 lookup ==> Not working
-
- --unicodes=U+0F00-0F8C,U+0F90,U+0F92,U+0F94,U+0FF99,U+0FAD,U+0FB1-0FB3,U+0FBA-0FDA
-
-175 codepoints, 1023 glyphs, 285KB, GSUB 646 lookup ==> WORKS WITH EastAsia.ttf and SouthAsia.ttf!
-
-  --unicodes=U+0F00-0F8C,U+0F90,U+0F92,U+0F94,U+0F9F,U+0FF99,U+0FAD,U+0FB1-0FB3,U+0FBA-0FDA
-(added TA) 176 codepoints, 1096 glyphs, 309KB, GSUB 703
-
- --unicodes=U+0F00-0F8C,U+0F90,U+0F92,U+0F94,U+0F99,U+0F9F,U+0FA4,U+0FAD,U+0FB1-0FB3,U+0FBA-0FDA
-(added TA, PA) 178 codepoints, 1170 glyphs, 330KB, GSUB 749
-
- --unicodes=U+0F00-0F8C,U+0F90,U+0F92,U+0F94,U+0F99,U+0F9F,U+0FA4,U+0FA9,U+0FAD,U+0FB1-0FB3,U+0FBA-0FDA
-(added TA, PA, TSA) 179 codepoints, 1204 glyphs, 343KB, GSUB 771 ==> WORKS with both South Asia!
-
-  --unicodes=U+0F00-0F8C,U+0F90,U+0F92,U+0F94,U+0F99,U+0F9F,U+0FA1,U+0FA4,U+0FA9,U+0FAD,U+0FB1-0FB3,U+0FBA-0FDA
-(added TA, PA, TSA, DA) 180 codepoints, 1297 glyphs, 374KB, GSUB 845
-
-  --unicodes=U+0F00-0F8C,U+0F90,U+0F92,U+0F94,U+0F99,U+0F9F,U+0FA1,U+0FA4,U+0FA6,U+0FA9,U+0FAD,U+0FB1-0FB3,U+0FBA-0FDA
-(added TA, PA, TSA, DA, BA) 181 codepoints, 1381 glyphs, 402KB, GSUB 912
-
-DA > BA > TA > PA > TSA
-
---unicodes=U+0F00-0F8C,U+0FAD,U+0FB1,U+0FB2,U+0FBE-0FDA
-Basic minimal set 168 codepoints, 839 glyphs, 234KB, 541 GSUB
--->
 
 [1]: https://en.wikipedia.org/wiki/International_Ideographs_Core
 [2]: https://github.com/googlefonts/noto-cjk/

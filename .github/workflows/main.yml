@@ -30,7 +30,7 @@ jobs:
         with:
           python-version: 3.8
 
-      - name: Create and start virtual environment
+      - name: Create fonts
         run: |
             python3 -m venv venv
             source venv/bin/activate
@@ -43,4 +43,4 @@ jobs:
           path: |
               *.ttf
               *.otf
-    
+          if-no-files-found: error

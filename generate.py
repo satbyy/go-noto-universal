@@ -240,7 +240,7 @@ merge_noto.SCRIPT_TO_OPENTYPE_SCRIPT_TAG['AnatolianHieroglyphs'] = 'hluw'
 merge_noto.SCRIPT_TO_OPENTYPE_SCRIPT_TAG['Vithkuqi'] = 'vith'
 merge_noto.SCRIPT_TO_OPENTYPE_SCRIPT_TAG['OldPermic'] = 'perm'
 merge_noto.SCRIPT_TO_OPENTYPE_SCRIPT_TAG['OldNorthArabian'] = 'narb'
-merge_noto.SCRIPT_TO_OPENTYPE_SCRIPT_TAG['Nabataean'] ='nbat'
+merge_noto.SCRIPT_TO_OPENTYPE_SCRIPT_TAG['Nabataean'] = 'nbat'
 merge_noto.SCRIPT_TO_OPENTYPE_SCRIPT_TAG['Hatran'] = 'hatr'
 merge_noto.SCRIPT_TO_OPENTYPE_SCRIPT_TAG['Medefaidrin'] = 'medf'
 
