@@ -64,9 +64,11 @@ all_regions = {
         "NotoSansTakri-Regular.ttf",
         "NotoSansTirhuta-Regular.ttf",
         "NotoSansZanabazarSquare-Regular.ttf",
+        "NotoSansIndicSiyaqNumbers-Regular.ttf",
         "NotoSerifAhom-Regular.ttf",
         "NotoSerifDogra-Regular.ttf",
         "NotoSerifKhojki-Regular.ttf",
+        "NotoSerifOldUyghur-Regular.ttf",
         # Common for all scripts
         "NotoSansSymbols-Regular.ttf",
         "NotoSansSymbols2-Regular.ttf",
@@ -89,6 +91,7 @@ all_regions = {
         "NotoSansMyanmar-Regular.ttf",
         "NotoSansNewTaiLue-Regular.ttf",
         "NotoSansPahawhHmong-Regular.ttf",
+        "NotoSerifNyiakengPuachueHmong-Regular.ttf",
         "NotoSansPauCinHau-Regular.ttf",
         "NotoSansRejang-Regular.ttf",
         "NotoSansSundanese-Regular.ttf",
@@ -130,6 +133,9 @@ all_regions = {
         "NotoSansOgham-Regular.ttf",
         "NotoSansOldPermic-Regular.ttf",
         "NotoSansShavian-Regular.ttf",
+        "NotoSansDuployan-Regular.ttf",
+        "NotoSansMayanNumerals-Regular.ttf",
+        "NotoSerifNyiakengPuachueHmong-Regular.ttf",
         # Common for all scripts
         "NotoSansSymbols-Regular.ttf",
         "NotoSansSymbols2-Regular.ttf",
@@ -233,6 +239,7 @@ merge_noto.SCRIPT_TO_OPENTYPE_SCRIPT_TAG['Thaana'] = 'thaa'
 merge_noto.SCRIPT_TO_OPENTYPE_SCRIPT_TAG['Mro'] = 'mroo'
 merge_noto.SCRIPT_TO_OPENTYPE_SCRIPT_TAG['PahawhHmong'] = "hmng"
 merge_noto.SCRIPT_TO_OPENTYPE_SCRIPT_TAG['Bamum'] = "bamu"
+# TODO Why does this begin with 'NotoSerif'?
 merge_noto.SCRIPT_TO_OPENTYPE_SCRIPT_TAG['NotoSerifYezidi'] = "yezi"
 merge_noto.SCRIPT_TO_OPENTYPE_SCRIPT_TAG['Nushul'] = "nshu"
 merge_noto.SCRIPT_TO_OPENTYPE_SCRIPT_TAG['LinearA'] = "lina"
@@ -243,6 +250,11 @@ merge_noto.SCRIPT_TO_OPENTYPE_SCRIPT_TAG['OldNorthArabian'] = 'narb'
 merge_noto.SCRIPT_TO_OPENTYPE_SCRIPT_TAG['Nabataean'] = 'nbat'
 merge_noto.SCRIPT_TO_OPENTYPE_SCRIPT_TAG['Hatran'] = 'hatr'
 merge_noto.SCRIPT_TO_OPENTYPE_SCRIPT_TAG['Medefaidrin'] = 'medf'
+merge_noto.SCRIPT_TO_OPENTYPE_SCRIPT_TAG['Duployan'] = 'dupl'
+# TODO: NotoSansMayanNumerals-Regular.ttf does not contain any script tag at all!
+merge_noto.SCRIPT_TO_OPENTYPE_SCRIPT_TAG['MayanNumerals'] = 'maya'
+# TODO Why does this begin with 'NotoSerif'?
+merge_noto.SCRIPT_TO_OPENTYPE_SCRIPT_TAG['NotoSerifNyiakengPuachueHmong'] = 'hmnp'
 
 if __name__ == "__main__":
     merge_fonts.files = all_regions[sys.argv[2]]
