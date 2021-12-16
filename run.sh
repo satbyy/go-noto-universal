@@ -3,7 +3,7 @@
 [[ -z "$VIRTUAL_ENV" ]] && echo "Refusing to run outside of venv. See README.md." && exit 1
 
 main() {
-    python3 -m pip install fonttools
+    python3 -m pip install 'fonttools >= 4.28.4'
 
     if [[ ! -d nototools ]]; then
         git clone --depth 1 https://github.com/googlefonts/nototools
