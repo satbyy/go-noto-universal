@@ -38,6 +38,7 @@ all_regions = {
         "NotoSansSymbols-Regular.ttf",
         "NotoSansSymbols2-Regular.ttf",
         "NotoSansMath-Regular.ttf",
+        "NotoMusic-Regular.ttf",
     ],
     'GoNotoAsiaHistorical.ttf': [
         "NotoSans-Regular.ttf",
@@ -73,6 +74,7 @@ all_regions = {
         "NotoSansSymbols-Regular.ttf",
         "NotoSansSymbols2-Regular.ttf",
         "NotoSansMath-Regular.ttf",
+        "NotoMusic-Regular.ttf",
     ],
     'GoNotoSouthEastAsia.ttf': [
         "NotoSans-Regular.ttf",
@@ -105,6 +107,7 @@ all_regions = {
         "NotoSansSymbols-Regular.ttf",
         "NotoSansSymbols2-Regular.ttf",
         "NotoSansMath-Regular.ttf",
+        "NotoMusic-Regular.ttf",
     ],
     'GoNotoEuropeAmericas.ttf': [
         "NotoSans-Regular.ttf",
@@ -143,6 +146,7 @@ all_regions = {
         "NotoSansSymbols-Regular.ttf",
         "NotoSansSymbols2-Regular.ttf",
         "NotoSansMath-Regular.ttf",
+        "NotoMusic-Regular.ttf",
     ],
     'GoNotoAfricaMiddleEast.ttf': [
         "NotoSans-Regular.ttf",
@@ -189,6 +193,7 @@ all_regions = {
         "NotoSansSymbols-Regular.ttf",
         "NotoSansSymbols2-Regular.ttf",
         "NotoSansMath-Regular.ttf",
+        "NotoMusic-Regular.ttf",
     ],
     'GoNotoEastAsia.ttf': [
         "NotoSans-Regular.ttf",
@@ -210,6 +215,7 @@ all_regions = {
         "NotoSansSymbols-Regular.ttf",
         "NotoSansSymbols2-Regular.ttf",
         "NotoSansMath-Regular.ttf",
+        "NotoMusic-Regular.ttf",
     ],
 }
 
