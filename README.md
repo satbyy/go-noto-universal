@@ -59,8 +59,8 @@ below refer to that spec.
 | GoNotoEastAsia.ttf         | "East Asia" - ch 18. everything other than Han (CJK)                                    |
 
 Each of the above fonts includes LGC (Latin-Greek-Cyrillic) as default, same coverage as `Noto Sans
-Regular`. Each one also includes Noto Sans Math, Noto Sans Symbols and Noto Sans Symbols 2 to give
-you bonus coverage of beautiful notations, symbols and emoji :)
+Regular`. Each one also includes Noto Sans Math, Noto Music, Noto Sans Symbols and Noto Sans Symbols
+2 to give you bonus coverage of beautiful notations, symbols and emoji :)
 
 ### Go Noto South Asia
 
@@ -94,8 +94,9 @@ Noto fonts do not exist for Makasar.
 
 Everything covered by NotoSans (Latin-Greek-Cyrillic etc.) plus Armenian, Coptic, Cypriot, Georgian,
 Deseret, Glagolitic, Osage, Old Italic, Runic, Duployan, Anatolian Hieroglyphics, Carian, Canadian
-Aboriginal, Cherokee, Mayan Numerals, Nyiakeng Puachue Hmong,Old Hungarian, Gothic, Elbasan,
-Caucasian Albanian, Vithkuqi, Ogham, Old Permic, Shavian, Linear A and Linear B.
+Aboriginal, Cherokee, Lycian, Lydian, Mayan Numerals, Nyiakeng Puachue Hmong, Old Hungarian, Gothic,
+Elbasan, Caucasian Albanian, Vithkuqi, Ogham, Old Permic, Shavian, Sutton Sign Writing, Linear A and
+Linear B.
 
 ### Go Noto Africa Middle East
 
@@ -124,11 +125,11 @@ Chinese (Traditional, Simplified), Japanese and Korean. Recently [Unihan Core
 The GoNotoCJKCore2005 includes "locl" features, so it can display Japanese or Korean glyphs just by
 switching the language in your editor/word processor/web browser etc.
 
-The generated font does _not_ contain Noto Sans Math, Noto Sans Symbols, Noto Sans Symbols 2 because
-[fonttools does not support](https://fonttools.readthedocs.io/en/latest/merge.html) merging fonts
-with CFF outlines (which is the case for .otf). Converting .otf to .ttf still doesn't solve the
-problem because CJK fonts have "vmtx" table, which is absent in other fonts, thus preventing
-`pyftmerge`.
+The generated font does _not_ contain Noto Sans Math, Noto Musiic, Noto Sans Symbols, Noto Sans
+Symbols 2 because [fonttools does not
+support](https://fonttools.readthedocs.io/en/latest/merge.html) merging fonts with CFF outlines
+(which is the case for .otf). Converting .otf to .ttf still doesn't solve the problem because CJK
+fonts have "vmtx" table, which is absent in other fonts, thus preventing `pyftmerge`.
 
 
 ## Font Statistics
