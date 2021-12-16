@@ -53,7 +53,7 @@ subset_tibetan() {
     mkdir -p cached_fonts/ && cd cached_fonts/
     if [[ ! -e NotoSerifTibetanSubset-Regular.ttf ]]; then
         if [[ ! -e NotoSerifTibetan-Regular.ttf ]]; then
-            wget https://github.com/googlefonts/noto-fonts/raw/main/hinted/ttf/NotoSerifTibetan/NotoSerifTibetan-Regular.ttf
+            wget -nv https://github.com/googlefonts/noto-fonts/raw/main/hinted/ttf/NotoSerifTibetan/NotoSerifTibetan-Regular.ttf
         fi
         echo "Creating a smaller subset of Tibetan glyphs..."
         "$VIRTUAL_ENV"/bin/pyftsubset NotoSerifTibetan-Regular.ttf --output-file=NotoSerifTibetanSubset-Regular.ttf \
@@ -74,9 +74,12 @@ drop_vertical_tables() {
     mkdir -p cached_fonts/ && cd cached_fonts/
 
     if [[ ! -e "$fontname" && ! -e "$output_font" ]]; then
-        wget -O "$fontname" "https://github.com/googlefonts/noto-fonts/raw/main/hinted/ttf/$dirname/$fontname"
+        wget -nv -O "$fontname" "https://github.com/googlefonts/noto-fonts/raw/main/hinted/ttf/$dirname/$fontname"
         echo "Removing vertical tables from $fontname"
-        "$VIRTUAL_ENV"/bin/pyftsubset "$fontname" --output-file="$output_font" --drop-tables+=vhea,vmtx
+        "$VIRTUAL_ENV"/bin/pyftsubset "$fontname" \
+                      --output-file="$output_font" \
+                      --glyphs='*' \
+                      --drop-tables+=vhea,vmtx
     fi
 
     cd "$OLDPWD"
@@ -104,12 +107,12 @@ create_cjk_subset() {
     fi
 
     cd cached_fonts/
-    [[ ! -e Unihan.zip ]] && wget https://www.unicode.org/Public/UCD/latest/ucd/Unihan.zip
+    [[ ! -e Unihan.zip ]] && wget -nv https://www.unicode.org/Public/UCD/latest/ucd/Unihan.zip
     python3 -m zipfile -e Unihan.zip .
     grep kIICore Unihan_IRGSources.txt | cut -f1 > "$subset_codepoints"
     python3 ../get_codepoints.py NotoSans-Regular.ttf >> "$subset_codepoints"
     if [[ ! -e "$input_font" ]]; then
-        wget https://github.com/googlefonts/noto-cjk/raw/main/Sans/OTF/SimplifiedChinese/"$input_font"
+        wget -nv https://github.com/googlefonts/noto-cjk/raw/main/Sans/OTF/SimplifiedChinese/"$input_font"
     fi
     cd "$OLDPWD"
 
