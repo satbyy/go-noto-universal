@@ -119,9 +119,12 @@ all_regions = {
         "NotoSansGeorgian-Regular.ttf",
         "NotoSansGlagolitic-Regular.ttf",
         "NotoSansOsage-Regular.ttf",
+        "NotoSansSignWriting-Regular.ttf",
         # Historical
         "NotoSansLinearA-Regular.ttf",
         "NotoSansLinearB-Regular.ttf",
+        "NotoSansLycian-Regular.ttf",
+        "NotoSansLydian-Regular.ttf",
         "NotoSansAnatolianHieroglyphs-Regular.ttf",
         "NotoSansOldItalic-Regular.ttf",
         "NotoSansRunic-Regular.ttf",
@@ -255,6 +258,7 @@ merge_noto.SCRIPT_TO_OPENTYPE_SCRIPT_TAG['Duployan'] = 'dupl'
 merge_noto.SCRIPT_TO_OPENTYPE_SCRIPT_TAG['MayanNumerals'] = 'maya'
 # TODO Why does this begin with 'NotoSerif'?
 merge_noto.SCRIPT_TO_OPENTYPE_SCRIPT_TAG['NotoSerifNyiakengPuachueHmong'] = 'hmnp'
+merge_noto.SCRIPT_TO_OPENTYPE_SCRIPT_TAG['SignWriting'] = 'sgnw'
 
 if __name__ == "__main__":
     merge_fonts.files = all_regions[sys.argv[2]]
