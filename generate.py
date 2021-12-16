@@ -52,7 +52,7 @@ all_regions = {
         "NotoSansMarchen-Regular.ttf",
         "NotoSansModi-Regular.ttf",
         "NotoSansMultani-Regular.ttf",
-        # "NotoSansNandinagari-Regular.ttf", # TODO: not working
+        "NotoSansNandinagariSubset-Regular.ttf",
         "NotoSansOldSogdian-Regular.ttf",
         "NotoSansOldTurkic-Regular.ttf",
         "NotoSansPhagsPa-Regular.ttf",
@@ -67,7 +67,7 @@ all_regions = {
         "NotoSansZanabazarSquare-Regular.ttf",
         "NotoSansIndicSiyaqNumbers-Regular.ttf",
         "NotoSerifAhom-Regular.ttf",
-        "NotoSerifDogra-Regular.ttf",
+        "NotoSerifDograSubset-Regular.ttf",
         "NotoSerifKhojki-Regular.ttf",
         "NotoSerifOldUyghur-Regular.ttf",
         # Common for all scripts

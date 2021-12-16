@@ -1,7 +1,7 @@
 # Go Noto Universal
 
-Noto fonts go universal! Download Noto fonts combined to suit your region (South Asia, SE Asia,
-Africa-MiddleEast, Europe-Americas).
+Noto fonts go universal! Download Noto fonts combined to suit your region (South Asia, SE Asia, East
+Asia, Africa-MiddleEast, Europe-Americas).
 
 This software combines/merges multiple [Noto Fonts](https://github.com/googlefonts/noto-fonts) to a
 single, region-specific font.
@@ -79,8 +79,7 @@ Old Turkic, Old Sogdian, Sogdian, Old Uyghur, Indic Siyaq Numbers, Syloti Nagri,
 Takri, Siddham, Mahajani, Khojki, Khudawadi, Multani, Tirhuta, Modi, Grantha, Ahom, Sora Sompeng,
 Dogra.
 
-Nandinagari is currently not included. Noto fonts do not exist for Dives Akuru and Ottoman Siyaq
-Numbers. An older version of NotoSansDogra is included.
+Noto fonts do not exist for Dives Akuru and Ottoman Siyaq Numbers.
 
 ### Go Noto South East Asia
 
@@ -125,7 +124,7 @@ Chinese (Traditional, Simplified), Japanese and Korean. Recently [Unihan Core
 The GoNotoCJKCore2005 includes "locl" features, so it can display Japanese or Korean glyphs just by
 switching the language in your editor/word processor/web browser etc.
 
-The generated font does _not_ contain Noto Sans Math, Noto Musiic, Noto Sans Symbols, Noto Sans
+The generated font does _not_ contain Noto Sans Math, Noto Music, Noto Sans Symbols, Noto Sans
 Symbols 2 because [fonttools does not
 support](https://fonttools.readthedocs.io/en/latest/merge.html) merging fonts with CFF outlines
 (which is the case for .otf). Converting .otf to .ttf still doesn't solve the problem because CJK
@@ -137,24 +136,25 @@ fonts have "vmtx" table, which is absent in other fonts, thus preventing `pyftme
 Statistics below correspond to release v2.2.
 
 | Regional font              | Code blocks | Codepoints | Glyphs |
-|----------------------------|-------------|------------|--------|
-| GoNotoEuropeAmericas.ttf   | 111         | 11896      | 14780  |
-| GoNotoAfricaMiddleEast.ttf | 125         | 15506      | 19750  |
-| GoNotoSouthAsia.ttf        | 114         | 10955      | 20974  |
-| GoNotoAsiaHistorical.ttf   | 114         | 10261      | 16767  |
-| GoNotoSouthEastAsia.ttf    | 107         | 10168      | 14358  |
-| GoNotoEastAsia.ttf         | 96          | 10559      | 15357  |
-| GoNotoCJKCore2005.ttf      | 20          | 10338      | 20099  |
+|----------------------------|------------:|-----------:|-------:|
+| GoNotoEuropeAmericas.ttf   |         111 |      11896 |  14780 |
+| GoNotoAfricaMiddleEast.ttf |         125 |      15506 |  19750 |
+| GoNotoSouthAsia.ttf        |         114 |      10955 |  20974 |
+| GoNotoAsiaHistorical.ttf   |         114 |      10261 |  16767 |
+| GoNotoSouthEastAsia.ttf    |         107 |      10168 |  14358 |
+| GoNotoEastAsia.ttf         |          96 |      10559 |  15357 |
+| GoNotoCJKCore2005.ttf      |          20 |      10338 |  20099 |
 
 Note that each of the above (except CJKCore2005) include statistics of:
 
-| Upstream font       | Code blocks | Codepoints      | Glyphs      |
-|---------------------|-------------|-----------------|-------------|
-| Noto Sans           | 37 blocks   | 2840 codepoints | 3317 glyphs |
-| Noto Sans Math      | 22 blocks   | 2472 codepoints | 2655 glyphs |
-| Noto Sans Symbols   | 15 blocks   | 840 codepoints  | 1218 glyphs |
-| Noto Sans Symbols 2 | 37 blocks   | 2655 codepoints | 2674 glyphs |
-| Total               | 111 blocks  | 8807 codepoints | 9864 glyphs |
+| Upstream font       | Code blocks | Codepoints | Glyphs |
+|---------------------|------------:|-----------:|-------:|
+| Noto Sans           |          37 |       2840 |   3317 |
+| Noto Sans Math      |          22 |       2472 |   2655 |
+| Noto Music          |           7 |        559 |    579 |
+| Noto Sans Symbols   |          15 |        840 |   1218 |
+| Noto Sans Symbols 2 |          37 |       2655 |   2674 |
+| Total               |         111 |       8807 |   9864 |
 
 ## Caveats
 
@@ -166,6 +166,7 @@ Note that each of the above (except CJKCore2005) include statistics of:
    occuring "subjoined consonants" are included. Those characters are displayed ok, but just that
    the glyphs appear to be "pushed up" compared to their neighbours.
 3. Certain fonts just refuse to cooperate, e.g. Mongolian, Nushu.
+4. Vertical layout is not supported for Dogra and Nandinagari.
 
 ## License
 

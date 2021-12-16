@@ -22,6 +22,8 @@ main() {
     cd "$OLDPWD"
 
     subset_tibetan
+    drop_vertical_tables NotoSerifDogra-Regular.ttf
+    drop_vertical_tables NotoSansNandinagari-Regular.ttf
 
     declare -a fonts=(
         GoNotoAfricaMiddleEast.ttf
@@ -60,6 +62,23 @@ subset_tibetan() {
                     | grep '<GlyphID ' | cut -f4 -d'"' | grep -Ev '^uni0F([45].|6[013-9ABC])0F(9.|A[^D]|B[^12])'
                 )"
     fi
+    cd "$OLDPWD"
+}
+
+# cannot merge with 'vmtx' and 'vhea' tables.
+drop_vertical_tables() {
+    local fontname="$1"
+    local output_font="${fontname/-/Subset-}"
+    local dirname="${fontname/-*/}"
+
+    mkdir -p cached_fonts/ && cd cached_fonts/
+
+    if [[ ! -e "$fontname" && ! -e "$output_font" ]]; then
+        wget -O "$fontname" "https://github.com/googlefonts/noto-fonts/raw/main/hinted/ttf/$dirname/$fontname"
+        echo "Removing vertical tables from $fontname"
+        "$VIRTUAL_ENV"/bin/pyftsubset "$fontname" --output-file="$output_font" --drop-tables+=vhea,vmtx
+    fi
+
     cd "$OLDPWD"
 }
 
