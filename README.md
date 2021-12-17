@@ -27,14 +27,14 @@ source venv_fonty/bin/activate
 deactivate
 ```
 
-Font generation can take 15 to 30 min, depending on your computer's capabilities.
+Font generation can take 10 to 20 min, depending on your computer's capabilities.
 
 `run.sh` is designed to be reentrant, so you can run it multiple times without altering the working
 state of the repository or downloading stuff again and again.
 
 Latest CI status:
 
-[![CI pipeline](https://github.com/satbyy/go-noto-universal/actions/workflows/main.yml/badge.svg?branch=master)](https://github.com/satbyy/go-noto-universal/actions/workflows/main.yml)
+[![CI](https://github.com/satbyy/go-noto-universal/actions/workflows/main.yml/badge.svg?branch=master)](https://github.com/satbyy/go-noto-universal/actions/workflows/main.yml)
 
 ## Dependencies
 
@@ -132,16 +132,16 @@ fonts have "vmtx" table, which is absent in other fonts, thus preventing `pyftme
 
 ## Font Statistics
 
-Statistics below correspond to release v2.2.
+Statistics below correspond to release v3.0.
 
 | Regional font              | Code blocks | Codepoints | Glyphs |
 |----------------------------|------------:|-----------:|-------:|
-| GoNotoEuropeAmericas.ttf   |         111 |      11896 |  14780 |
-| GoNotoAfricaMiddleEast.ttf |         125 |      15506 |  19750 |
-| GoNotoSouthAsia.ttf        |         114 |      10955 |  20974 |
-| GoNotoAsiaHistorical.ttf   |         114 |      10261 |  16767 |
-| GoNotoSouthEastAsia.ttf    |         107 |      10168 |  14358 |
-| GoNotoEastAsia.ttf         |          96 |      10559 |  15357 |
+| GoNotoEuropeAmericas.ttf   |         120 |      13389 |  53570 |
+| GoNotoAfricaMiddleEast.ttf |         128 |      16053 |  20329 |
+| GoNotoSouthAsia.ttf        |         117 |      11502 |  21553 |
+| GoNotoAsiaHistorical.ttf   |         122 |      11001 |  18248 |
+| GoNotoSouthEastAsia.ttf    |         111 |      10786 |  15013 |
+| GoNotoEastAsia.ttf         |          99 |      11106 |  15396 |
 | GoNotoCJKCore2005.ttf      |          20 |      10338 |  20099 |
 
 Note that each of the above (except CJKCore2005) include statistics of:
@@ -164,8 +164,11 @@ Note that each of the above (except CJKCore2005) include statistics of:
 2. Tibetan has limited glyphs, otherwise GSUB table gets "overflow"ed. Only the most frequently
    occuring "subjoined consonants" are included. Those characters are displayed ok, but just that
    the glyphs appear to be "pushed up" compared to their neighbours.
-3. Certain fonts just refuse to cooperate, e.g. Mongolian, Nüshu.
-4. Vertical text layout is not supported for Dogra and Nandinagari.
+3. Vertical text layout is not supported for Dogra, Mongolian, Nandinagari, Nüshu and Tangut, even
+   though the upstream Noto fonts has the support because fonttools does not support merging with
+   `vmtx`/`vhea`.
+4. GoNotoCJKCore2005 does not contain Noto Sans Math and Noto Sans Symbols because fonttools does
+   not support merging CFF with others.
 
 ## License
 

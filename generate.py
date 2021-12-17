@@ -198,7 +198,7 @@ all_regions = {
     'GoNotoEastAsia.ttf': [
         "NotoSans-Regular.ttf",
         "NotoSansMarchen-Regular.ttf",
-        # "NotoSansMongolian-Regular.ttf", # TODO: not working
+        "NotoSansMongolianSubset-Regular.ttf",
         "NotoSansOldSogdian-Regular.ttf",
         "NotoSansOldTurkic-Regular.ttf",
         "NotoSansPhagsPa-Regular.ttf",
@@ -207,10 +207,10 @@ all_regions = {
         "NotoSansZanabazarSquare-Regular.ttf",
         "NotoSerifTibetanSubset-Regular.ttf",
         "NotoSansYi-Regular.ttf",
-        # "NotoSansNushu-Regular.ttf", # TODO: not working
+        "NotoSansNushuSubset-Regular.ttf",
         "NotoSansLisu-Regular.ttf",
         "NotoSansMiao-Regular.ttf",
-        # "NotoSerifTangut-Regular.ttf", # TODO: not working
+        "NotoSerifTangutSubset-Regular.ttf",
         # Common for all scripts
         "NotoSansSymbols-Regular.ttf",
         "NotoSansSymbols2-Regular.ttf",
@@ -266,6 +266,8 @@ merge_noto.SCRIPT_TO_OPENTYPE_SCRIPT_TAG['MayanNumerals'] = 'maya'
 merge_noto.SCRIPT_TO_OPENTYPE_SCRIPT_TAG['NotoSerifNyiakengPuachueHmong'] = 'hmnp'
 merge_noto.SCRIPT_TO_OPENTYPE_SCRIPT_TAG['SignWriting'] = 'sgnw'
 merge_noto.SCRIPT_TO_OPENTYPE_SCRIPT_TAG['Mahajani'] = 'mahj'
+# TODO Why's this decuding 'Subset'?
+merge_noto.SCRIPT_TO_OPENTYPE_SCRIPT_TAG['NushuSubset'] = 'nshu'
 
 if __name__ == "__main__":
     merge_fonts.files = all_regions[sys.argv[2]]
