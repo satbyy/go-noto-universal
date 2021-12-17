@@ -265,6 +265,7 @@ merge_noto.SCRIPT_TO_OPENTYPE_SCRIPT_TAG['MayanNumerals'] = 'maya'
 # TODO Why does this begin with 'NotoSerif'?
 merge_noto.SCRIPT_TO_OPENTYPE_SCRIPT_TAG['NotoSerifNyiakengPuachueHmong'] = 'hmnp'
 merge_noto.SCRIPT_TO_OPENTYPE_SCRIPT_TAG['SignWriting'] = 'sgnw'
+merge_noto.SCRIPT_TO_OPENTYPE_SCRIPT_TAG['Mahajani'] = 'mahj'
 
 if __name__ == "__main__":
     merge_fonts.files = all_regions[sys.argv[2]]

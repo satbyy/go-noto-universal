@@ -27,15 +27,14 @@ source venv_fonty/bin/activate
 deactivate
 ```
 
-Font generation can take a few minutes to several hours, depending on your computer's capabilities.
-The Go Noto South Asia takes the longest time to generate.
+Font generation can take 15 to 30 min, depending on your computer's capabilities.
 
 `run.sh` is designed to be reentrant, so you can run it multiple times without altering the working
 state of the repository or downloading stuff again and again.
 
 Latest CI status:
 
-[![CI](https://github.com/satbyy/go-noto-universal/actions/workflows/main.yml/badge.svg?branch=master)](https://github.com/satbyy/go-noto-universal/actions/workflows/main.yml)
+[![CI pipeline](https://github.com/satbyy/go-noto-universal/actions/workflows/main.yml/badge.svg?branch=master)](https://github.com/satbyy/go-noto-universal/actions/workflows/main.yml)
 
 ## Dependencies
 
@@ -165,8 +164,8 @@ Note that each of the above (except CJKCore2005) include statistics of:
 2. Tibetan has limited glyphs, otherwise GSUB table gets "overflow"ed. Only the most frequently
    occuring "subjoined consonants" are included. Those characters are displayed ok, but just that
    the glyphs appear to be "pushed up" compared to their neighbours.
-3. Certain fonts just refuse to cooperate, e.g. Mongolian, Nushu.
-4. Vertical layout is not supported for Dogra and Nandinagari.
+3. Certain fonts just refuse to cooperate, e.g. Mongolian, Nüshu.
+4. Vertical text layout is not supported for Dogra and Nandinagari.
 
 ## License
 
