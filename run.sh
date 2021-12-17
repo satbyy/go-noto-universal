@@ -24,6 +24,9 @@ main() {
     subset_tibetan
     drop_vertical_tables NotoSerifDogra-Regular.ttf
     drop_vertical_tables NotoSansNandinagari-Regular.ttf
+    drop_vertical_tables NotoSansMongolian-Regular.ttf
+    drop_vertical_tables NotoSansNushu-Regular.ttf
+    drop_vertical_tables NotoSerifTangut-Regular.ttf
 
     declare -a fonts=(
         GoNotoAfricaMiddleEast.ttf
@@ -73,12 +76,12 @@ drop_vertical_tables() {
 
     mkdir -p cached_fonts/ && cd cached_fonts/
 
-    if [[ ! -e "$fontname" && ! -e "$output_font" ]]; then
+    if [[ ! -e "$fontname" || ! -e "$output_font" ]]; then
         wget -nv -O "$fontname" "https://github.com/googlefonts/noto-fonts/raw/main/hinted/ttf/$dirname/$fontname"
         echo "Removing vertical tables from $fontname"
         "$VIRTUAL_ENV"/bin/pyftsubset "$fontname" \
                       --output-file="$output_font" \
-                      --glyphs='*' \
+                      --glyphs='*' --unicodes='*' \
                       --drop-tables+=vhea,vmtx
     fi
 
