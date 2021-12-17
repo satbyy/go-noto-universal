@@ -141,8 +141,10 @@ Statistics below correspond to release v3.0.
 | GoNotoSouthAsia.ttf        |         117 |      11502 |  21553 |
 | GoNotoAsiaHistorical.ttf   |         122 |      11001 |  18248 |
 | GoNotoSouthEastAsia.ttf    |         111 |      10786 |  15013 |
-| GoNotoEastAsia.ttf         |          99 |      11106 |  15396 |
+| GoNotoEastAsia.ttf         |         109 |      18708 |  25043 |
 | GoNotoCJKCore2005.ttf      |          20 |      10338 |  20099 |
+
+NotoSansSignWriting alone contributes about 37900 glyphs to GoNotoEuropeAmericas.ttf.
 
 Note that each of the above (except CJKCore2005) include statistics of:
 
