@@ -82,6 +82,7 @@ drop_vertical_tables() {
         "$VIRTUAL_ENV"/bin/pyftsubset "$fontname" \
                       --output-file="$output_font" \
                       --glyphs='*' --unicodes='*' \
+                      --glyph-names --layout-features='*' \
                       --drop-tables+=vhea,vmtx
     fi
 
@@ -122,6 +123,7 @@ create_cjk_subset() {
     echo "Generating font $output_font. Current time: $(date)."
     "$VIRTUAL_ENV"/bin/pyftsubset cached_fonts/"$input_font" \
                   --unicodes-file=cached_fonts/"$subset_codepoints" \
+                  --layout-features='*' \
                   --output-file="$output_font"
 
     python3 ./rename_font.py "$output_font" \
