@@ -38,6 +38,8 @@ jobs:
             python3 -m venv venv
             source venv/bin/activate
             ./run.sh
+            ./merge_fonts.sh
+            deactivate
 
       - name: Upload generated fonts
         uses: actions/upload-artifact@v2
