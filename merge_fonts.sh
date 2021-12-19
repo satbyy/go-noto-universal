@@ -59,7 +59,7 @@ contemporary=(
     "NotoSansTamil-Regular.ttf"
     "NotoSansTelugu-Regular.ttf"
     "NotoSansThaana-Regular.ttf"
-    # "NotoSerifTibetanSubset-Regular.ttf" # Tibetan subset not working
+    "NotoSerifTibetanSubset-Regular.ttf"
     "NotoSansWancho-Regular.ttf"
     "NotoSansWarangCiti-Regular.ttf"
     # SE Asia
@@ -119,5 +119,21 @@ contemporary=(
 )
 
 cd cached_fonts/
+
+# CJK subset from different URL
+# wget -nv -O NotoSansCJKsc-VF.ttf https://github.com/googlefonts/noto-cjk/raw/main/Sans/Variable/TTF/NotoSansCJKsc-VF.ttf
+
+for font in "${contemporary[@]}"; do
+    if [[ ! -e "$font" ]]; then
+        noto_dir="${font%-*}"
+        wget -O "$font" -nv "https://github.com/googlefonts/noto-fonts/raw/main/hinted/ttf/$noto_dir/$font"
+    fi
+done
+
 time pyftmerge --verbose --drop-tables=vhea,vmtx \
      --output-file=../GoNotoContemporary.ttf "${contemporary[@]}"
+
+cd "$OLDPWD"
+
+python3 ./rename_font.py GoNotoContemporary.ttf \
+        "Go Noto Contemporary" GoNotoContemporary
