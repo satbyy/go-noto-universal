@@ -120,6 +120,7 @@ contemporary=(
     "NotoSansNushuSubset-Regular.ttf" # Not exactly contemporary use but just 402 glyphs
     "NotoSansMiao-Regular.ttf"
     # Common for all scripts
+    "NotoMusic-Regular.ttf"
     "NotoSansSymbols-Regular.ttf"
     "NotoSansSymbols2-Regular.ttf"
     "NotoSansMath-Regular.ttf"
@@ -140,7 +141,7 @@ create_cjk_subset() {
         python3 -m zipfile -e Unihan.zip .
         grep kIICore Unihan_IRGSources.txt | cut -f1 > unihan_iicore.txt
 
-        # Chooose U+4e00 to U+6000 to avoid cmap format 4 subtable overflow (reduce number of segments)
+        # Choose U+4e00 to U+6000 to avoid cmap format 4 subtable overflow (reduce number of segments)
         for i in $(seq 0x4e00 0x6000); do printf "U+%x\n" $i; done > unihan_0x4e00-0x6000.txt
 
         # Combine it with IICore codepoints
