@@ -37,8 +37,7 @@ jobs:
         run: |
             python3 -m venv venv
             source venv/bin/activate
-            ./run.sh
-            ./merge_fonts.sh
+            ./run.sh && ./merge_fonts.sh
             deactivate
 
       - name: Upload generated fonts
