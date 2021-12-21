@@ -48,7 +48,7 @@ main() {
         edit_font_info "$font"
     done
 
-    create_cjk_subset
+    create_cjk_iicore
 }
 
 # create tibetan subset so that GSUB is not overflow'ed.
@@ -100,7 +100,7 @@ edit_font_info() {
 
 # Unihan IICore 2005 is a small subset of CJK (~10k codepoints).
 # Recently it has been superseded by UnihanCore2020, which is double in size.
-create_cjk_subset() {
+create_cjk_iicore() {
     local input_font=NotoSansCJKsc-Regular.otf
     local output_font=GoNotoCJKCore2005.otf
     local subset_codepoints=unihan_iicore.txt

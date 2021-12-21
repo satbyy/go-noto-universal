@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 
 historical=(
     "NotoSans-Regular.ttf"
@@ -114,9 +114,10 @@ contemporary=(
     "NotoSansMendeKikakui-Regular.ttf"
     "NotoSansMedefaidrin-Regular.ttf"
     # 'GoNotoEastAsia.ttf': [
+    "NotoSansCJKscSubset-Regular.ttf" # we'll create this below
     "NotoSansMongolianSubset-Regular.ttf"
     "NotoSansYi-Regular.ttf"
-    "NotoSansNushuSubset-Regular.ttf" # Not exactly contemporary use...
+    "NotoSansNushuSubset-Regular.ttf" # Not exactly contemporary use but just 402 glyphs
     "NotoSansMiao-Regular.ttf"
     # Common for all scripts
     "NotoSansSymbols-Regular.ttf"
@@ -124,11 +125,42 @@ contemporary=(
     "NotoSansMath-Regular.ttf"
 )
 
-cd cached_fonts/
+create_cjk_subset() {
+    local input_otf=NotoSansCJKsc-Regular.otf
+    local subset_otf="${input_otf/-/Subset-}"
+    local subset_ttf="${subset_otf/otf/ttf}"
 
-# CJK subset from different URL
-# wget -nv -O NotoSansCJKsc-VF.ttf https://github.com/googlefonts/noto-cjk/raw/main/Sans/Variable/TTF/NotoSansCJKsc-VF.ttf
+    mkdir -p cached_fonts/ && cd cached_fonts/
 
+    # CJK font from different URL
+    if [[ ! -e "$input_otf" || ! -e "$subset_ttf" ]]; then
+        wget -nv -O "$input_otf" https://github.com/googlefonts/noto-cjk/raw/main/Sans/OTF/SimplifiedChinese/"$input_otf"
+
+        [[ ! -e Unihan.zip ]] && wget -nv https://www.unicode.org/Public/UCD/latest/ucd/Unihan.zip
+        python3 -m zipfile -e Unihan.zip .
+        grep kIICore Unihan_IRGSources.txt | cut -f1 > unihan_iicore.txt
+
+        # Chooose U+4e00 to U+6000 to avoid cmap format 4 subtable overflow (reduce number of segments)
+        for i in $(seq 0x4e00 0x6000); do printf "U+%x\n" $i; done > unihan_0x4e00-0x6000.txt
+
+        # Combine it with IICore codepoints
+        cat unihan_iicore.txt unihan_0x4e00-0x6000.txt | sort | uniq > Unihan_codepoints.txt
+
+        # Passthrough tables which cannot be subset
+        "$VIRTUAL_ENV"/bin/pyftsubset --drop-tables=vhea,vmtx --glyph-names --recommended-glyphs --passthrough-tables \
+                      --layout-features='*' --unicodes-file=Unihan_codepoints.txt --output-file="$subset_otf" "$input_otf"
+
+        # convert otf to ttf
+        wget -N -nv https://github.com/fonttools/fonttools/raw/main/Snippets/otf2ttf.py
+        python3 ./otf2ttf.py --post-format 3 -o "$subset_ttf" "$subset_otf"
+    fi
+
+    cd "$OLDPWD"
+}
+
+create_cjk_subset
+
+mkdir -p cached_fonts/ && cd cached_fonts/
 for font in "${contemporary[@]}"; do
     if [[ ! -e "$font" ]]; then
         noto_dir="${font%-*}"
@@ -136,10 +168,8 @@ for font in "${contemporary[@]}"; do
     fi
 done
 
-time pyftmerge --verbose --drop-tables=vhea,vmtx \
-     --output-file=../GoNotoContemporary.ttf "${contemporary[@]}"
+time "$VIRTUAL_ENV"/bin/pyftmerge --drop-tables+=vhea,vmtx --verbose --output-file=../GoNotoContemporary.ttf "${contemporary[@]}"
 
 cd "$OLDPWD"
 
-python3 ./rename_font.py GoNotoContemporary.ttf \
-        "Go Noto Contemporary" GoNotoContemporary
+python3 ./rename_font.py GoNotoContemporary.ttf "Go Noto Contemporary" GoNotoContemporary
