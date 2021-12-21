@@ -86,6 +86,7 @@ contemporary=(
     "NotoSansTaiTham-Regular.ttf"
     "NotoSansTaiViet-Regular.ttf"
     "NotoSansThai-Regular.ttf"
+    "NotoSansLisu-Regular.ttf"
     # 'GoNotoEuropeAmericas.ttf': [
     "NotoSans-Regular.ttf"
     "NotoSansArmenian-Regular.ttf"
@@ -112,6 +113,11 @@ contemporary=(
     "NotoSansVai-Regular.ttf"
     "NotoSansMendeKikakui-Regular.ttf"
     "NotoSansMedefaidrin-Regular.ttf"
+    # 'GoNotoEastAsia.ttf': [
+    "NotoSansMongolianSubset-Regular.ttf"
+    "NotoSansYi-Regular.ttf"
+    "NotoSansNushuSubset-Regular.ttf" # Not exactly contemporary use...
+    "NotoSansMiao-Regular.ttf"
     # Common for all scripts
     "NotoSansSymbols-Regular.ttf"
     "NotoSansSymbols2-Regular.ttf"
