@@ -2,3 +2,5 @@ cached_fonts/
 nototools/
 venv*/
 *.pickle
+*.ttf
+*.otf
