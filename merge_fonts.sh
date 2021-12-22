@@ -120,10 +120,10 @@ contemporary=(
     "NotoSansNushuSubset-Regular.ttf" # Not exactly contemporary use but just 402 glyphs
     "NotoSansMiao-Regular.ttf"
     # Common for all scripts
-    "NotoMusic-Regular.ttf"
     "NotoSansSymbols-Regular.ttf"
     "NotoSansSymbols2-Regular.ttf"
     "NotoSansMath-Regular.ttf"
+    "NotoMusic-Regular.ttf"
 )
 
 create_cjk_subset() {
@@ -135,6 +135,7 @@ create_cjk_subset() {
 
     # CJK font from different URL
     if [[ ! -e "$input_otf" || ! -e "$subset_ttf" ]]; then
+        echo "Creating CJK font $subset_ttf..."
         wget -nv -O "$input_otf" https://github.com/googlefonts/noto-cjk/raw/main/Sans/OTF/SimplifiedChinese/"$input_otf"
 
         [[ ! -e Unihan.zip ]] && wget -nv https://www.unicode.org/Public/UCD/latest/ucd/Unihan.zip
