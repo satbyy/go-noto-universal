@@ -119,6 +119,7 @@ all_regions = {
         "NotoSansGlagolitic-Regular.ttf",
         "NotoSansOsage-Regular.ttf",
         "NotoSansSignWriting-Regular.ttf",
+        "NotoSerifNyiakengPuachueHmong-Regular.ttf",
         # Historical
         "NotoSansCypriot-Regular.ttf",
         "NotoSansCaucasianAlbanian-Regular.ttf",
@@ -141,7 +142,6 @@ all_regions = {
         "NotoSansShavian-Regular.ttf",
         "NotoSansDuployan-Regular.ttf",
         "NotoSansMayanNumerals-Regular.ttf",
-        "NotoSerifNyiakengPuachueHmong-Regular.ttf",
         # Common for all scripts
         "NotoSansSymbols-Regular.ttf",
         "NotoSansSymbols2-Regular.ttf",
