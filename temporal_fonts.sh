@@ -3,6 +3,8 @@ set -e
 
 [[ -z "$VIRTUAL_ENV" ]] && echo "Refusing to run outside of venv. See README.md." && exit 100
 
+python3 -m pip install 'fonttools >= 4.28.5'
+
 # import functions and globals
 source helper.sh
 source categories.sh
