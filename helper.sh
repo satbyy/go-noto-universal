@@ -23,7 +23,7 @@ create_tibetan_subset() {
     local input_font=NotoSerifTibetan-Regular.ttf
     local output_font="${input_font/-/Subset-}"
     local glyphs=0
-    local exclude_regex='uni0F([45].|6[^2])0F(9.|A[^D]|B[^12])|uni[[:xdigit:]]{8}\.2'
+    local exclude_regex='uni0F([45].|6[^2])0F(9.|A[^D]|B[^12])|uni[[:xdigit:]]{8,12}\.[2]'
 
     cd cache/
 
@@ -137,7 +137,65 @@ create_cjk_subset() {
     # convert otf to ttf
     download_url https://github.com/fonttools/fonttools/raw/main/Snippets/otf2ttf.py
     python3 ./otf2ttf.py --post-format 2 -o "$subset_ttf" "$subset_otf"
-    python3 ../rename_font.py "$subset_ttf" "Noto Sans CJK Subset" "NotoSansCJKSubset"
+    python3 ../rename_font.py "$subset_ttf" "Noto Sans CJKsc Subset" "NotoSansCJKscSubset"
+
+    cd "$OLDPWD"
+}
+
+create_korean_hangul_subset() {
+    local input_otf=NotoSansCJKkr-Regular.otf
+    local subset_otf="${input_otf/-/Subset-}"
+    local subset_ttf="${subset_otf/otf/ttf}"
+
+    if [[ -e "cache/$subset_ttf" ]]; then
+        echo "Not overwriting existing font $subset_ttf."
+        return
+    fi
+
+    cd cache/
+
+    [[ ! -e "$input_otf" ]] && download_url "https://github.com/googlefonts/noto-cjk/raw/main/Sans/OTF/Korean/$input_otf"
+
+    echo "Generating Korean font $subset_ttf..."
+    "$VIRTUAL_ENV"/bin/pyftsubset --drop-tables=vhea,vmtx --glyph-names \
+                  --recommended-glyphs --passthrough-tables --layout-features='*' \
+                  --unicodes='U+1100-11FF,U+3130-318F' \
+                  --output-file="$subset_otf" "$input_otf"
+
+    # convert otf to ttf
+    download_url https://github.com/fonttools/fonttools/raw/main/Snippets/otf2ttf.py
+    python3 ./otf2ttf.py --post-format 2 -o "$subset_ttf" "$subset_otf"
+
+    python3 ../rename_font.py "$subset_ttf" "Noto Sans CJKkr Subset" "NotoSansCJKkrSubset"
+
+    cd "$OLDPWD"
+}
+
+create_japanese_kana_subset() {
+    local input_otf=NotoSansCJKjp-Regular.otf
+    local subset_otf="${input_otf/-/Subset-}"
+    local subset_ttf="${subset_otf/otf/ttf}"
+
+    if [[ -e "cache/$subset_ttf" ]]; then
+        echo "Not overwriting existing font $subset_ttf."
+        return
+    fi
+
+    cd cache/
+
+    [[ ! -e "$input_otf" ]] && download_url "https://github.com/googlefonts/noto-cjk/raw/main/Sans/OTF/Japanese/$input_otf"
+
+    echo "Generating Japanese font $subset_ttf..."
+    "$VIRTUAL_ENV"/bin/pyftsubset --drop-tables=vhea,vmtx --glyph-names \
+                  --recommended-glyphs --passthrough-tables --layout-features='*' \
+                  --unicodes='U+3040-309F,U+30A0-30FF' \
+                  --output-file="$subset_otf" "$input_otf"
+
+    # convert otf to ttf
+    download_url https://github.com/fonttools/fonttools/raw/main/Snippets/otf2ttf.py
+    python3 ./otf2ttf.py --post-format 2 -o "$subset_ttf" "$subset_otf"
+
+    python3 ../rename_font.py "$subset_ttf" "Noto Sans CJKjp Subset" "NotoSansCJKjpSubset"
 
     cd "$OLDPWD"
 }
