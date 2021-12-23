@@ -53,17 +53,21 @@ main() {
 
 # create tibetan subset so that GSUB is not overflow'ed.
 subset_tibetan() {
+    local input_font=NotoSerifTibetan-Regular.ttf
+    local output_font="${input_font/-/Subset-}"
+    local glyphs=0
+
     mkdir -p cached_fonts/ && cd cached_fonts/
-    if [[ ! -e NotoSerifTibetanSubset-Regular.ttf ]]; then
-        if [[ ! -e NotoSerifTibetan-Regular.ttf ]]; then
-            wget -nv https://github.com/googlefonts/noto-fonts/raw/main/hinted/ttf/NotoSerifTibetan/NotoSerifTibetan-Regular.ttf
-        fi
+    if [[ ! -e "$input_font" || ! -e "$output_font" ]]; then
+        wget -nv -O "$input_font" "https://github.com/googlefonts/noto-fonts/raw/main/hinted/ttf/NotoSerifTibetan/$input_font"
+
         echo "Creating a smaller subset of Tibetan glyphs..."
-        "$VIRTUAL_ENV"/bin/pyftsubset NotoSerifTibetan-Regular.ttf --output-file=NotoSerifTibetanSubset-Regular.ttf \
-                --glyph-names --no-layout-closure --glyphs="$(
-                    "$VIRTUAL_ENV"/bin/ttx -o - -q -t GlyphOrder NotoSerifTibetan-Regular.ttf \
-                    | grep '<GlyphID ' | cut -f4 -d'"' | grep -Ev '^uni0F([45].|6[013-9ABC])0F(9.|A[^D]|B[^12])'
-                )"
+        glyphs=$("$VIRTUAL_ENV"/bin/ttx -o - -q -t GlyphOrder "$input_font" \
+                     | grep '<GlyphID ' | cut -f4 -d'"' \
+                     | grep -Ev 'uni0F([45].|6[^2])0F(9.|A[^D]|B[^12])|uni[[:xdigit:]]{8}\.[2]' \
+                )
+        "$VIRTUAL_ENV"/bin/pyftsubset "$input_font" --output-file="$output_font" \
+                --glyph-names --no-layout-closure --glyphs="${glyphs}"
     fi
     cd "$OLDPWD"
 }
