@@ -4,7 +4,10 @@ set -e
 download_url() {
     local name=''
     name=$(basename "$1")
-    wget -nv -O "$name" "$1"
+    # Do not download if file already exists
+    if [[ ! -e "$name" ]]; then
+        wget -nv -O "$name" "$1"
+    fi
 }
 
 # Rename font metadata
@@ -27,7 +30,7 @@ create_tibetan_subset() {
 
     cd cache/
 
-    if [[ ! -e "$input_font" || ! -e "$output_font" ]]; then
+    if [[ ! -e "$output_font" ]]; then
         download_url "https://github.com/googlefonts/noto-fonts/raw/main/hinted/ttf/NotoSerifTibetan/$input_font"
 
         echo "Creating a smaller subset of Tibetan glyphs..."
@@ -53,7 +56,7 @@ drop_vertical_tables() {
 
     cd cache/
 
-    if [[ ! -e "$fontname" || ! -e "$output_font" ]]; then
+    if [[ ! -e "$output_font" ]]; then
         download_url "https://github.com/googlefonts/noto-fonts/raw/main/hinted/ttf/$dirname/$fontname"
         echo "Removing vertical tables from $fontname"
         "$VIRTUAL_ENV"/bin/pyftsubset --recommended-glyphs --passthrough-tables \
@@ -78,13 +81,11 @@ create_cjk_iicore() {
 
     cd cache/
 
-    [[ ! -e Unihan.zip ]] && download_url https://www.unicode.org/Public/UCD/latest/ucd/Unihan.zip
+    download_url "https://www.unicode.org/Public/UCD/latest/ucd/Unihan.zip"
     python3 -m zipfile -e Unihan.zip .
     grep kIICore Unihan_IRGSources.txt | cut -f1 > "$subset_codepoints"
     python3 ../get_codepoints.py NotoSans-Regular.ttf >> "$subset_codepoints"
-    if [[ ! -e "$input_font" ]]; then
-        download_url "https://github.com/googlefonts/noto-cjk/raw/main/Sans/OTF/SimplifiedChinese/$input_font"
-    fi
+    download_url "https://github.com/googlefonts/noto-cjk/raw/main/Sans/OTF/SimplifiedChinese/$input_font"
 
     cd "$OLDPWD"
 
@@ -111,11 +112,11 @@ create_cjk_subset() {
 
     cd cache/
 
-    [[ ! -e "$input_otf" ]] && download_url "https://github.com/googlefonts/noto-cjk/raw/main/Sans/OTF/SimplifiedChinese/$input_otf"
+    download_url "https://github.com/googlefonts/noto-cjk/raw/main/Sans/OTF/SimplifiedChinese/$input_otf"
 
     echo "Generating CJK font $subset_ttf..."
 
-    [[ ! -e Unihan.zip ]] && download_url "https://www.unicode.org/Public/UCD/latest/ucd/Unihan.zip"
+    download_url "https://www.unicode.org/Public/UCD/latest/ucd/Unihan.zip"
     python3 -m zipfile -e Unihan.zip .
     grep kIICore Unihan_IRGSources.txt | cut -f1 > unihan_iicore.txt
 
@@ -154,7 +155,7 @@ create_korean_hangul_subset() {
 
     cd cache/
 
-    [[ ! -e "$input_otf" ]] && download_url "https://github.com/googlefonts/noto-cjk/raw/main/Sans/OTF/Korean/$input_otf"
+    download_url "https://github.com/googlefonts/noto-cjk/raw/main/Sans/OTF/Korean/$input_otf"
 
     echo "Generating Korean font $subset_ttf..."
     "$VIRTUAL_ENV"/bin/pyftsubset --drop-tables=vhea,vmtx --glyph-names \
@@ -183,7 +184,7 @@ create_japanese_kana_subset() {
 
     cd cache/
 
-    [[ ! -e "$input_otf" ]] && download_url "https://github.com/googlefonts/noto-cjk/raw/main/Sans/OTF/Japanese/$input_otf"
+    download_url "https://github.com/googlefonts/noto-cjk/raw/main/Sans/OTF/Japanese/$input_otf"
 
     echo "Generating Japanese font $subset_ttf..."
     "$VIRTUAL_ENV"/bin/pyftsubset --drop-tables=vhea,vmtx --glyph-names \
