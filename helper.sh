@@ -147,11 +147,16 @@ create_korean_hangul_subset() {
     local input_otf=NotoSansCJKkr-Regular.otf
     local subset_otf="${input_otf/-/Subset-}"
     local subset_ttf="${subset_otf/otf/ttf}"
+    local codepoints=""
 
     if [[ -e "cache/$subset_ttf" ]]; then
         echo "Not overwriting existing font $subset_ttf."
         return
     fi
+
+    codepoints+="U+1100-11FF," # Hangul Jamo
+    codepoints+="U+3130-318F" # Hangul compatibility jamo
+#    codepoints+='U+FF00-FF64'  # fullwidth latin
 
     cd cache/
 
@@ -160,7 +165,7 @@ create_korean_hangul_subset() {
     echo "Generating Korean font $subset_ttf..."
     "$VIRTUAL_ENV"/bin/pyftsubset --drop-tables=vhea,vmtx --glyph-names \
                   --recommended-glyphs --passthrough-tables --layout-features='*' \
-                  --unicodes='U+1100-11FF,U+3130-318F' \
+                  --unicodes="$codepoints" \
                   --output-file="$subset_otf" "$input_otf"
 
     # convert otf to ttf
@@ -176,11 +181,20 @@ create_japanese_kana_subset() {
     local input_otf=NotoSansCJKjp-Regular.otf
     local subset_otf="${input_otf/-/Subset-}"
     local subset_ttf="${subset_otf/otf/ttf}"
+    local codepoints=""
 
     if [[ -e "cache/$subset_ttf" ]]; then
         echo "Not overwriting existing font $subset_ttf."
         return
     fi
+
+    codepoints+='U+3040-309F,' # hiragana
+    codepoints+='U+30A0-30FF,' # katakana
+    # Following are not exactly Japanese, but the font can handle it anyway
+    codepoints+="U+2F00-2FD5,"  # Kangxi radicals
+    codepoints+="U+2E80-2EFF,"  # CJK radicals supplement
+    codepoints+="U+3100-312F,"  # Bopomofo
+    codepoints+="U+3190-319F"   # Kanbun
 
     cd cache/
 
@@ -189,8 +203,7 @@ create_japanese_kana_subset() {
     echo "Generating Japanese font $subset_ttf..."
     "$VIRTUAL_ENV"/bin/pyftsubset --drop-tables=vhea,vmtx --glyph-names \
                   --recommended-glyphs --passthrough-tables --layout-features='*' \
-                  --unicodes='U+3040-309F,U+30A0-30FF' \
-                  --output-file="$subset_otf" "$input_otf"
+                  --unicodes="$codepoints" --output-file="$subset_otf" "$input_otf"
 
     # convert otf to ttf
     download_url https://github.com/fonttools/fonttools/raw/main/Snippets/otf2ttf.py
