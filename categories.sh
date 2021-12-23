@@ -169,6 +169,8 @@ current=(
     "NotoSansMendeKikakui-Regular.ttf"
     "NotoSansMedefaidrin-Regular.ttf"
     # 'GoNotoEastAsia.ttf': [
+    "NotoSansCJKjpSubset-Regular.ttf"
+    "NotoSansCJKkrSubset-Regular.ttf"
     "NotoSansCJKscSubset-Regular.ttf"
     "NotoSansMongolianSubset-Regular.ttf"
     "NotoSansYi-Regular.ttf"
