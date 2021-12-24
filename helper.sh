@@ -100,10 +100,52 @@ create_cjk_iicore() {
                              "${output_font%%.*}"
 }
 
+create_yi_subset() {
+    local input_ttf=NotoSansYi-Regular.ttf
+    local subset_ttf="${input_ttf/-/Subset-}"
+    local codepoints=""
+
+    # Select only Yi-specific codepoints. Rest will come from CJK subset
+    codepoints+="U+A000-A48F" # Yi syllables
+    codepoints+="U+A490-A4CF" # Yi radicals
+
+    if [[ -e "cache/$subset_ttf" ]]; then
+        echo "Not overwriting existing font $subset_ttf."
+        return
+    fi
+
+    cd cache/
+
+    download_url "https://github.com/googlefonts/noto-fonts/raw/main/hinted/ttf/NotoSansYi/$input_ttf"
+
+    echo "Generating Yi font $subset_ttf..."
+    "$VIRTUAL_ENV"/bin/pyftsubset --drop-tables=vhea,vmtx --glyph-names \
+                  --recommended-glyphs --passthrough-tables --layout-features='*' \
+                  --unicodes="$codepoints" \
+                  --output-file="$subset_ttf" "$input_ttf"
+
+    python3 ../rename_font.py "$subset_ttf" "Noto Sans Yi Subset" "NotoSansYiSubset"
+
+    cd "$OLDPWD"
+}
+
 create_cjk_subset() {
     local input_otf=NotoSansCJKsc-Regular.otf
     local subset_otf="${input_otf/-/Subset-}"
     local subset_ttf="${subset_otf/otf/ttf}"
+    local codepoints=""
+
+    codepoints+="U+2E80-2EFF,"  # CJK radicals supplement
+    codepoints+="U+2F00-2FD5,"  # Kangxi radicals
+    codepoints+="U+3000-303F,"  # CJK symbols and punctuation
+    codepoints+="U+3100-312F,"  # Bopomofo
+    codepoints+="U+31A0-31BF,"  # Bopomofo extended
+    codepoints+="U+FF00-FFEF,"  # Halfwidth and fullwidth forms
+#    codepoints+="U+31C0-31EF,"  # CJK strokes
+#    codepoints+="U+3200-32FF,"  # Enclosed CJK letters and months
+#    codepoints+="U+1F200-1F2FF,"# Enclosed ideographic supplement
+#    codepoints+="U+2FF0-2FFF,"  # Ideographic description characters
+#    codepoints+="U+FE30-FE4F,"  # CJK compatibility forms
 
     if [[ -e "cache/$subset_ttf" ]]; then
         echo "Not overwriting existing font $subset_ttf."
@@ -132,7 +174,7 @@ create_cjk_subset() {
     # Passthrough tables which cannot be subset
     "$VIRTUAL_ENV"/bin/pyftsubset --drop-tables=vhea,vmtx --glyph-names \
                   --recommended-glyphs --passthrough-tables --layout-features='*' \
-                  --unicodes-file=Unihan_codepoints.txt \
+                  --unicodes-file=Unihan_codepoints.txt --unicodes="$codepoints" \
                   --output-file="$subset_otf" "$input_otf"
 
     # convert otf to ttf
@@ -154,9 +196,8 @@ create_korean_hangul_subset() {
         return
     fi
 
-    codepoints+="U+1100-11FF," # Hangul Jamo
-    codepoints+="U+3130-318F" # Hangul compatibility jamo
-#    codepoints+='U+FF00-FF64'  # fullwidth latin
+    codepoints+="U+1100-11FF," # Hangul jamo
+    codepoints+="U+3130-318F," # Hangul compatibility jamo
 
     cd cache/
 
@@ -188,13 +229,9 @@ create_japanese_kana_subset() {
         return
     fi
 
-    codepoints+='U+3040-309F,' # hiragana
-    codepoints+='U+30A0-30FF,' # katakana
-    # Following are not exactly Japanese, but the font can handle it anyway
-    codepoints+="U+2F00-2FD5,"  # Kangxi radicals
-    codepoints+="U+2E80-2EFF,"  # CJK radicals supplement
-    codepoints+="U+3100-312F,"  # Bopomofo
-    codepoints+="U+3190-319F"   # Kanbun
+    codepoints+="U+3040-309F,"  # Hiragana
+    codepoints+="U+30A0-30FF,"  # Katakana
+    codepoints+="U+31F0-31FF,"  # Katakana phonetic extentsions
 
     cd cache/
 
