@@ -38,14 +38,13 @@ go_build() {
 # --- execution starts here ---
 mkdir -p cache/
 
-echo "Generating GoNotoCurrent.ttf..."
 create_cjk_subset
 create_japanese_kana_subset
 create_korean_hangul_subset
 create_tibetan_subset
-create_yi_subset
 drop_vertical_tables NotoSansMongolian-Regular.ttf
 drop_vertical_tables NotoSansNushu-Regular.ttf
+echo "Generating GoNotoCurrent.ttf..."
 go_build GoNotoCurrent.ttf "${current[@]}"
 
 echo "Generating GoNotoAncient.ttf..."

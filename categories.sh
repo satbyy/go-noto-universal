@@ -172,7 +172,7 @@ current=(
     "NotoSansCJKkrSubset-Regular.ttf"
     "NotoSansCJKscSubset-Regular.ttf"
     "NotoSansMongolianSubset-Regular.ttf"
-    "NotoSansYiSubset-Regular.ttf"
+    "NotoSansYi-Regular.ttf"
     "NotoSansNushuSubset-Regular.ttf" # Not exactly contemporary use but just 402 glyphs
     "NotoSansMiao-Regular.ttf"
     # Common for all scripts
