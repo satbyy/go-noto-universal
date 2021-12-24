@@ -21,6 +21,25 @@ edit_font_info() {
     python3 ./rename_font.py "$fontname" "$with_spaces" "$without_spaces"
 }
 
+# cannot merge with 'vmtx' and 'vhea' tables.
+drop_vertical_tables() {
+    local fontname="$1"
+    local output_font="${fontname/-/Subset-}"
+    local dirname="${fontname/-*/}"
+
+    cd cache/
+
+    if [[ ! -e "$output_font" ]]; then
+        download_url "https://github.com/googlefonts/noto-fonts/raw/main/hinted/ttf/$dirname/$fontname"
+        echo "Removing vertical tables from $fontname"
+        "$VIRTUAL_ENV"/bin/pyftsubset --recommended-glyphs --passthrough-tables \
+                      --glyphs='*' --unicodes='*' --glyph-names --layout-features='*' \
+                      --drop-tables+=vhea,vmtx "$fontname" --output-file="$output_font"
+    fi
+
+    cd "$OLDPWD"
+}
+
 # create tibetan subset so that GSUB is not overflow'ed.
 create_tibetan_subset() {
     local input_font=NotoSerifTibetan-Regular.ttf
@@ -44,25 +63,6 @@ create_tibetan_subset() {
     fi
 
     python3 ../rename_font.py "$output_font" "Noto Tibetan Subset" "NotoTibetanSubset"
-
-    cd "$OLDPWD"
-}
-
-# cannot merge with 'vmtx' and 'vhea' tables.
-drop_vertical_tables() {
-    local fontname="$1"
-    local output_font="${fontname/-/Subset-}"
-    local dirname="${fontname/-*/}"
-
-    cd cache/
-
-    if [[ ! -e "$output_font" ]]; then
-        download_url "https://github.com/googlefonts/noto-fonts/raw/main/hinted/ttf/$dirname/$fontname"
-        echo "Removing vertical tables from $fontname"
-        "$VIRTUAL_ENV"/bin/pyftsubset --recommended-glyphs --passthrough-tables \
-                      --glyphs='*' --unicodes='*' --glyph-names --layout-features='*' \
-                      --drop-tables+=vhea,vmtx "$fontname" --output-file="$output_font"
-    fi
 
     cd "$OLDPWD"
 }
