@@ -105,18 +105,22 @@ create_cjk_subset() {
     local subset_otf="${input_otf/-/Subset-}"
     local subset_ttf="${subset_otf/otf/ttf}"
     local codepoints=""
+    local features=""
 
-    codepoints+="U+2E80-2EFF,"  # CJK radicals supplement
-    codepoints+="U+2F00-2FD5,"  # Kangxi radicals
-    codepoints+="U+3000-303F,"  # CJK symbols and punctuation
-    codepoints+="U+3100-312F,"  # Bopomofo
-    codepoints+="U+31A0-31BF,"  # Bopomofo extended
-    codepoints+="U+FF00-FFEF,"  # Halfwidth and fullwidth forms
-#    codepoints+="U+31C0-31EF,"  # CJK strokes
-#    codepoints+="U+3200-32FF,"  # Enclosed CJK letters and months
-#    codepoints+="U+1F200-1F2FF,"# Enclosed ideographic supplement
-#    codepoints+="U+2FF0-2FFF,"  # Ideographic description characters
-#    codepoints+="U+FE30-FE4F,"  # CJK compatibility forms
+#    codepoints+="U+2E80-2EFF,"  # CJK radicals supplement
+    codepoints+="U+2F00-2FD5,"   # Kangxi radicals
+    codepoints+="U+3000-303F,"   # CJK symbols and punctuation
+    codepoints+="U+3100-312F,"   # Bopomofo
+    codepoints+="U+31A0-31BF,"   # Bopomofo extended
+    codepoints+="U+31C0-31EF,"   # CJK strokes
+    codepoints+="U+FE30-FE4F,"   # CJK compatibility forms
+    codepoints+="U+FF00-FFEF,"   # Halfwidth and fullwidth forms
+    codepoints+="U+3200-32FF,"   # Enclosed CJK letters and months
+    codepoints+="U+1F200-1F2FF," # Enclosed ideographic supplement
+
+    # Prepared by first subsetting with --layout-features='*' and then
+    # dropping 'vert', 'vhal', 'vkrn', 'vpal', 'vrt2'
+    features+="aalt,ccmp,dlig,fwid,halt,hist,hwid,kern,liga,locl,palt,pwid"
 
     if [[ -e "cache/$subset_ttf" ]]; then
         echo "Not overwriting existing font $subset_ttf."
@@ -144,7 +148,7 @@ create_cjk_subset() {
 
     # Passthrough tables which cannot be subset
     "$VIRTUAL_ENV"/bin/pyftsubset --drop-tables=vhea,vmtx --glyph-names \
-                  --recommended-glyphs --passthrough-tables --layout-features='*' \
+                  --recommended-glyphs --passthrough-tables --layout-features="$features" \
                   --unicodes-file=Unihan_codepoints.txt --unicodes="$codepoints" \
                   --output-file="$subset_otf" "$input_otf"
 
@@ -176,7 +180,7 @@ create_korean_hangul_subset() {
 
     echo "Generating Korean font $subset_ttf..."
     "$VIRTUAL_ENV"/bin/pyftsubset --drop-tables=vhea,vmtx --glyph-names \
-                  --recommended-glyphs --passthrough-tables --layout-features='*' \
+                  --recommended-glyphs --passthrough-tables --layout-features-="vert" \
                   --unicodes="$codepoints" \
                   --output-file="$subset_otf" "$input_otf"
 
@@ -194,6 +198,7 @@ create_japanese_kana_subset() {
     local subset_otf="${input_otf/-/Subset-}"
     local subset_ttf="${subset_otf/otf/ttf}"
     local codepoints=""
+    local features=""
 
     if [[ -e "cache/$subset_ttf" ]]; then
         echo "Not overwriting existing font $subset_ttf."
@@ -204,13 +209,17 @@ create_japanese_kana_subset() {
     codepoints+="U+30A0-30FF,"  # Katakana
     codepoints+="U+31F0-31FF,"  # Katakana phonetic extentsions
 
+    # Prepared by first subsetting with --layout-features='*' and then
+    # dropping 'vert', 'vhal', 'vkrn', 'vpal', 'vrt2'
+    features+="ccmp,dlig,halt,kern,palt,locl"
+
     cd cache/
 
     download_url "https://github.com/googlefonts/noto-cjk/raw/main/Sans/OTF/Japanese/$input_otf"
 
     echo "Generating Japanese font $subset_ttf..."
     "$VIRTUAL_ENV"/bin/pyftsubset --drop-tables=vhea,vmtx --glyph-names \
-                  --recommended-glyphs --passthrough-tables --layout-features='*' \
+                  --recommended-glyphs --passthrough-tables --layout-features="$features" \
                   --unicodes="$codepoints" --output-file="$subset_otf" "$input_otf"
 
     # convert otf to ttf
