@@ -143,7 +143,6 @@ current=(
     "NotoSansThai-Regular.ttf"
     "NotoSansLisu-Regular.ttf"
     # 'GoNotoEuropeAmericas.ttf': [
-    "NotoSans-Regular.ttf"
     "NotoSansArmenian-Regular.ttf"
     "NotoSansCherokee-Regular.ttf"
     "NotoSansCoptic-Regular.ttf"
@@ -173,7 +172,7 @@ current=(
     "NotoSansCJKkrSubset-Regular.ttf"
     "NotoSansCJKscSubset-Regular.ttf"
     "NotoSansMongolianSubset-Regular.ttf"
-    "NotoSansYi-Regular.ttf"
+    "NotoSansYiSubset-Regular.ttf"
     "NotoSansNushuSubset-Regular.ttf" # Not exactly contemporary use but just 402 glyphs
     "NotoSansMiao-Regular.ttf"
     # Common for all scripts
