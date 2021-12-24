@@ -107,20 +107,20 @@ create_cjk_subset() {
     local codepoints=""
     local features=""
 
-#    codepoints+="U+2E80-2EFF,"  # CJK radicals supplement
-    codepoints+="U+2F00-2FD5,"   # Kangxi radicals
+#    codepoints+="U+2E80-2EFF,"   # CJK radicals supplement
+#    codepoints+="U+2F00-2FD5,"   # Kangxi radicals
     codepoints+="U+3000-303F,"   # CJK symbols and punctuation
     codepoints+="U+3100-312F,"   # Bopomofo
     codepoints+="U+31A0-31BF,"   # Bopomofo extended
     codepoints+="U+31C0-31EF,"   # CJK strokes
-    codepoints+="U+FE30-FE4F,"   # CJK compatibility forms
-    codepoints+="U+FF00-FFEF,"   # Halfwidth and fullwidth forms
     codepoints+="U+3200-32FF,"   # Enclosed CJK letters and months
+    codepoints+="U+FE30-FE4F,"   # CJK compatibility forms, used with vertical writing
+    codepoints+="U+FF00-FFEF,"   # Halfwidth and fullwidth forms
     codepoints+="U+1F200-1F2FF," # Enclosed ideographic supplement
 
     # Prepared by first subsetting with --layout-features='*' and then
-    # dropping 'vert', 'vhal', 'vkrn', 'vpal', 'vrt2'
-    features+="aalt,ccmp,dlig,fwid,halt,hist,hwid,kern,liga,locl,palt,pwid"
+    # dropping 'vert', 'vhal', 'vkrn', 'vpal', 'vrt2', 'hist'
+    features+="aalt,ccmp,dlig,fwid,halt,hwid,kern,liga,locl,palt,pwid"
 
     if [[ -e "cache/$subset_ttf" ]]; then
         echo "Not overwriting existing font $subset_ttf."
@@ -208,6 +208,7 @@ create_japanese_kana_subset() {
     codepoints+="U+3040-309F,"  # Hiragana
     codepoints+="U+30A0-30FF,"  # Katakana
     codepoints+="U+31F0-31FF,"  # Katakana phonetic extentsions
+    codepoints+="U+3300-33FF,"  # CJK Compatibility
 
     # Prepared by first subsetting with --layout-features='*' and then
     # dropping 'vert', 'vhal', 'vkrn', 'vpal', 'vrt2'
