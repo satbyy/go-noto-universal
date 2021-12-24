@@ -100,35 +100,6 @@ create_cjk_iicore() {
                              "${output_font%%.*}"
 }
 
-create_yi_subset() {
-    local input_ttf=NotoSansYi-Regular.ttf
-    local subset_ttf="${input_ttf/-/Subset-}"
-    local codepoints=""
-
-    # Select only Yi-specific codepoints. Rest will come from CJK subset
-    codepoints+="U+A000-A48F" # Yi syllables
-    codepoints+="U+A490-A4CF" # Yi radicals
-
-    if [[ -e "cache/$subset_ttf" ]]; then
-        echo "Not overwriting existing font $subset_ttf."
-        return
-    fi
-
-    cd cache/
-
-    download_url "https://github.com/googlefonts/noto-fonts/raw/main/hinted/ttf/NotoSansYi/$input_ttf"
-
-    echo "Generating Yi font $subset_ttf..."
-    "$VIRTUAL_ENV"/bin/pyftsubset --drop-tables=vhea,vmtx --glyph-names \
-                  --recommended-glyphs --passthrough-tables --layout-features='*' \
-                  --unicodes="$codepoints" \
-                  --output-file="$subset_ttf" "$input_ttf"
-
-    python3 ../rename_font.py "$subset_ttf" "Noto Sans Yi Subset" "NotoSansYiSubset"
-
-    cd "$OLDPWD"
-}
-
 create_cjk_subset() {
     local input_otf=NotoSansCJKsc-Regular.otf
     local subset_otf="${input_otf/-/Subset-}"
