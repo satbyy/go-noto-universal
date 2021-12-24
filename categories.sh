@@ -58,6 +58,7 @@ ancient=(
     "NotoSansDuployan-Regular.ttf"
     "NotoSansMayanNumerals-Regular.ttf"
     # 'GoNotoAfricaMiddleEast.ttf': [
+    "NotoSansBamum-Regular.ttf"   # Bamum Supplement is historical
     "NotoSansOldNorthArabian-Regular.ttf"
     "NotoSansOldSouthArabian-Regular.ttf"
     "NotoSansPhoenician-Regular.ttf"
