@@ -128,7 +128,7 @@ create_cjk_subset() {
 
     download_url "https://github.com/googlefonts/noto-cjk/raw/main/Sans/OTF/SimplifiedChinese/$input_otf"
 
-    echo "Generating CJK font $subset_ttf..."
+    echo "Generating CJK font $subset_ttf. Current time: $(date)."
 
     download_url "https://www.unicode.org/Public/UCD/latest/ucd/Unihan.zip"
     python3 -m zipfile -e Unihan.zip .
@@ -175,7 +175,7 @@ create_korean_hangul_subset() {
 
     download_url "https://github.com/googlefonts/noto-cjk/raw/main/Sans/OTF/Korean/$input_otf"
 
-    echo "Generating Korean font $subset_ttf..."
+    echo "Generating Korean font $subset_ttf. Current time: $(date)."
     "$VIRTUAL_ENV"/bin/pyftsubset --drop-tables=vhea,vmtx --glyph-names \
                   --recommended-glyphs --passthrough-tables --layout-features-="vert" \
                   --unicodes="$codepoints" \
@@ -218,7 +218,7 @@ create_japanese_kana_subset() {
 
     download_url "https://github.com/googlefonts/noto-cjk/raw/main/Sans/OTF/Japanese/$input_otf"
 
-    echo "Generating Japanese font $subset_ttf..."
+    echo "Generating Japanese font $subset_ttf. Current time: $(date)."
     "$VIRTUAL_ENV"/bin/pyftsubset --drop-tables=vhea,vmtx --glyph-names \
                   --recommended-glyphs --passthrough-tables --layout-features="$features" \
                   --unicodes="$codepoints" --output-file="$subset_otf" "$input_otf"
@@ -230,4 +230,35 @@ create_japanese_kana_subset() {
     python3 ../rename_font.py "$subset_ttf" "Noto Sans CJKjp Subset" "NotoSansCJKjpSubset"
 
     cd "$OLDPWD"
+}
+
+go_build() {
+    local output="$1"       # name of generated font
+    local input=("${@:2}")  # list of fonts to merge
+
+    if [[ -e "$output" ]]; then
+        echo "Not overwriting existing font $output."
+        return
+    fi
+
+    cd cache/
+    for font in "${input[@]}"; do
+        if [[ ! -e "$font" ]]; then
+            noto_dir="${font%-*}"
+            download_url "https://github.com/googlefonts/noto-fonts/raw/main/hinted/ttf/$noto_dir/$font"
+        fi
+    done
+
+    echo "Merging ${#input[@]} fonts..."
+    time "$VIRTUAL_ENV"/bin/pyftmerge --drop-tables+=vhea,vmtx \
+         --verbose --output-file=../"$output" "${input[@]}"
+
+    # Copy line metrics from Noto Sans Regular
+    download_url "https://github.com/googlefonts/nototools/raw/main/nototools/substitute_linemetrics.py"
+    python3 ./substitute_linemetrics.py --output=../"$output" \
+            ../"$output" NotoSans-Regular.ttf
+
+    cd "$OLDPWD"
+
+    edit_font_info "$output"
 }

@@ -9,52 +9,22 @@ python3 -m pip install 'fonttools >= 4.28.5'
 source helper.sh
 source categories.sh
 
-go_build() {
-    local output="$1"       # name of generated font
-    local input=("${@:2}")  # list of fonts to merge
-
-    if [[ -e "$output" ]]; then
-        echo "Not overwriting existing font $output."
-        return
-    fi
-
-    cd cache/
-    for font in "${input[@]}"; do
-        if [[ ! -e "$font" ]]; then
-            noto_dir="${font%-*}"
-            download_url "https://github.com/googlefonts/noto-fonts/raw/main/hinted/ttf/$noto_dir/$font"
-        fi
-    done
-
-    echo "Merging ${#input[@]} fonts..."
-    time "$VIRTUAL_ENV"/bin/pyftmerge --drop-tables+=vhea,vmtx \
-         --verbose --output-file=../"$output" "${input[@]}"
-
-    # Copy line metrics from Noto Sans Regular
-    download_url "https://github.com/googlefonts/nototools/raw/main/nototools/substitute_linemetrics.py"
-    python3 ./substitute_linemetrics.py --output=../"$output" \
-            ../"$output" NotoSans-Regular.ttf
-
-    cd "$OLDPWD"
-
-    edit_font_info "$output"
-
-}
-
 # --- execution starts here ---
 mkdir -p cache/
 
+# GoNotoCurrent.ttf
 create_cjk_subset
 create_japanese_kana_subset
 create_korean_hangul_subset
 create_tibetan_subset
 drop_vertical_tables NotoSansMongolian-Regular.ttf
 drop_vertical_tables NotoSansNushu-Regular.ttf
-echo "Generating GoNotoCurrent.ttf..."
-go_build GoNotoCurrent.ttf "${current[@]}"
+echo "Generating GoNotoCurrent.ttf. Current time: $(date)."
+go_build GoNotoCurrent.ttf "${GoNotoCurrent[@]}"
 
-echo "Generating GoNotoAncient.ttf..."
+# GoNotoAncient.ttf
 drop_vertical_tables NotoSerifDogra-Regular.ttf
 drop_vertical_tables NotoSansNandinagari-Regular.ttf
 drop_vertical_tables NotoSerifTangut-Regular.ttf
-go_build GoNotoAncient.ttf "${ancient[@]}"
+echo "Generating GoNotoAncient.ttf. Current time: $(date)."
+go_build GoNotoAncient.ttf "${GoNotoAncient[@]}"
