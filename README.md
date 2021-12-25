@@ -1,10 +1,20 @@
 # Go Noto Universal
 
-Noto fonts go universal! Download Noto fonts combined to suit your region (South Asia, SE Asia, East
-Asia, Africa-MiddleEast, Europe-Americas).
+Noto fonts go universal! Download merged [Noto Fonts](https://github.com/googlefonts/noto-fonts)
+according to region-based or time-based combination.
 
-This software combines/merges multiple [Noto Fonts](https://github.com/googlefonts/noto-fonts) to a
-single, region-specific font.
+We offer two types of pan-Unicode converged fonts:
+
+1. Time-based:  
+   - `GoNotoCurrent.ttf` covers pretty much all the scripts in current, widespread use all over the
+     world. This is designed to be a "good enough" font for modern, living scripts without being
+     exhaustive. If you're unsure what to download, just go with this.
+   - `GoNotoAncient.ttf` covers all the historical, obsolete and liturgical scripts.
+2. Region-based:  
+   Choose a single font based on where you live or whichever region you're interested in:
+   Africa - Middle East, East Asia, Europe - Americas, South Asia or South East Asia.
+
+See [caveats](#caveats) too.
 
 ## Download
 
@@ -13,8 +23,8 @@ page](https://github.com/satbyy/go-noto-universal/releases/) and download what y
 
 Development builds are available from [GitHub
 Actions](https://github.com/satbyy/go-noto-universal/actions) page. Click on any workflow with green
-checkmark ✅ (pipeline passed) and under "Artifacts", download "GoNotoUniversal.zip" (login
-required).
+checkmark ✅ (pipeline passed) and under "Artifacts", download "GoNotoTemporalFonts.zip" and
+"GoNotoRegionalFonts.zip" (login required).
 
 ## Build
 
@@ -23,31 +33,53 @@ If you want to _build_ the fonts yourself, create a virtual environment (venv) a
 ```
 python3 -m venv venv_fonty
 source venv_fonty/bin/activate
-./run.sh
+./temporal_fonts.sh  # generates GoNotoAncient.ttf and GoNotoCurrent.ttf
+./regional_fonts.sh  # generates GoNoto[AfricaMiddleEast|EuropeAmericas|...].ttf
 deactivate
 ```
 
-Font generation can take 10 to 20 min, depending on your computer's capabilities.
+Font generation can take 15 to 30 min, depending on your computer's capabilities.
 
-`run.sh` is designed to be reentrant, so you can run it multiple times without altering the working
-state of the repository or downloading stuff again and again.
+Each script is designed to be reentrant, so you can run it multiple times without altering the
+working state of the repository or downloading stuff again and again.
 
 Latest CI status:
 
-[![CI](https://github.com/satbyy/go-noto-universal/actions/workflows/main.yml/badge.svg?branch=master)](https://github.com/satbyy/go-noto-universal/actions/workflows/main.yml)
+[![Regional fonts](https://github.com/satbyy/go-noto-universal/actions/workflows/regional_fonts.yml/badge.svg)](https://github.com/satbyy/go-noto-universal/actions/workflows/regional_fonts.yml)
+
+[![Temporal fonts](https://github.com/satbyy/go-noto-universal/actions/workflows/temporal_fonts.yml/badge.svg)](https://github.com/satbyy/go-noto-universal/actions/workflows/temporal_fonts.yml)
 
 ## Dependencies
 
-There is no dependency other than [`nototools`](https://github.com/googlefonts/nototools) and
-[`fonttools`](https://github.com/fonttools/fonttools/). Both are automatically fetched and used.
+[`fonttools`](https://github.com/fonttools/fonttools/) is automatically fetched and used.
+
 
 ## Coverage
 
-Fonts are merged/combined as per the regions defined in the [Unicode Standard
+### Temporal Fonts
+
+Temporal, i.e., time-based fonts are:
+
+- **Go Noto Current** -- combines 80+ Noto fonts of scripts which are in current, daily usage. It is
+  a superset of all the "[Regional Fonts](#regional-fonts)" (see below) excluding historical or
+  specialty fonts. It includes support for Chinese, Japanese and Korean (CJK) too, using the [Unihan
+  IICore][1] subset.
+- **Go Noto Ancient** -- combines 70+ Noto fonts of ancient, historical or liturgical scripts which
+  are not used widely today. This font is probably useful for research or scholarly purposes or
+  language enthusiasts. This font does not support any CJK.
+
+Each of these fonts includes Noto Sans (Regular), Noto Sans Symbols, Noto Sans Symbols 2, Noto Sans
+Math and Noto Music so that notations, symbols and emoji are not missed out.
+
+The exact fonts which are combined are too long to list here but can be seen from the source code.
+
+### Regional Fonts
+
+These fonts are merged/combined as per the regions defined in the [Unicode Standard
 (pdf)](https://www.unicode.org/versions/Unicode14.0.0/UnicodeStandard-14.0.pdf). Chapter numbers
 below refer to that spec.
 
-| Regional font              | Coverage                                                                                |
+| Go Noto font               | Coverage                                                                                |
 |----------------------------|-----------------------------------------------------------------------------------------|
 | GoNotoEuropeAmericas.ttf   | "Europe" - ch. 7, 8, "Americas" - ch 20, "Notational Systems" - ch 21                   |
 | GoNotoAfricaMiddleEast.ttf | "Middle East" - ch. 9, 10, 11 and "Africa" - ch. 19                                     |
@@ -108,9 +140,8 @@ Noto fonts do not exist for Chorasmian.
 
 ### Go Noto East Asia
 
-Tibetan, Lisu, Marchen, Miao, Yi, etc. excluding Han/CJK (Chinese-Japanese-Korean).
-
-Mongolian, Nüshu and Tangut could not be included.
+Lisu, Marchen, Miao, Mongolian, Nüshu, Tangut, Tibetan, Yi, etc. excluding Han/CJK
+(Chinese-Japanese-Korean). Vertical text writing is not supported.
 
 ### Go Noto CJK Core 2005
 
@@ -132,30 +163,32 @@ fonts have "vmtx" table, which is absent in other fonts, thus preventing `pyftme
 
 ## Font Statistics
 
-Statistics below correspond to release v3.0.
+Statistics below correspond to release v4.0.
 
-| Regional font              | Code blocks | Codepoints | Glyphs |
-|----------------------------|------------:|-----------:|-------:|
-| GoNotoEuropeAmericas.ttf   |         120 |      13389 |  53570 |
-| GoNotoAfricaMiddleEast.ttf |         128 |      16053 |  20329 |
-| GoNotoSouthAsia.ttf        |         117 |      11502 |  21553 |
-| GoNotoAsiaHistorical.ttf   |         122 |      11001 |  18248 |
-| GoNotoSouthEastAsia.ttf    |         111 |      10786 |  15013 |
-| GoNotoEastAsia.ttf         |         109 |      18708 |  25043 |
-| GoNotoCJKCore2005.ttf      |          20 |      10338 |  20099 |
+| Go Noto Font               | Unicode blocks | Characters | Glyphs |
+|----------------------------|---------------:|-----------:|-------:|
+| GoNotoCurrent.ttf          |            196 |      32710 |  61456 |
+| GoNotoAncient.ttf          |            175 |      24429 |  33469 |
+| GoNotoEuropeAmericas.ttf   |            120 |      13389 |  53570 |
+| GoNotoAfricaMiddleEast.ttf |            128 |      16053 |  20333 |
+| GoNotoSouthAsia.ttf        |            117 |      11502 |  21382 |
+| GoNotoAsiaHistorical.ttf   |            122 |      11001 |  18248 |
+| GoNotoSouthEastAsia.ttf    |            111 |      10786 |  15013 |
+| GoNotoEastAsia.ttf         |            109 |      18708 |  25043 |
+| GoNotoCJKCore2005.ttf      |             20 |      10338 |  20522 |
 
 NotoSansSignWriting alone contributes about 37900 glyphs to GoNotoEuropeAmericas.ttf.
 
 Note that each of the above (except CJKCore2005) include statistics of:
 
-| Upstream font       | Code blocks | Codepoints | Glyphs |
-|---------------------|------------:|-----------:|-------:|
-| Noto Sans           |          37 |       2840 |   3317 |
-| Noto Sans Math      |          22 |       2472 |   2655 |
-| Noto Music          |           7 |        559 |    579 |
-| Noto Sans Symbols   |          15 |        840 |   1218 |
-| Noto Sans Symbols 2 |          37 |       2655 |   2674 |
-| Total               |         111 |       8807 |   9864 |
+| Upstream font       | Unicode blocks | Characters | Glyphs |
+|---------------------|---------------:|-----------:|-------:|
+| Noto Sans           |             37 |       2840 |   3317 |
+| Noto Sans Math      |             22 |       2472 |   2655 |
+| Noto Music          |              7 |        559 |    579 |
+| Noto Sans Symbols   |             15 |        840 |   1218 |
+| Noto Sans Symbols 2 |             37 |       2655 |   2674 |
+| Total               |            111 |       8807 |   9864 |
 
 ## Caveats
 
@@ -171,6 +204,9 @@ Note that each of the above (except CJKCore2005) include statistics of:
    `vmtx`/`vhea`.
 4. GoNotoCJKCore2005 does not contain Noto Sans Math and Noto Sans Symbols because fonttools does
    not support merging CFF with others.
+5. Go Noto Current has limited support for CJK -- it offers the full Unihan IICore subset plus a few
+   more glyphs, so it should work ok-ish for daily use but there can be missing glyphs. As before,
+   vertical text writing is not supported with this font.
 
 ## License
 
@@ -185,7 +221,10 @@ Version 1.1, as required by the upstream Noto Fonts Project.
 FontTools package comes with nice utilities `ttx` (ttf to xml and back), `pyftsubset` (create font
 with subset of given font) and `pyftmerge` (merging fonts, basically same as this repo).
 
+`libharfbuzz-bin` offers CLI utilities `hb-view` and `hb-shape` which are useful for visualising
+rendered characters.
+
 `otfinfo` gives useful info about glyphs, codepoints, scripts and more.
 
-[1]: https://en.wikipedia.org/wiki/International_Ideographs_Core
+[1]: https://wikipedia.org/wiki/International_Ideographs_Core
 [2]: https://github.com/googlefonts/noto-cjk/
