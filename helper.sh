@@ -113,10 +113,7 @@ create_cjk_subset() {
     codepoints+="U+3100-312F,"   # Bopomofo
     codepoints+="U+31A0-31BF,"   # Bopomofo extended
     codepoints+="U+31C0-31EF,"   # CJK strokes
-    codepoints+="U+3200-32FF,"   # Enclosed CJK letters and months
     codepoints+="U+FE30-FE4F,"   # CJK compatibility forms, used with vertical writing
-    codepoints+="U+FF00-FFEF,"   # Halfwidth and fullwidth forms
-    codepoints+="U+1F200-1F2FF," # Enclosed ideographic supplement
 
     # Prepared by first subsetting with --layout-features='*' and then
     # dropping 'vert', 'vhal', 'vkrn', 'vpal', 'vrt2', 'hist'
@@ -205,14 +202,17 @@ create_japanese_kana_subset() {
         return
     fi
 
-    codepoints+="U+3040-309F,"  # Hiragana
-    codepoints+="U+30A0-30FF,"  # Katakana
-    codepoints+="U+31F0-31FF,"  # Katakana phonetic extentsions
-    codepoints+="U+3300-33FF,"  # CJK Compatibility
+    codepoints+="U+3040-309F,"   # Hiragana
+    codepoints+="U+30A0-30FF,"   # Katakana
+    codepoints+="U+31F0-31FF,"   # Katakana phonetic extentsions
+    codepoints+="U+3200-32FF,"   # Enclosed CJK letters and months
+    codepoints+="U+3300-33FF,"   # CJK Compatibility
+    codepoints+="U+FF00-FFEF,"   # Halfwidth and fullwidth forms
+    codepoints+="U+1F200-1F2FF," # Enclosed ideographic supplement
 
     # Prepared by first subsetting with --layout-features='*' and then
     # dropping 'vert', 'vhal', 'vkrn', 'vpal', 'vrt2'
-    features+="ccmp,dlig,halt,kern,palt,locl"
+    features+="aalt,ccmp,dlig,fwid,halt,hwid,kern,liga,locl,palt,pwid"
 
     cd cache/
 
