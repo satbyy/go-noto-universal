@@ -30,9 +30,15 @@ go_build() {
     time "$VIRTUAL_ENV"/bin/pyftmerge --drop-tables+=vhea,vmtx \
          --verbose --output-file=../"$output" "${input[@]}"
 
+    # Copy line metrics from Noto Sans Regular
+    download_url "https://github.com/googlefonts/nototools/raw/main/nototools/substitute_linemetrics.py"
+    python3 ./substitute_linemetrics.py --output=../"$output" \
+            ../"$output" NotoSans-Regular.ttf
+
     cd "$OLDPWD"
 
     edit_font_info "$output"
+
 }
 
 # --- execution starts here ---
