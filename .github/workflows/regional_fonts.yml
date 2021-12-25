@@ -1,6 +1,4 @@
-# This is a basic workflow to help you get started with Actions
-
-name: Pipeline
+name: Regional fonts
 
 # Controls when the workflow will run
 on:
@@ -10,8 +8,8 @@ on:
   pull_request:
     branches: [ master ]
   schedule:
-    # Runs "At 12:00 on day-of-month 1, 9, 18 and 27" (i.e. 4 times a month)
-    - cron: '0 12 1,9,18,27 * *'
+    # Runs "At 12:00 everyday"
+    - cron: '0 12 * * *'
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -33,17 +31,17 @@ jobs:
         with:
           python-version: 3.8
 
-      - name: Create fonts
+      - name: Create regional fonts
         run: |
             python3 -m venv venv
             source venv/bin/activate
-            ./temporal_fonts.sh
+            ./regional_fonts.sh
             deactivate
 
       - name: Upload generated fonts
         uses: actions/upload-artifact@v2
         with:
-          name: GoNotoUniversal.zip
+          name: GoNotoRegionalFonts.zip
           path: |
               *.ttf
               *.otf
