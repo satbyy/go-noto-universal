@@ -21,6 +21,27 @@ edit_font_info() {
     python3 ./rename_font.py "$fontname" "$with_spaces" "$without_spaces"
 }
 
+collect_font_statistics() {
+    cat << 'eof' > stats.py
+import sys
+from fontTools import ttLib;
+f = ttLib.TTFont(sys.argv[1]);
+try:
+    print('%d\t%d' % (f['maxp'].numGlyphs, f['GSUB'].table.LookupList.LookupCount));
+except:
+    # GSUB doesn't exist
+    print('%d\t%d' % (f['maxp'].numGlyphs, 0));
+    pass
+eof
+    printf "Font\tCodepoints\tGlyphs\tGSUB_Lookup_Count\n" > font_statistics.tsv
+    for font in *.ttf cache/*.ttf; do
+        printf "$font\t";
+        python3 ./get_codepoints.py "$font" | sort | uniq | wc -l | tr '\n' '\t';
+        python3 ./stats.py "$font";
+    done >> font_statistics.tsv
+    rm -f stats.py
+}
+
 # cannot merge with 'vmtx' and 'vhea' tables.
 drop_vertical_tables() {
     local fontname="$1"
@@ -246,6 +267,7 @@ go_build() {
         if [[ ! -e "$font" ]]; then
             noto_dir="${font%-*}"
             download_url "https://github.com/googlefonts/noto-fonts/raw/main/hinted/ttf/$noto_dir/$font"
+            sleep 0.5 # rate-limiting
         fi
     done
 

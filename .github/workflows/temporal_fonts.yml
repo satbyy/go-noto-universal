@@ -38,6 +38,13 @@ jobs:
             ./temporal_fonts.sh
             deactivate
 
+      - name: Collect font statistics
+        run: |
+            source venv/bin/activate
+            source helper.sh
+            collect_font_statistics
+            deactivate
+
       - name: Upload generated fonts
         uses: actions/upload-artifact@v2
         with:
@@ -45,4 +52,5 @@ jobs:
           path: |
               *.ttf
               *.otf
+              *.tsv
           if-no-files-found: error

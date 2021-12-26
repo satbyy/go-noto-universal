@@ -1,15 +1,16 @@
 # Go Noto Universal
 
-Noto fonts go universal! Download merged [Noto Fonts](https://github.com/googlefonts/noto-fonts)
-according to region-based or time-based combination.
+Noto fonts go universal! Did you ever want "one font for all languages"? Download merged [Noto
+Fonts](https://github.com/googlefonts/noto-fonts) according to region-based or time-based
+combination.
 
 We offer two types of pan-Unicode converged fonts:
 
 1. Time-based:  
-   - `GoNotoCurrent.ttf` covers pretty much all the scripts in current, widespread use all over the
+   - **GoNotoCurrent.ttf** covers pretty much all the scripts in current, widespread use all over the
      world. This is designed to be a "good enough" font for modern, living scripts without being
-     exhaustive. If you're unsure what to download, just go with this.
-   - `GoNotoAncient.ttf` covers all the historical, obsolete and liturgical scripts.
+     exhaustive.
+   - **GoNotoAncient.ttf** covers all the historical, obsolete and liturgical scripts.
 2. Region-based:  
    Choose a single font based on where you live or whichever region you're interested in:
    Africa - Middle East, East Asia, Europe - Americas, South Asia or South East Asia.
@@ -18,8 +19,8 @@ See [caveats](#caveats) too.
 
 ## Download
 
-If you simply want to _use_ the fonts, go to [Releases
-page](https://github.com/satbyy/go-noto-universal/releases/) and download what you need.
+If you simply want to _use_ the fonts, go to [Releases page](https://github.com/satbyy/go-noto-universal/releases/)
+and download what you need. If you're unsure what to download, you probably need GoNotoCurrent.ttf.
 
 Development builds are available from [GitHub
 Actions](https://github.com/satbyy/go-noto-universal/actions) page. Click on any workflow with green
