@@ -75,7 +75,7 @@ GoNotoAncient=(
     "NotoSansInscriptionalPahlavi-Regular.ttf"
     "NotoSansPsalterPahlavi-Regular.ttf"
     "NotoSansAvestan-Regular.ttf"
-    # "NotoSansChorasmian-Regular.ttf" # doesn't exist
+    "NotoSansChorasmian-Regular.ttf"
     "NotoSansElymaic-Regular.ttf"
     "NotoSansNabataean-Regular.ttf"
     "NotoSansPalmyrene-Regular.ttf"
@@ -125,6 +125,7 @@ GoNotoCurrent=(
     "NotoSansTelugu-Regular.ttf"
     "NotoSansThaana-Regular.ttf"
     "NotoSerifTibetanSubset-Regular.ttf"
+    "NotoSerifToto-Regular.ttf"
     "NotoSansWancho-Regular.ttf"
     "NotoSansWarangCiti-Regular.ttf"
     # SE Asia
@@ -211,7 +212,7 @@ GoNotoAfricaMiddleEast=(
     "NotoSansInscriptionalPahlavi-Regular.ttf"
     "NotoSansPsalterPahlavi-Regular.ttf"
     "NotoSansAvestan-Regular.ttf"
-    # "NotoSansChorasmian-Regular.ttf" # doesn't exist
+    "NotoSansChorasmian-Regular.ttf"
     "NotoSansElymaic-Regular.ttf"
     "NotoSansNabataean-Regular.ttf"
     "NotoSansPalmyrene-Regular.ttf"
@@ -263,6 +264,7 @@ GoNotoSouthAsia=(
     "NotoSansTelugu-Regular.ttf"
     "NotoSansThaana-Regular.ttf"
     "NotoSerifTibetanSubset-Regular.ttf"
+    "NotoSerifToto-Regular.ttf"
     "NotoSansWancho-Regular.ttf"
     "NotoSansWarangCiti-Regular.ttf"
     # Common for all scripts
