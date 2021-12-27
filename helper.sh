@@ -1,12 +1,21 @@
 #!/usr/bin/env bash
-set -e
 
 download_url() {
+    local max_retry=20
     local name=''
     name=$(basename "$1")
+
     # Do not download if file already exists
     if [[ ! -e "$name" ]]; then
-        wget -nv -O "$name" "$1"
+        for try in $(seq 1 "$max_retry"); do
+            wget -nv -O "$name" "$1"
+            if [[ $? -eq 0 ]]; then
+                break
+            else
+                echo "Attempt $try/$max_retry to download $1"
+                sleep 10
+            fi
+        done
     fi
 }
 
@@ -267,7 +276,6 @@ go_build() {
         if [[ ! -e "$font" ]]; then
             noto_dir="${font%-*}"
             download_url "https://github.com/googlefonts/noto-fonts/raw/main/hinted/ttf/$noto_dir/$font"
-            sleep 0.5 # rate-limiting
         fi
     done
 
