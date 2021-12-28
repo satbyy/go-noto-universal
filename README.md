@@ -1,10 +1,10 @@
 # Go Noto Universal
 
-Noto fonts go universal! Did you ever want "one font for all languages"? Download merged [Noto
-Fonts](https://github.com/googlefonts/noto-fonts) according to region-based or time-based
-combination.
+Noto Fonts go universal! Did you ever want "one font for all languages"? Download pan-Unicode, [Noto
+Fonts](https://github.com/googlefonts/noto-fonts) merged according to the time of usage (current,
+ancient) or geographical region (Africa-MiddleEast, Europe-Americas, South Asia, SE Asia).
 
-We offer two types of pan-Unicode converged fonts:
+We offer two types of combined fonts:
 
 1. Time-based:  
    - **GoNotoCurrent.ttf** covers pretty much all the scripts in current, widespread use all over the
@@ -27,9 +27,14 @@ Actions](https://github.com/satbyy/go-noto-universal/actions) page. Click on any
 checkmark ✅ (pipeline passed) and under "Artifacts", download "GoNotoTemporalFonts.zip" and
 "GoNotoRegionalFonts.zip" (login required).
 
+> **_NOTE:_** Even if there are no regular commits to this repo, the CI pipeline builds new Go Noto
+> fonts everyday, pulling the latest Noto Fonts from upstream (using a scheduled cron). So, download
+> the "Artifacts" from the "Actions" page to get the best features and bug fixes from Noto Fonts.
+
 ## Build
 
-If you want to _build_ the fonts yourself, create a virtual environment (venv) and call `./run.sh`.
+If you want to _build_ the fonts yourself, create a virtual environment (venv) and run the script
+you want:
 
 ```
 python3 -m venv venv_fonty
@@ -50,9 +55,11 @@ Latest CI status:
 
 [![Temporal fonts](https://github.com/satbyy/go-noto-universal/actions/workflows/temporal_fonts.yml/badge.svg)](https://github.com/satbyy/go-noto-universal/actions/workflows/temporal_fonts.yml)
 
+
 ## Dependencies
 
-[`fonttools`](https://github.com/fonttools/fonttools/) is automatically fetched and used.
+[`fonttools`](https://github.com/fonttools/fonttools/) is automatically fetched and used. The main
+programs we use are `pyftmerge`, `pyftsubset` and `ttx`.
 
 
 ## Coverage
@@ -61,11 +68,11 @@ Latest CI status:
 
 Temporal, i.e., time-based fonts are:
 
-- **Go Noto Current** -- combines 80+ Noto fonts of scripts which are in current, daily usage. It is
+- **Go Noto Current** -- combines 80+ Noto Fonts of scripts which are in current, daily usage. It is
   a superset of all the "[Regional Fonts](#regional-fonts)" (see below) excluding historical or
   specialty fonts. It includes support for Chinese, Japanese and Korean (CJK) too, using the [Unihan
   IICore][1] subset.
-- **Go Noto Ancient** -- combines 70+ Noto fonts of ancient, historical or liturgical scripts which
+- **Go Noto Ancient** -- combines 70+ Noto Fonts of ancient, historical or liturgical scripts which
   are not used widely today. This font is probably useful for research or scholarly purposes or
   language enthusiasts. This font does not support any CJK.
 
@@ -96,48 +103,47 @@ Regular`. Each one also includes Noto Sans Math, Noto Music, Noto Sans Symbols a
 
 ### Go Noto South Asia
 
-Following are included: Devanagari (Hindi, Marathi, Nepali, etc), Bengali, Punjabi (Gurmukhi),
-Gujarati, Oriya, Tamil, Telugu, Kannada, Malayalam, Thaana, Sinhala, Newa, Tibetan, Limbu, Meetei
-Mayek, Mro, Warang Citi, Ol Chiki, Chakma, Lepcha, Saurashtra, Masaram Gondi, Gunjala Gondi, Wancho.
+Following are included: Bengali, Chakma, Devanagari (Hindi, Marathi, Nepali, etc), Gujarati, Gunjala
+Gondi, Kannada, Lepcha, Limbu, Malayalam, Masaram Gondi, Meetei Mayek, Mro, Newa, Ol Chiki, Oriya,
+Punjabi (Gurmukhi), Saurashtra, Sinhala, Tamil, Telugu, Thaana, Tibetan, Toto, Wancho, Warang Citi.
 
 Urdu (NotoNastaliq), though not written in an Indic script and not part of "South Asia" chapters in
-the Unicode spec, is included for practical reasons. Mongolian is currently not included because of
-issue with vmtx (vertical metrics). Noto fonts do not exist for Toto and Tangsa.
+the Unicode spec, is included for practical reasons.
+
+Noto Fonts do not exist for Tangsa.
 
 ### Go Noto Asia Historical
 
-Following are included: Brahmi, Kharoshthi, Bhaiksuki, Phags-Pa, Marchen, Zanabazar Square, Soyombo,
-Old Turkic, Old Sogdian, Sogdian, Old Uyghur, Indic Siyaq Numbers, Syloti Nagri, Kaithi, Sharada,
-Takri, Siddham, Mahajani, Khojki, Khudawadi, Multani, Tirhuta, Modi, Grantha, Ahom, Sora Sompeng,
-Dogra.
+Following are included: Ahom, Bhaiksuki, Brahmi, Dogra, Grantha, Indic Siyaq Numbers, Kaithi,
+Kharoshthi, Khojki, Khudawadi, Mahajani, Marchen, Modi, Multani, Old Sogdian, Old Turkic, Old
+Uyghur, Phags-Pa, Sharada, Siddham, Sogdian, Sora Sompeng, Soyombo, Syloti Nagri, Takri, Tirhuta,
+Zanabazar Square.
 
-Noto fonts do not exist for Dives Akuru and Ottoman Siyaq Numbers.
+Noto Fonts do not exist for Dives Akuru and Ottoman Siyaq Numbers.
 
 ### Go Noto South East Asia
 
-Following are included: Thai, Lao, Myanmar, Khmer, Tai Le, New Tai Lue, Tai Tham, Tai Viet, Kayah
-Li, Cham, Pahawh Hmong, Nyiakeng Puache Hmong, Pau Cin Hau, Hanifi Rohingya, Tagalog, Hanunoo,
-Buhid, Tagbanwa, Buginese, Balinese, Javanese, Sundanese, Rejang, Batak.
+Following are included: Balinese, Batak, Buginese, Buhid, Cham, Hanifi Rohingya, Hanunoo, Javanese,
+Kayah Li, Khmer, Lao, Myanmar, New Tai Lue, Nyiakeng Puache Hmong, Pahawh Hmong, Pau Cin Hau,
+Rejang, Sundanese, Tagalog, Tagbanwa, Tai Le, Tai Tham, Tai Viet, Thai.
 
-Noto fonts do not exist for Makasar.
+Noto Fonts do not exist for Makasar.
 
 ### Go Noto Europe Americas
 
-Everything covered by NotoSans (Latin-Greek-Cyrillic etc.) plus Armenian, Coptic, Cypriot, Georgian,
-Deseret, Glagolitic, Osage, Old Italic, Runic, Duployan, Anatolian Hieroglyphics, Carian, Canadian
-Aboriginal, Cherokee, Lycian, Lydian, Mayan Numerals, Nyiakeng Puachue Hmong, Old Hungarian, Gothic,
-Elbasan, Caucasian Albanian, Vithkuqi, Ogham, Old Permic, Shavian, Sutton Sign Writing, Linear A and
-Linear B.
+Everything covered by NotoSans (Latin-Greek-Cyrillic etc.) plus Anatolian Hieroglyphics, Armenian,
+Canadian Aboriginal, Carian, Caucasian Albanian, Cherokee, Coptic, Cypriot, Deseret, Duployan,
+Elbasan, Georgian, Glagolitic, Gothic, Linear A, Linear B, Lycian, Lydian, Mayan Numerals, Nyiakeng
+Puachue Hmong, Ogham, Old Hungarian, Old Italic, Old Permic, Osage, Runic, Shavian, Sutton Sign
+Writing, Vithkuqi.
 
 ### Go Noto Africa Middle East
 
-The following are included: Arabic (Naskh-style), Adlam, Avestan, Bamum, Bassa Vah, Cuneiform,
-Hebrew, Syriac, Samaritan, Mandaic, Yezidi, Old North Arabian, Old South Arabian, Phoenician,
-Imperial Aramaic, Manichaean, Inscriptional Parthian, Inscriptional Pahlavi, Psalter Pahlavi,
-Elymaic, Nabataean, Palmyrene, Hatran, Ugaritic, Old Persian, Egyptian, Meroitic, Anatolian
-Hieroglyphics.
-
-Noto fonts do not exist for Chorasmian.
+The following are included: Adlam, Anatolian Hieroglyphics, Arabic (Naskh-style), Avestan, Bamum,
+Bassa Vah, Chorasmian, Cuneiform, Egyptian, Elymaic, Hatran, Hebrew, Imperial Aramaic, Inscriptional
+Pahlavi, Inscriptional Parthian, Mandaic, Manichaean, Meroitic, Nabataean, Old North Arabian, Old
+Persian, Old South Arabian, Palmyrene, Phoenician, Psalter Pahlavi, Samaritan, Syriac, Ugaritic,
+Yezidi.
 
 ### Go Noto East Asia
 
@@ -200,13 +206,13 @@ Note that each of the above (except CJKCore2005) include statistics of:
 2. Tibetan has limited glyphs, otherwise GSUB table gets "overflow"ed. Only the most frequently
    occuring "subjoined consonants" are included. Those characters are displayed ok, but just that
    the glyphs appear to be "pushed up" compared to their neighbours.
-3. Vertical text layout is not supported for Dogra, Mongolian, Nandinagari, Nüshu and Tangut, even
-   though the upstream Noto fonts has the support because fonttools does not support merging with
-   `vmtx`/`vhea`.
+3. Vertical text layout is not supported for CJK, Dogra, Mongolian, Nandinagari, Nüshu and Tangut,
+   even though the upstream Noto Fonts has the support because fonttools does not support merging
+   with `vmtx`/`vhea`.
 4. GoNotoCJKCore2005 does not contain Noto Sans Math and Noto Sans Symbols because fonttools does
    not support merging CFF with others.
-5. Go Noto Current has limited support for CJK -- it offers the full Unihan IICore subset plus a few
-   more glyphs, so it should work ok-ish for daily use but there can be missing glyphs. As before,
+5. Go Noto Current has limited support for CJK -- it offers the full Unihan IICore subset plus more
+   glyphs, so it should work ok-ish for daily use but there can be missing glyphs. As before,
    vertical text writing is not supported with this font.
 
 ## License
@@ -220,7 +226,7 @@ Version 1.1, as required by the upstream Noto Fonts Project.
 ### Others
 
 FontTools package comes with nice utilities `ttx` (ttf to xml and back), `pyftsubset` (create font
-with subset of given font) and `pyftmerge` (merging fonts, basically same as this repo).
+with subset of given font) and `pyftmerge` (merging fonts, the workhorse of this repo).
 
 `libharfbuzz-bin` offers CLI utilities `hb-view` and `hb-shape` which are useful for visualising
 rendered characters.
