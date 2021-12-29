@@ -101,8 +101,35 @@ create_tibetan_subset() {
 # Recently it has been superseded by UnihanCore2020, which is double in size.
 create_cjk_iicore() {
     local input_font=NotoSansCJKsc-Regular.otf
-    local output_font=GoNotoCJKCore2005.otf
+    local subset_otf=GoNotoSansCJKscSubset-Regular.otf
+    local subset_ttf="${subset_otf/otf/ttf}"
+    local output_font=GoNotoCJKCore2005.ttf
     local subset_codepoints=unihan_iicore.txt
+    local codepoints=""
+
+    codepoints+="U+2500-257F,"   # Box drawing
+    codepoints+="U+2E80-2EFF,"   # CJK radicals supplement
+    codepoints+="U+2F00-2FD5,"   # Kangxi radicals
+    codepoints+="U+2FF0-2FFF,"   # Ideographic description characters
+    codepoints+="U+3000-303F,"   # CJK symbols and punctuation
+    codepoints+="U+3100-312F,"   # Bopomofo
+    codepoints+="U+3190-319F,"   # Kanbun
+    codepoints+="U+31A0-31BF,"   # Bopomofo extended
+    codepoints+="U+31C0-31EF,"   # CJK strokes
+    codepoints+="U+FE30-FE4F,"   # CJK compatibility forms, used with vertical writing
+    codepoints+="U+1100-11FF,"   # Hangul jamo
+    codepoints+="U+3130-318F,"   # Hangul compatibility jamo
+    codepoints+="U+3040-309F,"   # Hiragana
+    codepoints+="U+30A0-30FF,"   # Katakana
+    codepoints+="U+31F0-31FF,"   # Katakana phonetic extensions
+    codepoints+="U+3200-32FF,"   # Enclosed CJK letters and months
+    codepoints+="U+3300-33FF,"   # CJK Compatibility
+    codepoints+="U+A960-A97F,"   # Hangul jamo extended-A
+    codepoints+="U+AC00-D7AF,"   # Hangul syllables
+    codepoints+="U+D7B0-D7FF,"   # Hangul jamo extended-B
+    codepoints+="U+F900-FAFF,"   # CJK compatibility ideographs
+    codepoints+="U+FF00-FFEF,"   # Halfwidth and fullwidth forms
+    codepoints+="U+1F200-1F2FF," # Enclosed ideographic supplement
 
     if [[ -e "$output_font" ]]; then
         echo "Not overwriting existing font $output_font."
@@ -114,20 +141,41 @@ create_cjk_iicore() {
     download_url "https://www.unicode.org/Public/UCD/latest/ucd/Unihan.zip"
     python3 -m zipfile -e Unihan.zip .
     grep kIICore Unihan_IRGSources.txt | cut -f1 > "$subset_codepoints"
-    python3 ../get_codepoints.py NotoSans-Regular.ttf >> "$subset_codepoints"
     download_url "https://github.com/googlefonts/noto-cjk/raw/main/Sans/OTF/SimplifiedChinese/$input_font"
+
+    echo "Generating font $subset_otf. Current time: $(date)."
+    "$VIRTUAL_ENV"/bin/pyftsubset "$input_font" \
+                  --unicodes-file="$subset_codepoints" --unicodes="$codepoints" \
+                  --recommended-glyphs --passthrough-tables --glyph-names \
+                  --layout-features='*' --output-file="$subset_otf"
+
+    # convert otf to ttf
+    echo "Generating font $subset_ttf. Current time: $(date)."
+    download_url https://github.com/fonttools/fonttools/raw/main/Snippets/otf2ttf.py
+    python3 ./otf2ttf.py --post-format 2 -o "$subset_ttf" "$subset_otf"
+
+    # Following does not work because vmtx/vhea cannot be merged by pyftmerge
+    #
+    # # Merge with other "common" fonts
+    # echo "Generating font $output_font. Current time: $(date)."
+    # time "$VIRTUAL_ENV"/bin/pyftmerge --verbose --output-file=../"$output_font" \
+    #      "$subset_ttf" NotoSans-Regular.ttf NotoMusic-Regular.ttf \
+    #      NotoSansSymbols-Regular.ttf NotoSansSymbols2-Regular.ttf
+    #
+    # python3 ./rename_font.py "$output_font" \
+    #                          "Go Noto CJK Core 2005" \
+    #                          "${output_font%%.*}"
+    #
+    # # Copy line metrics from Noto Sans Regular
+    # download_url "https://github.com/googlefonts/nototools/raw/main/nototools/substitute_linemetrics.py"
+    # python3 ./substitute_linemetrics.py --output=../"$output_font" \
+    #         ../"$output_font" NotoSans-Regular.ttf
 
     cd "$OLDPWD"
 
-    echo "Generating font $output_font. Current time: $(date)."
-    "$VIRTUAL_ENV"/bin/pyftsubset cache/"$input_font" \
-                  --unicodes-file=cache/"$subset_codepoints" \
-                  --recommended-glyphs --passthrough-tables --glyph-names \
-                  --layout-features='*' --output-file="$output_font"
-
-    python3 ./rename_font.py "$output_font" \
-                             "Go Noto CJK Core 2005" \
-                             "${output_font%%.*}"
+    go_build "$output_font" \
+             "$subset_ttf" NotoSans-Regular.ttf NotoMusic-Regular.ttf \
+             NotoSansSymbols-Regular.ttf NotoSansSymbols2-Regular.ttf
 }
 
 create_cjk_subset() {
@@ -234,7 +282,7 @@ create_japanese_kana_subset() {
 
     codepoints+="U+3040-309F,"   # Hiragana
     codepoints+="U+30A0-30FF,"   # Katakana
-    codepoints+="U+31F0-31FF,"   # Katakana phonetic extentsions
+    codepoints+="U+31F0-31FF,"   # Katakana phonetic extensions
     codepoints+="U+3200-32FF,"   # Enclosed CJK letters and months
     codepoints+="U+3300-33FF,"   # CJK Compatibility
     codepoints+="U+FF00-FFEF,"   # Halfwidth and fullwidth forms
