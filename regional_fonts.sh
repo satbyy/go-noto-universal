@@ -38,4 +38,4 @@ for font in "${fonts[@]}"; do
     go_build "$font.ttf" "${source_fonts[@]}"
 done
 
-create_cjk_iicore
+create_cjk_unihan_core

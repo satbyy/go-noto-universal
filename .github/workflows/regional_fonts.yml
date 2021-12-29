@@ -42,7 +42,7 @@ jobs:
         run: |
             source venv/bin/activate
             source helper.sh
-            collect_font_statistics
+            collect_font_statistics > stats_regional_fonts.tsv
             deactivate
 
       - name: Upload generated fonts
