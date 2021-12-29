@@ -30,6 +30,8 @@ edit_font_info() {
     python3 ./rename_font.py "$fontname" "$with_spaces" "$without_spaces"
 }
 
+# Font statistics are dumped to stdout in tsv format (tab separated
+# value), redirect stdout to file when called interactively
 collect_font_statistics() {
     cat << 'eof' > stats.py
 import sys
@@ -40,14 +42,14 @@ try:
 except:
     # GSUB doesn't exist
     print('%d\t%d' % (f['maxp'].numGlyphs, 0));
-    pass
+f.close()
 eof
-    printf "Font\tCodepoints\tGlyphs\tGSUB_Lookup_Count\n" > font_statistics.tsv
+    printf "Font\tCodepoints\tGlyphs\tGSUB_Lookup_Count\n"
     for font in *.ttf cache/*.ttf; do
         printf "$font\t";
         python3 ./get_codepoints.py "$font" | sort | uniq | wc -l | tr '\n' '\t';
         python3 ./stats.py "$font";
-    done >> font_statistics.tsv
+    done
     rm -f stats.py
 }
 
@@ -99,12 +101,12 @@ create_tibetan_subset() {
 
 # Unihan IICore 2005 is a small subset of CJK (~10k codepoints).
 # Recently it has been superseded by UnihanCore2020, which is double in size.
-create_cjk_iicore() {
+create_cjk_unihan_core() {
     local input_font=NotoSansCJKsc-Regular.otf
     local subset_otf=GoNotoSansCJKscSubset-Regular.otf
     local subset_ttf="${subset_otf/otf/ttf}"
-    local output_font=GoNotoCJKCore2005.ttf
-    local subset_codepoints=unihan_iicore.txt
+    local output_font=GoNotoCJKCore.ttf
+    local subset_codepoints=unihan_core_2020.txt
     local codepoints=""
 
     codepoints+="U+2500-257F,"   # Box drawing
@@ -141,6 +143,8 @@ create_cjk_iicore() {
     download_url "https://www.unicode.org/Public/UCD/latest/ucd/Unihan.zip"
     python3 -m zipfile -e Unihan.zip .
     grep kIICore Unihan_IRGSources.txt | cut -f1 > "$subset_codepoints"
+    grep kUnihanCore2020 Unihan_DictionaryLikeData.txt | cut -f1 >> "$subset_codepoints"
+    sort --unique --output="$subset_codepoints" "$subset_codepoints"
     download_url "https://github.com/googlefonts/noto-cjk/raw/main/Sans/OTF/SimplifiedChinese/$input_font"
 
     echo "Generating font $subset_otf. Current time: $(date)."
@@ -153,23 +157,6 @@ create_cjk_iicore() {
     echo "Generating font $subset_ttf. Current time: $(date)."
     download_url https://github.com/fonttools/fonttools/raw/main/Snippets/otf2ttf.py
     python3 ./otf2ttf.py --post-format 2 -o "$subset_ttf" "$subset_otf"
-
-    # Following does not work because vmtx/vhea cannot be merged by pyftmerge
-    #
-    # # Merge with other "common" fonts
-    # echo "Generating font $output_font. Current time: $(date)."
-    # time "$VIRTUAL_ENV"/bin/pyftmerge --verbose --output-file=../"$output_font" \
-    #      "$subset_ttf" NotoSans-Regular.ttf NotoMusic-Regular.ttf \
-    #      NotoSansSymbols-Regular.ttf NotoSansSymbols2-Regular.ttf
-    #
-    # python3 ./rename_font.py "$output_font" \
-    #                          "Go Noto CJK Core 2005" \
-    #                          "${output_font%%.*}"
-    #
-    # # Copy line metrics from Noto Sans Regular
-    # download_url "https://github.com/googlefonts/nototools/raw/main/nototools/substitute_linemetrics.py"
-    # python3 ./substitute_linemetrics.py --output=../"$output_font" \
-    #         ../"$output_font" NotoSans-Regular.ttf
 
     cd "$OLDPWD"
 

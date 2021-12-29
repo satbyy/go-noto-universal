@@ -87,15 +87,15 @@ These fonts are merged/combined as per the regions defined in the [Unicode Stand
 (pdf)](https://www.unicode.org/versions/Unicode14.0.0/UnicodeStandard-14.0.pdf). Chapter numbers
 below refer to that spec.
 
-| Go Noto font               | Coverage                                                                                |
-|----------------------------|-----------------------------------------------------------------------------------------|
-| GoNotoEuropeAmericas.ttf   | "Europe" - ch. 7, 8, "Americas" - ch 20, "Notational Systems" - ch 21                   |
-| GoNotoAfricaMiddleEast.ttf | "Middle East" - ch. 9, 10, 11 and "Africa" - ch. 19                                     |
-| GoNotoSouthAsia.ttf        | "South and Central Asia" - ch. 12 and 13                                                |
-| GoNotoAsiaHistorical.ttf   | "South and Central Asia" - ch. 14 and 15                                                |
-| GoNotoSouthEastAsia.ttf    | "Southeast Asia" - ch. 16 and "Indonesia and Ocenia" - ch 17                            |
-| GoNotoCJKCore2005.ttf      | [Unihan IICore][1] subset of CJK (~10K ideographs). Use [Noto CJK][2] for full coverage |
-| GoNotoEastAsia.ttf         | "East Asia" - ch 18. everything other than Han (CJK)                                    |
+| Go Noto font               | Coverage                                                                                 |
+|----------------------------|------------------------------------------------------------------------------------------|
+| GoNotoEuropeAmericas.ttf   | "Europe" - ch. 7, 8, "Americas" - ch 20, "Notational Systems" - ch 21                    |
+| GoNotoAfricaMiddleEast.ttf | "Middle East" - ch. 9, 10, 11 and "Africa" - ch. 19                                      |
+| GoNotoSouthAsia.ttf        | "South and Central Asia" - ch. 12 and 13                                                 |
+| GoNotoAsiaHistorical.ttf   | "South and Central Asia" - ch. 14 and 15                                                 |
+| GoNotoSouthEastAsia.ttf    | "Southeast Asia" - ch. 16 and "Indonesia and Ocenia" - ch 17                             |
+| GoNotoCJKCore.ttf          | [UnihanCore2020][3] subset of CJK (~20K ideographs). Use [Noto CJK][2] for full coverage |
+| GoNotoEastAsia.ttf         | "East Asia" - ch 18. everything other than Han (CJK)                                     |
 
 Each of the above fonts includes LGC (Latin-Greek-Cyrillic) as default, same coverage as `Noto Sans
 Regular`. Each one also includes Noto Sans Math, Noto Music, Noto Sans Symbols and Noto Sans Symbols
@@ -150,43 +150,49 @@ Yezidi.
 Lisu, Marchen, Miao, Mongolian, Nüshu, Tangut, Tibetan, Yi, etc. excluding Han/CJK
 (Chinese-Japanese-Korean). Vertical text writing is not supported.
 
-### Go Noto CJK Core 2005
+### Go Noto CJK Core
 
 [Unihan IICore][1] is a minimal, region-agnostic subset of Han/CJK specified in 2005 for
 memory-constrained systems. It standardizes about 9800 codepoints, covering basic use cases of
-Chinese (Traditional, Simplified), Japanese and Korean. Recently [Unihan Core
-2020](https://unicode.org/charts/unihan.html) superseded and expanded the minimal subset to about
-20000 codepoints.
+Chinese (Traditional, Simplified), Japanese and Korean. Recently [Unihan Core 2020][3] superseded
+and expanded the minimal subset to about 20000 codepoints. Go Noto CJK Core includes a superset of
+codepoints from both of these subsets.
 
-The GoNotoCJKCore2005 includes "locl" features, so it can display Japanese or Korean glyphs just by
-switching the language in your editor/word processor/web browser etc.
+The GoNotoCJKCore.ttf includes "locl" layout feature, so it can display Japanese or Korean glyphs
+just by switching the language in your editor/word processor/web browser etc. Hiragana, Katakana and
+Hangul are included.
 
-The generated font does _not_ contain Noto Sans Math, Noto Music, Noto Sans Symbols, Noto Sans
-Symbols 2 because [fonttools does not
-support](https://fonttools.readthedocs.io/en/latest/merge.html) merging fonts with CFF outlines
-(which is the case for .otf). Converting .otf to .ttf still doesn't solve the problem because CJK
-fonts have "vmtx" table, which is absent in other fonts, thus preventing `pyftmerge`.
+Why use this instead of the upstream [Noto CJK][2] Fonts? Because our font also contains Noto Sans
+Math, Noto Music, Noto Sans Symbols, Noto Sans Symbols 2, plus everything in Noto Sans (Regular) --
+so you can have emojis, mathematical notation, musical symbols and Latin-Greek-Cyrillic in a single
+font. But all the upstream Noto CJK Fonts have maxed out 65K glyphs, so they don't have space
+anymore for glyphs additions.
+
+The only limitation is that Go Noto CJK Core does not support vertical text writing.
 
 
 ## Font Statistics
 
-Statistics below correspond to release v4.0.
+Font statistics are collected in tsv format (tab separated value) by the CI pipeline in every run
+and can be downloaded in build Artifacts.
+
+Statistics below correspond to release v4.1.
 
 | Go Noto Font               | Unicode blocks | Characters | Glyphs |
 |----------------------------|---------------:|-----------:|-------:|
-| GoNotoCurrent.ttf          |            196 |      32710 |  61456 |
-| GoNotoAncient.ttf          |            175 |      24429 |  33469 |
+| GoNotoCurrent.ttf          |            197 |      32741 |  61496 |
+| GoNotoAncient.ttf          |            176 |      24457 |  33591 |
 | GoNotoEuropeAmericas.ttf   |            120 |      13389 |  53570 |
-| GoNotoAfricaMiddleEast.ttf |            128 |      16053 |  20333 |
-| GoNotoSouthAsia.ttf        |            117 |      11502 |  21382 |
+| GoNotoAfricaMiddleEast.ttf |            129 |      16081 |  20455 |
+| GoNotoSouthAsia.ttf        |            118 |      11533 |  21422 |
 | GoNotoAsiaHistorical.ttf   |            122 |      11001 |  18248 |
 | GoNotoSouthEastAsia.ttf    |            111 |      10786 |  15013 |
-| GoNotoEastAsia.ttf         |            109 |      18708 |  25043 |
-| GoNotoCJKCore2005.ttf      |             20 |      10338 |  20522 |
+| GoNotoEastAsia.ttf         |            109 |      18708 |  24872 |
+| GoNotoCJKCore.ttf          |            107 |      41130 |  61656 |
 
 NotoSansSignWriting alone contributes about 37900 glyphs to GoNotoEuropeAmericas.ttf.
 
-Note that each of the above (except CJKCore2005) include statistics of:
+Note that each of the above include statistics of:
 
 | Upstream font       | Unicode blocks | Characters | Glyphs |
 |---------------------|---------------:|-----------:|-------:|
@@ -209,9 +215,7 @@ Note that each of the above (except CJKCore2005) include statistics of:
 3. Vertical text layout is not supported for CJK, Dogra, Mongolian, Nandinagari, Nüshu and Tangut,
    even though the upstream Noto Fonts has the support because fonttools does not support merging
    with `vmtx`/`vhea`.
-4. GoNotoCJKCore2005 does not contain Noto Sans Math and Noto Sans Symbols because fonttools does
-   not support merging CFF with others.
-5. Go Noto Current has limited support for CJK -- it offers the full Unihan IICore subset plus more
+4. Go Noto Current has limited support for CJK -- it offers the full Unihan IICore subset plus more
    glyphs, so it should work ok-ish for daily use but there can be missing glyphs. As before,
    vertical text writing is not supported with this font.
 
@@ -235,3 +239,4 @@ rendered characters.
 
 [1]: https://wikipedia.org/wiki/International_Ideographs_Core
 [2]: https://github.com/googlefonts/noto-cjk/
+[3]: https://unicode.org/charts/unihan.html
