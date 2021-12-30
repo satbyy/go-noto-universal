@@ -161,7 +161,7 @@ create_cjk_unihan_core() {
     cd "$OLDPWD"
 
     go_build "$output_font" \
-             "$subset_ttf" NotoSans-Regular.ttf NotoMusic-Regular.ttf \
+             NotoSans-Regular.ttf "$subset_ttf" NotoMusic-Regular.ttf \
              NotoSansSymbols-Regular.ttf NotoSansSymbols2-Regular.ttf
 }
 
