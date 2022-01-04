@@ -29,13 +29,14 @@ declare -a fonts=(
 )
 
 for font in "${fonts[@]}"; do
+    name="$font.ttf"
     if [[ -e "$font.ttf" ]]; then
-        echo "Not overwriting existing font $font."
+        echo "Not overwriting existing font $name."
         continue
     fi
     declare -n source_fonts="$font" # nameref to array in categories.sh
-    echo "Generating font $font. Current time: $(date)."
-    go_build "$font.ttf" "${source_fonts[@]}"
+    echo "Generating font $name. Current time: $(date)."
+    go_build "$name" "${source_fonts[@]}"
 done
 
 create_cjk_unihan_core
