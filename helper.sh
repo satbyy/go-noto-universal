@@ -298,16 +298,22 @@ create_japanese_kana_subset() {
 }
 
 go_build() {
-    local output="$1"          # name of generated font
-    local to_merge=("${@:2}")  # list of fonts to merge
-    # remove duplicates
-    local input=($(printf "%s\n" "${to_merge[@]}" \
-                       | LC_ALL=C sort --unique \
-                       | tr '\n' ' '))
+    local output="$1"       # name of generated font
+    local input=("${@:2}")  # list of fonts to merge
 
     if [[ -e "$output" ]]; then
         echo "Not overwriting existing font $output."
         return
+    fi
+
+    # remove duplicates
+    local sorted=($(printf "%s\n" "${input[@]}" \
+                       | LC_ALL=C sort --unique \
+                       | tr '\n' ' '))
+
+    if [[ "${#input[@]}" -gt "${#sorted[@]}" ]]; then
+        echo "ERROR: input list of fonts contains duplicates"
+        exit 5
     fi
 
     cd cache/
