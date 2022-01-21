@@ -79,6 +79,9 @@ Temporal, i.e., time-based fonts are:
 Each of these fonts includes Noto Sans (Regular), Noto Sans Symbols, Noto Sans Symbols 2, Noto Sans
 Math and Noto Music so that notations, symbols and emoji are not missed out.
 
+Serif variants of these are also included but their Unicode coverage is not as good as Sans Serif
+(lack of upstream Noto Serif fonts).
+
 The exact fonts which are combined are too long to list here but can be seen from the source code.
 
 ### Regional Fonts

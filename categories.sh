@@ -4,6 +4,8 @@ set -e
 # export these variables
 declare -x GoNotoAncient
 declare -x GoNotoCurrent
+declare -x GoNotoCurrentSerif
+declare -x GoNotoAncientSerif
 
 declare -x GoNotoAfricaMiddleEast
 declare -x GoNotoSouthAsia
@@ -402,4 +404,49 @@ GoNotoEuropeAmericas=(
     "NotoSansSymbols2-Regular.ttf"
     "NotoSansMath-Regular.ttf"
     "NotoMusic-Regular.ttf"
+)
+
+GoNotoAncientSerif=(
+    "NotoSerif-Regular.ttf"
+    "NotoSerifAhom-Regular.ttf"
+    "NotoSerifDogra-Regular.ttf"
+    "NotoSerifGrantha-Regular.ttf"
+    "NotoSerifKhojki-Regular.ttf"
+    "NotoSerifNyiakengPuachueHmong-Regular.ttf"
+    "NotoSerifOldUyghur-Regular.ttf"
+    "NotoSerifTangut-Regular.ttf"
+    "NotoSerifVithkuqi-Regular.ttf"
+)
+
+GoNotoCurrentSerif=(
+    "NotoSerif-Regular.ttf"
+    "NotoNaskhArabic-Regular.ttf"  # not really "serif" but any Arabic would do
+    "NotoSerifArmenian-Regular.ttf"
+    "NotoSerifBalinese-Regular.ttf"
+    "NotoSerifBengali-Regular.ttf"
+    "NotoSerifDevanagari-Regular.ttf"
+    "NotoSerifEthiopic-Regular.ttf"
+    "NotoSerifGeorgian-Regular.ttf"
+    "NotoSerifGujarati-Regular.ttf"
+    "NotoSerifGurmukhi-Regular.ttf"
+    "NotoSerifHebrew-Regular.ttf"
+    "NotoSerifKannada-Regular.ttf"
+    "NotoSerifKhmer-Regular.ttf"
+    "NotoSerifLao-Regular.ttf"
+    "NotoSerifMalayalam-Regular.ttf"
+    "NotoSerifMyanmar-Regular.ttf"
+    "NotoSerifOriya-Regular.ttf"
+    "NotoSerifSinhala-Regular.ttf"
+    "NotoSerifTamil-Regular.ttf"
+    "NotoSerifTelugu-Regular.ttf"
+    "NotoSerifThai-Regular.ttf"
+    "NotoSerifTibetanSubset-Regular.ttf"  # non-"Subset" also works but takes a long time
+    "NotoSerifToto-Regular.ttf"
+    "NotoSerifYezidi-Regular.ttf"
+    # Common for all scripts (even though not serif)
+    # TODO Enabling these injects sans-serif variant of Latin alphabet
+#    "NotoSansSymbols-Regular.ttf"
+#    "NotoSansSymbols2-Regular.ttf"
+#    "NotoSansMath-Regular.ttf"
+#    "NotoMusic-Regular.ttf"
 )

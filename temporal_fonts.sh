@@ -28,3 +28,7 @@ drop_vertical_tables NotoSansNandinagari-Regular.ttf
 drop_vertical_tables NotoSerifTangut-Regular.ttf
 echo "Generating GoNotoAncient.ttf. Current time: $(date)."
 go_build GoNotoAncient.ttf "${GoNotoAncient[@]}"
+
+# GoNotoCurrentSerif.ttf
+echo "Generating GoNotoCurrentSerif.ttf. Current time: $(date)."
+go_build GoNotoCurrentSerif.ttf "${GoNotoCurrentSerif[@]}"
