@@ -118,8 +118,8 @@ Noto Fonts do not exist for Tangsa.
 ### Go Noto Asia Historical
 
 Following are included: Ahom, Bhaiksuki, Brahmi, Dives Akuru, Dogra, Grantha, Indic Siyaq Numbers,
-Kaithi, Kharoshthi, Khojki, Khudawadi, Mahajani, Marchen, Modi, Multani, Old Sogdian, Old Turkic,
-Old Uyghur, Phags-Pa, Sharada, Siddham, Sogdian, Sora Sompeng, Soyombo, Syloti Nagri, Takri,
+Kaithi, Kharoshthi, Khojki, Khudawadi, Mahajani, Makasar, Marchen, Modi, Multani, Old Sogdian, Old
+Turkic, Old Uyghur, Phags-Pa, Sharada, Siddham, Sogdian, Sora Sompeng, Soyombo, Syloti Nagri, Takri,
 Tirhuta, Zanabazar Square.
 
 Noto Fonts do not exist for Ottoman Siyaq Numbers.
@@ -127,10 +127,8 @@ Noto Fonts do not exist for Ottoman Siyaq Numbers.
 ### Go Noto South East Asia
 
 Following are included: Balinese, Batak, Buginese, Buhid, Cham, Hanifi Rohingya, Hanunoo, Javanese,
-Kayah Li, Khmer, Lao, Myanmar, New Tai Lue, Nyiakeng Puache Hmong, Pahawh Hmong, Pau Cin Hau,
-Rejang, Sundanese, Tagalog, Tagbanwa, Tai Le, Tai Tham, Tai Viet, Thai.
-
-Noto Fonts do not exist for Makasar.
+Kayah Li, Khmer, Lao, Makasar, Myanmar, New Tai Lue, Nyiakeng Puache Hmong, Pahawh Hmong, Pau Cin
+Hau, Rejang, Sundanese, Tagalog, Tagbanwa, Tai Le, Tai Tham, Tai Viet, Thai.
 
 ### Go Noto Europe Americas
 
