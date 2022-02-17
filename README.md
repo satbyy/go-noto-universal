@@ -117,12 +117,12 @@ Noto Fonts do not exist for Tangsa.
 
 ### Go Noto Asia Historical
 
-Following are included: Ahom, Bhaiksuki, Brahmi, Dogra, Grantha, Indic Siyaq Numbers, Kaithi,
-Kharoshthi, Khojki, Khudawadi, Mahajani, Marchen, Modi, Multani, Old Sogdian, Old Turkic, Old
-Uyghur, Phags-Pa, Sharada, Siddham, Sogdian, Sora Sompeng, Soyombo, Syloti Nagri, Takri, Tirhuta,
-Zanabazar Square.
+Following are included: Ahom, Bhaiksuki, Brahmi, Dives Akuru, Dogra, Grantha, Indic Siyaq Numbers,
+Kaithi, Kharoshthi, Khojki, Khudawadi, Mahajani, Marchen, Modi, Multani, Old Sogdian, Old Turkic,
+Old Uyghur, Phags-Pa, Sharada, Siddham, Sogdian, Sora Sompeng, Soyombo, Syloti Nagri, Takri,
+Tirhuta, Zanabazar Square.
 
-Noto Fonts do not exist for Dives Akuru and Ottoman Siyaq Numbers.
+Noto Fonts do not exist for Ottoman Siyaq Numbers.
 
 ### Go Noto South East Asia
 

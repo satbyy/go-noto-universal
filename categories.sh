@@ -42,6 +42,7 @@ GoNotoAncient=(
     "NotoSerifAhom-Regular.ttf"
     "NotoSerifDograSubset-Regular.ttf"
     "NotoSerifKhojki-Regular.ttf"
+    "NotoSerifDivesAkuru.ttf"
     # 'GoNotoEuropeAmericas.ttf': [
     "NotoSansCaucasianAlbanian-Regular.ttf"
     "NotoSansCarian-Regular.ttf"
@@ -303,6 +304,7 @@ GoNotoAsiaHistorical=(
     "NotoSerifDograSubset-Regular.ttf"
     "NotoSerifKhojki-Regular.ttf"
     "NotoSerifOldUyghur-Regular.ttf"
+    "NotoSerifDivesAkuru.ttf"
     # Common for all scripts
     "NotoSansSymbols-Regular.ttf"
     "NotoSansSymbols2-Regular.ttf"
@@ -416,6 +418,7 @@ GoNotoAncientSerif=(
     "NotoSerifOldUyghur-Regular.ttf"
     "NotoSerifTangut-Regular.ttf"
     "NotoSerifVithkuqi-Regular.ttf"
+    "NotoSerifDivesAkuru.ttf"
 )
 
 GoNotoCurrentSerif=(
