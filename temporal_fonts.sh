@@ -32,3 +32,7 @@ go_build GoNotoAncient.ttf "${GoNotoAncient[@]}"
 # GoNotoCurrentSerif.ttf
 echo "Generating GoNotoCurrentSerif.ttf. Current time: $(date)."
 go_build GoNotoCurrentSerif.ttf "${GoNotoCurrentSerif[@]}"
+
+# GoNotoAncientSerif.ttf
+echo "Generating GoNotoAncientSerif.ttf. Current time: $(date)."
+go_build GoNotoAncientSerif.ttf "${GoNotoAncientSerif[@]}"
