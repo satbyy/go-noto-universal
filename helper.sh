@@ -77,7 +77,7 @@ create_tibetan_subset() {
     local input_font=NotoSerifTibetan-Regular.ttf
     local output_font="${input_font/-/Subset-}"
     local glyphs=0
-    local exclude_regex='uni0F([45].|6[^2])0F(9.|A[^D]|B[^12])|uni[[:xdigit:]]{8,12}\.[2]'
+    local exclude_regex='uni0F([45].|6[^2])0F(9.|A[^D]|B[^12])|uni[[:xdigit:]]{8,12}\.[23]|uni0F(4[3D]|5[27C]|69).|0F..0F74'
 
     cd cache/
 
