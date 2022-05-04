@@ -129,6 +129,7 @@ GoNotoCurrent=(
     "NotoSerifToto-Regular.ttf"
     "NotoSansWancho-Regular.ttf"
     "NotoSansWarangCiti-Regular.ttf"
+    "NotoSansTangsa-Regular.ttf"
     # SE Asia
     "NotoSansBalinese-Regular.ttf"
     "NotoSansBatak-Regular.ttf"
@@ -268,6 +269,7 @@ GoNotoSouthAsia=(
     "NotoSerifToto-Regular.ttf"
     "NotoSansWancho-Regular.ttf"
     "NotoSansWarangCiti-Regular.ttf"
+    "NotoSansTangsa-Regular.ttf"
     # Common for all scripts
     "NotoSansSymbols-Regular.ttf"
     "NotoSansSymbols2-Regular.ttf"
