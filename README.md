@@ -108,12 +108,11 @@ Regular`. Each one also includes Noto Sans Math, Noto Music, Noto Sans Symbols a
 
 Following are included: Bengali, Chakma, Devanagari (Hindi, Marathi, Nepali, etc), Gujarati, Gunjala
 Gondi, Kannada, Lepcha, Limbu, Malayalam, Masaram Gondi, Meetei Mayek, Mro, Newa, Ol Chiki, Oriya,
-Punjabi (Gurmukhi), Saurashtra, Sinhala, Tamil, Telugu, Thaana, Tibetan, Toto, Wancho, Warang Citi.
+Punjabi (Gurmukhi), Saurashtra, Sinhala, Tamil, Tangsa, Telugu, Thaana, Tibetan, Toto, Wancho,
+Warang Citi.
 
 Urdu (NotoNastaliq), though not written in an Indic script and not part of "South Asia" chapters in
 the Unicode spec, is included for practical reasons.
-
-Noto Fonts do not exist for Tangsa.
 
 ### Go Noto Asia Historical
 
