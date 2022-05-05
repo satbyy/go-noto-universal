@@ -176,19 +176,19 @@ The only limitation is that Go Noto CJK Core does not support vertical text writ
 Font statistics are collected in tsv format (tab separated value) by the CI pipeline in every run
 and can be downloaded in build Artifacts.
 
-Statistics below correspond to release v4.1.
+Statistics below correspond to release v5.1.
 
 | Go Noto Font               | Unicode blocks | Characters | Glyphs |
 |----------------------------|---------------:|-----------:|-------:|
-| GoNotoCurrent.ttf          |            197 |      32741 |  61496 |
-| GoNotoAncient.ttf          |            176 |      24457 |  33591 |
-| GoNotoEuropeAmericas.ttf   |            120 |      13389 |  53570 |
-| GoNotoAfricaMiddleEast.ttf |            129 |      16081 |  20455 |
-| GoNotoSouthAsia.ttf        |            118 |      11533 |  21422 |
-| GoNotoAsiaHistorical.ttf   |            122 |      11001 |  18248 |
-| GoNotoSouthEastAsia.ttf    |            111 |      10786 |  15013 |
-| GoNotoEastAsia.ttf         |            109 |      18708 |  24872 |
-| GoNotoCJKCore.ttf          |            107 |      41130 |  61656 |
+| GoNotoCurrent.ttf          |            197 |      32804 |  61207 |
+| GoNotoAncient.ttf          |            178 |      24556 |  32971 |
+| GoNotoEuropeAmericas.ttf   |            120 |      13391 |  53393 |
+| GoNotoAfricaMiddleEast.ttf |            128 |      16055 |  20429 |
+| GoNotoSouthAsia.ttf        |            119 |      11632 |  21184 |
+| GoNotoAsiaHistorical.ttf   |            124 |      11100 |  18457 |
+| GoNotoSouthEastAsia.ttf    |            112 |      10813 |  15044 |
+| GoNotoEastAsia.ttf         |            109 |      18710 |  24525 |
+| GoNotoCJKCore.ttf          |            107 |      41132 |  61658 |
 
 NotoSansSignWriting alone contributes about 37900 glyphs to GoNotoEuropeAmericas.ttf.
 
@@ -196,12 +196,12 @@ Note that each of the above include statistics of:
 
 | Upstream font       | Unicode blocks | Characters | Glyphs |
 |---------------------|---------------:|-----------:|-------:|
-| Noto Sans           |             37 |       2840 |   3317 |
+| Noto Sans           |             37 |       2840 |   3748 |
 | Noto Sans Math      |             22 |       2472 |   2655 |
-| Noto Music          |              7 |        559 |    579 |
+| Noto Music          |              7 |        561 |    581 |
 | Noto Sans Symbols   |             15 |        840 |   1218 |
 | Noto Sans Symbols 2 |             37 |       2655 |   2674 |
-| Total               |            111 |       8807 |   9864 |
+| Total               |            111 |       9368 |  10876 |
 
 ## Caveats
 
