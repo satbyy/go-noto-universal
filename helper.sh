@@ -209,7 +209,7 @@ create_cjk_subset() {
     cat unihan_iicore.txt unihan_range.txt | sort | uniq > Unihan_codepoints.txt
 
     # Passthrough tables which cannot be subset
-    "$VIRTUAL_ENV"/bin/pyftsubset --drop-tables=vhea,vmtx --glyph-names \
+    "$VIRTUAL_ENV"/bin/pyftsubset --drop-tables+=vhea,vmtx --glyph-names \
                   --recommended-glyphs --passthrough-tables --layout-features="$features" \
                   --unicodes-file=Unihan_codepoints.txt --unicodes="$codepoints" \
                   --output-file="$subset_otf" "$input_otf"
@@ -235,13 +235,15 @@ create_korean_hangul_subset() {
 
     codepoints+="U+1100-11FF," # Hangul jamo
     codepoints+="U+3130-318F," # Hangul compatibility jamo
+    codepoints+="U+A960-A97F," # Hangul jamo extended-A
+    codepoints+="U+D7B0-D7FF," # Hangul jamo extended-B
 
     cd cache/
 
     download_url "https://github.com/googlefonts/noto-cjk/raw/main/Sans/OTF/Korean/$input_otf"
 
     echo "Generating Korean font $subset_ttf. Current time: $(date)."
-    "$VIRTUAL_ENV"/bin/pyftsubset --drop-tables=vhea,vmtx --glyph-names \
+    "$VIRTUAL_ENV"/bin/pyftsubset --drop-tables+=vhea,vmtx --glyph-names \
                   --recommended-glyphs --passthrough-tables --layout-features-="vert" \
                   --unicodes="$codepoints" \
                   --output-file="$subset_otf" "$input_otf"
@@ -284,7 +286,7 @@ create_japanese_kana_subset() {
     download_url "https://github.com/googlefonts/noto-cjk/raw/main/Sans/OTF/Japanese/$input_otf"
 
     echo "Generating Japanese font $subset_ttf. Current time: $(date)."
-    "$VIRTUAL_ENV"/bin/pyftsubset --drop-tables=vhea,vmtx --glyph-names \
+    "$VIRTUAL_ENV"/bin/pyftsubset --drop-tables+=vhea,vmtx --glyph-names \
                   --recommended-glyphs --passthrough-tables --layout-features="$features" \
                   --unicodes="$codepoints" --output-file="$subset_otf" "$input_otf"
 
