@@ -237,6 +237,7 @@ create_korean_hangul_subset() {
     codepoints+="U+3130-318F," # Hangul compatibility jamo
     codepoints+="U+A960-A97F," # Hangul jamo extended-A
     codepoints+="U+D7B0-D7FF," # Hangul jamo extended-B
+    codepoints+="U+AC00-AFF7,U+D000-D7AF" # precomposed hangul subset
 
     cd cache/
 
@@ -245,8 +246,11 @@ create_korean_hangul_subset() {
     echo "Generating Korean font $subset_ttf. Current time: $(date)."
     "$VIRTUAL_ENV"/bin/pyftsubset --drop-tables+=vhea,vmtx --glyph-names \
                   --recommended-glyphs --passthrough-tables --layout-features-="vert" \
-                  --unicodes="$codepoints" \
-                  --output-file="$subset_otf" "$input_otf"
+                  --output-file="$subset_otf" "$input_otf" \
+                  --unicodes="$codepoints"
+#                  --unicodes-file=ksx.txt
+#                  --text-file=hangul.txt
+#                  --no-layout-closure \
 
     # convert otf to ttf
     download_url https://github.com/fonttools/fonttools/raw/main/Snippets/otf2ttf.py
