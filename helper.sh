@@ -72,6 +72,25 @@ drop_vertical_tables() {
     cd "$OLDPWD"
 }
 
+# download black-and-white Noto Emoji (not NotoColor)
+fetch_noto_emoji() {
+    local output_font=NotoEmoji-Regular.ttf
+    local url="https://fonts.google.com/download?family=Noto%20Emoji"
+    local zipfile=$(basename "$url")
+
+    if [[ -e "$output_font" ]]; then
+        echo "Not overwriting existing font $output_font."
+        return
+    fi
+
+    cd cache/
+    download_url "$url"
+    python3 -m zipfile -e "$zipfile" .
+    mv static/"$output_font" .
+    rm -rf "$zipfile" static/
+    cd "$OLDPWD"
+}
+
 # create tibetan subset so that GSUB is not overflow'ed.
 create_tibetan_subset() {
     local input_font=NotoSerifTibetan-Regular.ttf
