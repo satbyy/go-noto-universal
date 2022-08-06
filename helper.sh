@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env bash -eu
 
 download_url() {
     local max_retry=20
@@ -62,7 +62,7 @@ drop_vertical_tables() {
     cd cache/
 
     if [[ ! -e "$output_font" ]]; then
-        download_url "https://github.com/googlefonts/noto-fonts/raw/main/hinted/ttf/$dirname/$fontname"
+        download_url "${font_urls[$fontname]}"
         echo "Removing vertical tables from $fontname"
         "$VIRTUAL_ENV"/bin/pyftsubset --recommended-glyphs --passthrough-tables \
                       --glyphs='*' --unicodes='*' --glyph-names --layout-features='*' \
@@ -82,7 +82,7 @@ create_tibetan_subset() {
     cd cache/
 
     if [[ ! -e "$output_font" ]]; then
-        download_url "https://github.com/googlefonts/noto-fonts/raw/main/hinted/ttf/NotoSerifTibetan/$input_font"
+        download_url "${font_urls[$input_font]}"
 
         echo "Creating a smaller subset of Tibetan glyphs..."
         glyphs=$("$VIRTUAL_ENV"/bin/ttx -o - -q -t GlyphOrder "$input_font" \
@@ -321,8 +321,7 @@ go_build() {
     cd cache/
     for font in "${input[@]}"; do
         if [[ ! -e "$font" ]]; then
-            noto_dir="${font%-*}"
-            download_url "https://github.com/googlefonts/noto-fonts/raw/main/hinted/ttf/$noto_dir/$font"
+            download_url "${font_urls[$font]}"
         fi
     done
 
