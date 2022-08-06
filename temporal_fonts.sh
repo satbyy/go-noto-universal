@@ -6,6 +6,7 @@ set -e
 python3 -m pip install 'fonttools >= 4.28.5'
 
 # import functions and globals
+source url.sh
 source helper.sh
 source categories.sh
 
