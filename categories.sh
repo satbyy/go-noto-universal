@@ -49,6 +49,7 @@ GoNotoAncient=(
     "NotoSansCarian-Regular.ttf"
     "NotoSansCanadianAboriginal-Regular.ttf"
     "NotoSansCypriot-Regular.ttf"
+    "NotoSansCyproMinoan-Regular.ttf"
     "NotoSansGlagolitic-Regular.ttf"
     "NotoSansLinearA-Regular.ttf"
     "NotoSansLinearB-Regular.ttf"
@@ -386,6 +387,7 @@ GoNotoEuropeAmericas=(
     "NotoSerifNyiakengPuachueHmong-Regular.ttf"
     # Historical
     "NotoSansCypriot-Regular.ttf"
+    "NotoSansCyproMinoan-Regular.ttf"
     "NotoSansCaucasianAlbanian-Regular.ttf"
     "NotoSansCarian-Regular.ttf"
     "NotoSansCanadianAboriginal-Regular.ttf"
