@@ -144,6 +144,13 @@ create_cjk_unihan_core() {
     python3 -m zipfile -e Unihan.zip .
     grep kIICore Unihan_IRGSources.txt | cut -f1 > "$subset_codepoints"
     grep kUnihanCore2020 Unihan_DictionaryLikeData.txt | cut -f1 >> "$subset_codepoints"
+
+    # Choose U+4e00 to U+6000 to avoid cmap format 4 subtable overflow
+    # (reduce number of segments)
+    for code in $(seq 0x4e00 0x6000); do
+        printf "U+%X\n" "$code"
+    done >> "$subset_codepoints"
+
     sort --unique --output="$subset_codepoints" "$subset_codepoints"
     download_url "https://github.com/googlefonts/noto-cjk/raw/main/Sans/OTF/SimplifiedChinese/$input_font"
 
@@ -162,7 +169,8 @@ create_cjk_unihan_core() {
 
     go_build "$output_font" \
              NotoSans-Regular.ttf "$subset_ttf" NotoMusic-Regular.ttf \
-             NotoSansSymbols-Regular.ttf NotoSansSymbols2-Regular.ttf
+             NotoSansSymbols-Regular.ttf NotoSansSymbols2-Regular.ttf \
+             NotoSansMath-Regular.ttf
 }
 
 create_cjk_subset() {
@@ -202,7 +210,7 @@ create_cjk_subset() {
     # Choose U+4e00 to U+6000 to avoid cmap format 4 subtable overflow
     # (reduce number of segments)
     for code in $(seq 0x4e00 0x6000); do
-        printf "U+%x\n" "$code"
+        printf "U+%X\n" "$code"
     done > unihan_range.txt
 
     # Combine it with IICore codepoints
