@@ -192,6 +192,7 @@ GoNotoCurrent=(
     "NotoSansSymbols2-Regular.ttf"
     "NotoSansMath-Regular.ttf"
     "NotoMusic-Regular.ttf"
+    "NotoEmoji-Regular.ttf"
 )
 
 GoNotoAfricaMiddleEast=(

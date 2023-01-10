@@ -14,6 +14,7 @@ source categories.sh
 mkdir -p cache/
 
 # GoNotoCurrent.ttf
+fetch_noto_emoji
 create_cjk_subset
 create_japanese_kana_subset
 create_korean_hangul_subset
