@@ -95,7 +95,7 @@ GoNotoAncient=(
     # Common for all scripts
     "NotoSansSymbols-Regular.ttf"
     "NotoSansSymbols2-Regular.ttf"
-    "NotoSansMath-Regular.ttf"
+    "NotoSansMathSubset-Regular.ttf"
     "NotoMusic-Regular.ttf"
 )
 
@@ -190,7 +190,7 @@ GoNotoCurrent=(
     # Common for all scripts
     "NotoSansSymbols-Regular.ttf"
     "NotoSansSymbols2-Regular.ttf"
-    "NotoSansMath-Regular.ttf"
+    "NotoSansMathSubset-Regular.ttf"
     "NotoMusic-Regular.ttf"
 )
 
@@ -238,7 +238,7 @@ GoNotoAfricaMiddleEast=(
     # Common for all scripts
     "NotoSansSymbols-Regular.ttf"
     "NotoSansSymbols2-Regular.ttf"
-    "NotoSansMath-Regular.ttf"
+    "NotoSansMathSubset-Regular.ttf"
     "NotoMusic-Regular.ttf"
 )
 
@@ -274,7 +274,7 @@ GoNotoSouthAsia=(
     # Common for all scripts
     "NotoSansSymbols-Regular.ttf"
     "NotoSansSymbols2-Regular.ttf"
-    "NotoSansMath-Regular.ttf"
+    "NotoSansMathSubset-Regular.ttf"
     "NotoMusic-Regular.ttf"
 )
 
@@ -313,7 +313,7 @@ GoNotoAsiaHistorical=(
     # Common for all scripts
     "NotoSansSymbols-Regular.ttf"
     "NotoSansSymbols2-Regular.ttf"
-    "NotoSansMath-Regular.ttf"
+    "NotoSansMathSubset-Regular.ttf"
     "NotoMusic-Regular.ttf"
 )
 
@@ -347,7 +347,7 @@ GoNotoSouthEastAsia=(
     # Common for all scripts
     "NotoSansSymbols-Regular.ttf"
     "NotoSansSymbols2-Regular.ttf"
-    "NotoSansMath-Regular.ttf"
+    "NotoSansMathSubset-Regular.ttf"
     "NotoMusic-Regular.ttf"
 )
 
@@ -370,7 +370,7 @@ GoNotoEastAsia=(
     # Common for all scripts
     "NotoSansSymbols-Regular.ttf"
     "NotoSansSymbols2-Regular.ttf"
-    "NotoSansMath-Regular.ttf"
+    "NotoSansMathSubset-Regular.ttf"
     "NotoMusic-Regular.ttf"
 )
 
@@ -410,7 +410,7 @@ GoNotoEuropeAmericas=(
     # Common for all scripts
     "NotoSansSymbols-Regular.ttf"
     "NotoSansSymbols2-Regular.ttf"
-    "NotoSansMath-Regular.ttf"
+    "NotoSansMathSubset-Regular.ttf"
     "NotoMusic-Regular.ttf"
 )
 
@@ -457,6 +457,6 @@ GoNotoCurrentSerif=(
     # TODO Enabling these injects sans-serif variant of Latin alphabet
 #    "NotoSansSymbols-Regular.ttf"
 #    "NotoSansSymbols2-Regular.ttf"
-#    "NotoSansMath-Regular.ttf"
+#    "NotoSansMathSubset-Regular.ttf"
 #    "NotoMusic-Regular.ttf"
 )

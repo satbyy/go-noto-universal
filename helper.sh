@@ -99,6 +99,35 @@ create_tibetan_subset() {
     cd "$OLDPWD"
 }
 
+# create Math subset to remove MATH table and MATH-specific glyphs
+create_math_subset() {
+    local input_font=NotoSansMath-Regular.ttf
+    local output_font="${input_font/-/Subset-}"
+    local exclude_regex='\.[btx]$\|\.dotless$\|\.s[0-9]\+$\|\.ssty[12]$'
+
+    cd cache/
+
+    if [[ ! -e "$output_font" ]]; then
+        download_url "${font_urls[$input_font]}"
+
+        echo "Creating a smaller subset of Math glyphs..."
+        local glyphs_file=math_glyphs.txt
+        "$VIRTUAL_ENV"/bin/ttx -o - -q -t GlyphOrder "$input_font" \
+                      | grep '<GlyphID ' | cut -f4 -d'"' \
+                      | grep -v "$exclude_regex" \
+                      > "$glyphs_file"
+        "$VIRTUAL_ENV"/bin/pyftsubset --passthrough-tables --notdef-outline \
+                      --drop-tables+=MATH \
+                      --layout-features=aalt,abvm,ccmp,fwid,kern,mark,mkmk,rtla,ss01 \
+                      --glyph-names --no-layout-closure \
+                      --glyphs-file="$glyphs_file" "$input_font" --output-file="$output_font"
+    fi
+
+    python3 ../rename_font.py "$output_font" "Noto Math Subset" "NotoMathSubset"
+
+    cd "$OLDPWD"
+}
+
 # Unihan IICore 2005 is a small subset of CJK (~10k codepoints).
 # Recently it has been superseded by UnihanCore2020, which is double in size.
 create_cjk_unihan_core() {
@@ -170,7 +199,7 @@ create_cjk_unihan_core() {
     go_build "$output_font" \
              NotoSans-Regular.ttf "$subset_ttf" NotoMusic-Regular.ttf \
              NotoSansSymbols-Regular.ttf NotoSansSymbols2-Regular.ttf \
-             NotoSansMath-Regular.ttf
+             NotoSansMathSubset-Regular.ttf
 }
 
 create_cjk_subset() {
@@ -334,7 +363,7 @@ go_build() {
     done
 
     echo "Merging ${#input[@]} fonts..."
-    time "$VIRTUAL_ENV"/bin/pyftmerge --drop-tables+=vhea,vmtx \
+    time "$VIRTUAL_ENV"/bin/pyftmerge --drop-tables+=MATH,vhea,vmtx \
          --verbose --output-file=../"$output" "${input[@]}"
 
     # Copy line metrics from Noto Sans Regular
