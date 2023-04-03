@@ -15,6 +15,7 @@ mkdir -p cache/
 
 # GoNotoCurrent.ttf
 create_cjk_subset
+create_duployan_subset
 create_japanese_kana_subset
 create_korean_hangul_subset
 create_math_subset

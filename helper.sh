@@ -72,6 +72,36 @@ drop_vertical_tables() {
     cd "$OLDPWD"
 }
 
+# create Duployan subset so that GSUB is not overflow'ed.
+create_duployan_subset() {
+    local input_font=NotoSansDuployan-Regular.ttf
+    local output_font="${input_font/-/Subset-}"
+    local include_regex='^[^_]\|^_u1BC9D\.dtls$'
+    local exclude_regex='^u1BC7[0-7]\..*\.'
+
+    cd cache/
+
+    if [[ ! -e "$output_font" ]]; then
+        download_url "${font_urls[$input_font]}"
+
+        echo "Creating a smaller subset of Duployan glyphs..."
+        local glyphs_file=duployan_glyphs.txt
+        "$VIRTUAL_ENV"/bin/ttx -o - -q -t GlyphOrder "$input_font" \
+                      | grep '<GlyphID ' | cut -f4 -d'"' \
+                      | grep "$include_regex" \
+                      | grep -v  "$exclude_regex" \
+                      > "$glyphs_file"
+        "$VIRTUAL_ENV"/bin/pyftsubset --passthrough-tables --notdef-outline \
+                      --layout-features+=subs,sups --layout-features-=curs,rclt \
+                      --glyph-names --no-layout-closure \
+                      --glyphs-file="$glyphs_file" "$input_font" --output-file="$output_font"
+    fi
+
+    python3 ../rename_font.py "$output_font" "Noto Duployan Subset" "NotoDuployanSubset"
+
+    cd "$OLDPWD"
+}
+
 # create tibetan subset so that GSUB is not overflow'ed.
 create_tibetan_subset() {
     local input_font=NotoSerifTibetan-Regular.ttf

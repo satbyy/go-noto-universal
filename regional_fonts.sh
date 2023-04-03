@@ -13,6 +13,7 @@ source categories.sh
 # --- execution starts here ---
 mkdir -p cache/
 
+create_duployan_subset
 create_math_subset
 create_tibetan_subset
 drop_vertical_tables NotoSerifDogra-Regular.ttf
