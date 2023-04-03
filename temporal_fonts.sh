@@ -17,6 +17,7 @@ mkdir -p cache/
 create_cjk_subset
 create_japanese_kana_subset
 create_korean_hangul_subset
+create_math_subset
 create_tibetan_subset
 drop_vertical_tables NotoSansMongolian-Regular.ttf
 drop_vertical_tables NotoSansNushu-Regular.ttf
