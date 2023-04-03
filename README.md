@@ -111,8 +111,9 @@ Gondi, Kannada, Lepcha, Limbu, Malayalam, Masaram Gondi, Meetei Mayek, Mro, Newa
 Punjabi (Gurmukhi), Saurashtra, Sinhala, Tamil, Tangsa, Telugu, Thaana, Tibetan, Toto, Wancho,
 Warang Citi.
 
-Urdu (NotoNastaliq), though not written in an Indic script and not part of "South Asia" chapters in
-the Unicode spec, is included for practical reasons.
+Urdu (Noto Naskh Arabic), though not written in an Indic script and not part of "South Asia"
+chapters in the Unicode spec, is included for practical reasons. Noto Nastaliq Urdu would be more
+appropriate but it is too big to fit in the merged font.
 
 ### Go Noto Asia Historical
 

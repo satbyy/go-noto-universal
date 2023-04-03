@@ -244,7 +244,7 @@ GoNotoAfricaMiddleEast=(
 
 GoNotoSouthAsia=(
     "NotoSans-Regular.ttf"
-    "NotoNastaliqUrdu-Regular.ttf"
+    "NotoNaskhArabic-Regular.ttf"  # "NotoNastaliqUrdu-Regular.ttf" is too big
     "NotoSansBengali-Regular.ttf"
     "NotoSansChakma-Regular.ttf"
     "NotoSansDevanagari-Regular.ttf"
