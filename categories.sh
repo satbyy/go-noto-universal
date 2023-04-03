@@ -64,7 +64,7 @@ GoNotoAncient=(
     "NotoSansOgham-Regular.ttf"
     "NotoSansOldPermic-Regular.ttf"
     "NotoSansShavian-Regular.ttf"
-    "NotoSansDuployan-Regular.ttf"
+    "NotoSansDuployanSubset-Regular.ttf"
     "NotoSansMayanNumerals-Regular.ttf"
     # 'GoNotoAfricaMiddleEast.ttf': [
     "NotoSansBamum-Regular.ttf"   # Bamum Supplement is historical
@@ -405,7 +405,7 @@ GoNotoEuropeAmericas=(
     "NotoSansOgham-Regular.ttf"
     "NotoSansOldPermic-Regular.ttf"
     "NotoSansShavian-Regular.ttf"
-    "NotoSansDuployan-Regular.ttf"
+    "NotoSansDuployanSubset-Regular.ttf"
     "NotoSansMayanNumerals-Regular.ttf"
     # Common for all scripts
     "NotoSansSymbols-Regular.ttf"

@@ -218,6 +218,8 @@ Note that each of the above include statistics of:
 4. Go Noto Current has limited support for CJK -- it offers the full Unihan IICore subset plus more
    glyphs, so it should work ok-ish for daily use but there can be missing glyphs. As before,
    vertical text writing is not supported with this font.
+5. Duployan has limited glyphs, also to avoid GSUB overflow. Cursive connections, contextual forms,
+   and overlap trees are disabled. Shading and combining marks still work.
 
 ## License
 
