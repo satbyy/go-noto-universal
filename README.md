@@ -87,7 +87,7 @@ The exact fonts which are combined are too long to list here but can be seen fro
 ### Regional Fonts
 
 These fonts are merged/combined as per the regions defined in the [Unicode Standard
-(pdf)](https://www.unicode.org/versions/Unicode14.0.0/UnicodeStandard-14.0.pdf). Chapter numbers
+(pdf)](https://www.unicode.org/versions/Unicode15.0.0/UnicodeStandard-15.0.pdf). Chapter numbers
 below refer to that spec.
 
 | Go Noto font               | Coverage                                                                                 |
@@ -96,7 +96,7 @@ below refer to that spec.
 | GoNotoAfricaMiddleEast.ttf | "Middle East" - ch. 9, 10, 11 and "Africa" - ch. 19                                      |
 | GoNotoSouthAsia.ttf        | "South and Central Asia" - ch. 12 and 13                                                 |
 | GoNotoAsiaHistorical.ttf   | "South and Central Asia" - ch. 14 and 15                                                 |
-| GoNotoSouthEastAsia.ttf    | "Southeast Asia" - ch. 16 and "Indonesia and Ocenia" - ch 17                             |
+| GoNotoSouthEastAsia.ttf    | "Southeast Asia" - ch. 16 and "Indonesia and the Philippines" - ch 17                    |
 | GoNotoCJKCore.ttf          | [UnihanCore2020][3] subset of CJK (~20K ideographs). Use [Noto CJK][2] for full coverage |
 | GoNotoEastAsia.ttf         | "East Asia" - ch 18. everything other than Han (CJK)                                     |
 
@@ -107,9 +107,9 @@ Regular`. Each one also includes Noto Sans Math, Noto Music, Noto Sans Symbols a
 ### Go Noto South Asia
 
 Following are included: Bengali, Chakma, Devanagari (Hindi, Marathi, Nepali, etc), Gujarati, Gunjala
-Gondi, Kannada, Lepcha, Limbu, Malayalam, Masaram Gondi, Meetei Mayek, Mro, Newa, Ol Chiki, Oriya,
-Punjabi (Gurmukhi), Saurashtra, Sinhala, Tamil, Tangsa, Telugu, Thaana, Tibetan, Toto, Wancho,
-Warang Citi.
+Gondi, Kannada, Lepcha, Limbu, Malayalam, Masaram Gondi, Meetei Mayek, Mro, Nag Mundari, Newa, Ol
+Chiki, Oriya, Punjabi (Gurmukhi), Saurashtra, Sinhala, Tamil, Tangsa, Telugu, Thaana, Tibetan, Toto,
+Wancho, Warang Citi.
 
 Urdu (Noto Naskh Arabic), though not written in an Indic script and not part of "South Asia"
 chapters in the Unicode spec, is included for practical reasons. Noto Nastaliq Urdu would be more
@@ -119,16 +119,14 @@ appropriate but it is too big to fit in the merged font.
 
 Following are included: Ahom, Bhaiksuki, Brahmi, Dives Akuru, Dogra, Grantha, Indic Siyaq Numbers,
 Kaithi, Kharoshthi, Khojki, Khudawadi, Mahajani, Makasar, Marchen, Modi, Multani, Old Sogdian, Old
-Turkic, Old Uyghur, Phags-Pa, Sharada, Siddham, Sogdian, Sora Sompeng, Soyombo, Syloti Nagri, Takri,
-Tirhuta, Zanabazar Square.
-
-Noto Fonts do not exist for Ottoman Siyaq Numbers.
+Turkic, Old Uyghur, Ottoman Siyaq Numbers, Phags-Pa, Sharada, Siddham, Sogdian, Sora Sompeng,
+Soyombo, Syloti Nagri, Takri, Tirhuta, Zanabazar Square.
 
 ### Go Noto South East Asia
 
 Following are included: Balinese, Batak, Buginese, Buhid, Cham, Hanifi Rohingya, Hanunoo, Javanese,
-Kayah Li, Khmer, Lao, Makasar, Myanmar, New Tai Lue, Nyiakeng Puache Hmong, Pahawh Hmong, Pau Cin
-Hau, Rejang, Sundanese, Tagalog, Tagbanwa, Tai Le, Tai Tham, Tai Viet, Thai.
+Kayah Li, Kawi, Khmer, Lao, Makasar, Myanmar, New Tai Lue, Nyiakeng Puache Hmong, Pahawh Hmong, Pau
+Cin Hau, Rejang, Sundanese, Tagalog, Tagbanwa, Tai Le, Tai Tham, Tai Viet, Thai.
 
 ### Go Noto Europe Americas
 
@@ -148,8 +146,8 @@ Yezidi.
 
 ### Go Noto East Asia
 
-Lisu, Marchen, Miao, Mongolian, Nüshu, Tangut, Tibetan, Yi, etc. excluding Han/CJK
-(Chinese-Japanese-Korean). Vertical text writing is not supported.
+Khitan Small Script, Lisu, Marchen, Miao, Mongolian, Nüshu, Tangut, Tibetan, Yi, etc. excluding
+Han/CJK (Chinese-Japanese-Korean). Vertical text writing is not supported.
 
 ### Go Noto CJK Core
 
