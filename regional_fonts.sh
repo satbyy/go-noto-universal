@@ -16,6 +16,7 @@ mkdir -p cache/
 create_duployan_subset
 create_math_subset
 create_tibetan_subset
+create_indosphere_subset
 drop_vertical_tables NotoSerifDogra-Regular.ttf
 drop_vertical_tables NotoSansNandinagari-Regular.ttf
 drop_vertical_tables NotoSansMongolian-Regular.ttf
@@ -23,6 +24,7 @@ drop_vertical_tables NotoSansNushu-Regular.ttf
 drop_vertical_tables NotoSerifTangut-Regular.ttf
 
 declare -a fonts=(
+    GoNotoIndosphere
     GoNotoAfricaMiddleEast
     GoNotoSouthAsia
     GoNotoAsiaHistorical

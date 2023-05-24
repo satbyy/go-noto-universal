@@ -366,6 +366,29 @@ create_japanese_kana_subset() {
     cd "$OLDPWD"
 }
 
+# Indosphere combines South Asia, S.E.Asia and Asia-Historical
+create_indosphere_subset() {
+    declare -ag GoNotoIndosphere # -a is array, -g is global variable
+
+    GoNotoIndosphere=("${GoNotoSouthAsia[@]}")
+    local sea=("${GoNotoSouthEastAsia[@]}")
+    local hist=("${GoNotoAsiaHistorical[@]}")
+
+    # Exclude 1st element (NotoSans-Regular) and last 4 elements (Symbols,
+    # Symbols2, Math, Music) because they're already included.
+    sea=("${sea[@]:1:${#sea[@]}-5}")
+    hist=("${hist[@]:1:${#hist[@]}-5}")
+
+    GoNotoIndosphere+=("${sea[@]}")
+
+#    if [[ "${GoNotoIndosphere[1]}" =~ "Naskh" ]]; then
+#        GoNotoIndosphere[1]="NotoNastaliqUrdu-Regular.ttf"
+#    else
+#        echo "ERROR: Could not replace Naskh by Nastaliq"
+#        exit 10
+#    fi
+}
+
 go_build() {
     local output="$1"       # name of generated font
     local input=("${@:2}")  # list of fonts to merge
@@ -381,7 +404,7 @@ go_build() {
                        | tr '\n' ' '))
 
     if [[ "${#input[@]}" -gt "${#sorted[@]}" ]]; then
-        echo "ERROR: input list of fonts contains duplicates"
+        echo "ERROR: input list of fonts contains duplicates, len ${#input[@]} > ${#sorted[@]}"
         exit 5
     fi
 
