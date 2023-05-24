@@ -24,13 +24,13 @@ drop_vertical_tables NotoSansNushu-Regular.ttf
 drop_vertical_tables NotoSerifTangut-Regular.ttf
 
 declare -a fonts=(
-    GoNotoIndosphere
     GoNotoAfricaMiddleEast
     GoNotoSouthAsia
     GoNotoAsiaHistorical
     GoNotoSouthEastAsia
     GoNotoEastAsia
     GoNotoEuropeAmericas
+    GoNotoIndosphere
 )
 
 for font in "${fonts[@]}"; do

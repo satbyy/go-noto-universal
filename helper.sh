@@ -372,21 +372,25 @@ create_indosphere_subset() {
 
     GoNotoIndosphere=("${GoNotoSouthAsia[@]}")
     local sea=("${GoNotoSouthEastAsia[@]}")
-    local hist=("${GoNotoAsiaHistorical[@]}")
 
     # Exclude 1st element (NotoSans-Regular) and last 4 elements (Symbols,
     # Symbols2, Math, Music) because they're already included.
     sea=("${sea[@]:1:${#sea[@]}-5}")
-    hist=("${hist[@]:1:${#hist[@]}-5}")
 
     GoNotoIndosphere+=("${sea[@]}")
 
-#    if [[ "${GoNotoIndosphere[1]}" =~ "Naskh" ]]; then
-#        GoNotoIndosphere[1]="NotoNastaliqUrdu-Regular.ttf"
-#    else
-#        echo "ERROR: Could not replace Naskh by Nastaliq"
-#        exit 10
-#    fi
+    # Some interesting picks from GoNotoAsiaHistorical.ttf
+    GoNotoIndosphere+=(
+	"NotoSansBrahmi-Regular.ttf"
+	"NotoSansGrantha-Regular.ttf"
+	"NotoSansModi-Regular.ttf"
+	"NotoSansMahajani-Regular.ttf"
+	"NotoSansNagMundari-Regular.ttf"
+	"NotoSansNandinagariSubset-Regular.ttf"
+	"NotoSansSharada-Regular.ttf"
+	"NotoSansSiddham-Regular.ttf"
+	"NotoSansSoraSompeng-Regular.ttf"
+    )
 }
 
 go_build() {
