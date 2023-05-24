@@ -261,7 +261,6 @@ GoNotoSouthAsia=(
     "NotoSansMasaramGondi-Regular.ttf"
     "NotoSansMeeteiMayek-Regular.ttf"
     "NotoSansMro-Regular.ttf"
-    "NotoSansNagMundari-Regular.ttf"
     "NotoSansNewa-Regular.ttf"
     "NotoSansOlChiki-Regular.ttf"
     "NotoSansOriya-Regular.ttf"
@@ -350,7 +349,6 @@ GoNotoSouthEastAsia=(
     "NotoSansTaiTham-Regular.ttf"
     "NotoSansTaiViet-Regular.ttf"
     "NotoSansThai-Regular.ttf"
-    "NotoSerifMakasar-Regular.ttf"
     # Common for all scripts
     "NotoSansSymbols-Regular.ttf"
     "NotoSansSymbols2-Regular.ttf"
