@@ -378,19 +378,6 @@ create_indosphere_subset() {
     sea=("${sea[@]:1:${#sea[@]}-5}")
 
     GoNotoIndosphere+=("${sea[@]}")
-
-    # Some interesting picks from GoNotoAsiaHistorical.ttf
-    GoNotoIndosphere+=(
-	"NotoSansBrahmi-Regular.ttf"
-	"NotoSansGrantha-Regular.ttf"
-	"NotoSansModi-Regular.ttf"
-	"NotoSansMahajani-Regular.ttf"
-	"NotoSansNagMundari-Regular.ttf"
-	"NotoSansNandinagariSubset-Regular.ttf"
-	"NotoSansSharada-Regular.ttf"
-	"NotoSansSiddham-Regular.ttf"
-	"NotoSansSoraSompeng-Regular.ttf"
-    )
 }
 
 go_build() {
