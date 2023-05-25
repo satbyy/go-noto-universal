@@ -371,11 +371,17 @@ create_indosphere_subset() {
     declare -ag GoNotoIndosphere # -a is array, -g is global variable
 
     GoNotoIndosphere=("${GoNotoSouthAsia[@]}")
-    local sea=("${GoNotoSouthEastAsia[@]}")
 
-    # Exclude 1st element (NotoSans-Regular) and last 4 elements (Symbols,
-    # Symbols2, Math, Music) because they're already included.
-    sea=("${sea[@]:1:${#sea[@]}-5}")
+    # Exclude fonts which are already included above (avoid duplicates)
+    local sea=("${GoNotoSouthEastAsia[@]}")
+    sea=("${sea[@]/NotoSans-Regular.ttf/}")
+    sea=("${sea[@]/NotoSansSymbols-Regular.ttf/}")
+    sea=("${sea[@]/NotoSansSymbols2-Regular.ttf/}")
+    sea=("${sea[@]/NotoSansMathSubset-Regular.ttf/}")
+    sea=("${sea[@]/NotoMusic-Regular.ttf/}")
+
+    # remove null strings (i.e. '') generaged after find-replace
+    sea=($(echo "${sea[@]}" | grep -o '[^[:space:]]\+'))
 
     GoNotoIndosphere+=("${sea[@]}")
 }
