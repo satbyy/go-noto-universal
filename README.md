@@ -139,7 +139,7 @@ Writing, Vithkuqi.
 ### Go Noto Africa Middle East
 
 The following are included: Adlam, Anatolian Hieroglyphics, Arabic (Naskh-style), Avestan, Bamum,
-Bassa Vah, Chorasmian, Cuneiform, Egyptian, Elymaic, Hatran, Hebrew, Imperial Aramaic, Inscriptional
+Bassa Vah, Chorasmian, Cuneiform, Egyptian, Elymaic, Ethiopic, Hatran, Hebrew, Imperial Aramaic, Inscriptional
 Pahlavi, Inscriptional Parthian, Mandaic, Manichaean, Meroitic, Nabataean, Old North Arabian, Old
 Persian, Old South Arabian, Palmyrene, Phoenician, Psalter Pahlavi, Samaritan, Syriac, Ugaritic,
 Yezidi.
