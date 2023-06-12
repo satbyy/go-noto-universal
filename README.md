@@ -6,12 +6,12 @@ ancient) or geographical region (Africa-MiddleEast, Europe-Americas, South Asia,
 
 We offer two types of combined fonts:
 
-1. Time-based:
+1. Time-based:  
    - **GoNotoCurrent.ttf** covers pretty much all the scripts in current, widespread use all over the
      world. This is designed to be a "good enough" font for modern, living scripts without being
      exhaustive.
    - **GoNotoAncient.ttf** covers all the historical, obsolete and liturgical scripts.
-2. Region-based:
+2. Region-based:  
    Choose a single font based on where you live or whichever region you're interested in:
    Africa - Middle East, East Asia, Europe - Americas, South Asia or South East Asia.
 
