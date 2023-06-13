@@ -106,10 +106,10 @@ Regular`. Each one also includes Noto Sans Math, Noto Music, Noto Sans Symbols a
 
 ### Go Noto South Asia
 
-Following are included: Bengali, Chakma, Devanagari (Hindi, Marathi, Nepali, etc), Gujarati, Gunjala
-Gondi, Kannada, Lepcha, Limbu, Malayalam, Masaram Gondi, Meetei Mayek, Mro, Nag Mundari, Newa, Ol
-Chiki, Oriya, Punjabi (Gurmukhi), Saurashtra, Sinhala, Tamil, Tangsa, Telugu, Thaana, Tibetan, Toto,
-Wancho, Warang Citi.
+Following are included: Bengali, Chakma, Devanagari (Hindi, Marathi, Nepali, etc), Gondi, Gujarati,
+Gunjala Gondi, Gurmukhi, Kannada, Lepcha, Limbu, Malayalam, Masaram Gondi, Meetei Mayek, Mro,
+Nag Mundari, Newa, Ol Chiki, Oriya, Punjabi (Gurmukhi), Saurashtra, Sinhala, Tamil, Tangsa, Telugu,
+Thaana, Tibetan, Toto, Wancho, Warang Citi.
 
 Urdu (Noto Naskh Arabic), though not written in an Indic script and not part of "South Asia"
 chapters in the Unicode spec, is included for practical reasons. Noto Nastaliq Urdu would be more
@@ -118,36 +118,37 @@ appropriate but it is too big to fit in the merged font.
 ### Go Noto Asia Historical
 
 Following are included: Ahom, Bhaiksuki, Brahmi, Dives Akuru, Dogra, Grantha, Indic Siyaq Numbers,
-Kaithi, Kharoshthi, Khojki, Khudawadi, Mahajani, Makasar, Marchen, Modi, Multani, Old Sogdian, Old
-Turkic, Old Uyghur, Ottoman Siyaq Numbers, Phags-Pa, Sharada, Siddham, Sogdian, Sora Sompeng,
-Soyombo, Syloti Nagri, Takri, Tirhuta, Zanabazar Square.
+Kaithi, Kharoshthi, Khojki, Khudawadi, Mahajani, Makasar, Modi, Multani, Nag Mundari, Nandinagari,
+Old Sogdian, Old Turkic, Old Uyghur, Ottoman Siyaq Numbers, Phags-Pa, Sharada, Siddham, Sogdian,
+Sora Sompeng, Soyombo, Syloti Nagri, Takri, Tirhuta, Zanabazar Square.
 
 ### Go Noto South East Asia
 
-Following are included: Balinese, Batak, Buginese, Buhid, Cham, Hanifi Rohingya, Hanunoo, Javanese,
+Following are included: Balinese, Batak, Buginese, Buhid, Cham, Hanifi Rohingya, Hanunóo, Javanese,
 Kayah Li, Kawi, Khmer, Lao, Makasar, Myanmar, New Tai Lue, Nyiakeng Puache Hmong, Pahawh Hmong, Pau
 Cin Hau, Rejang, Sundanese, Tagalog, Tagbanwa, Tai Le, Tai Tham, Tai Viet, Thai.
 
 ### Go Noto Europe Americas
 
 Everything covered by NotoSans (Latin-Greek-Cyrillic etc.) plus Anatolian Hieroglyphics, Armenian,
-Canadian Aboriginal, Carian, Caucasian Albanian, Cherokee, Coptic, Cypriot, Deseret, Duployan,
-Elbasan, Georgian, Glagolitic, Gothic, Linear A, Linear B, Lycian, Lydian, Mayan Numerals, Nyiakeng
-Puachue Hmong, Ogham, Old Hungarian, Old Italic, Old Permic, Osage, Runic, Shavian, Sutton Sign
-Writing, Vithkuqi.
+Braille, Canadian Aboriginal, Carian, Caucasian Albanian, Cherokee, Coptic, Cypriot, Deseret,
+Duployan, Elbasan, Georgian, Glagolitic, Gothic, Linear A, Linear B, Lycian, Lydian, Mayan Numerals,
+Nyiakeng Puachue Hmong, Ogham, Old Hungarian, Old Italic, Old Permic, Osage, Runic, Shavian, Sutton
+Sign Writing, Vithkuqi.
 
 ### Go Noto Africa Middle East
 
 The following are included: Adlam, Anatolian Hieroglyphics, Arabic (Naskh-style), Avestan, Bamum,
-Bassa Vah, Chorasmian, Cuneiform, Egyptian, Elymaic, Hatran, Hebrew, Imperial Aramaic, Inscriptional
-Pahlavi, Inscriptional Parthian, Mandaic, Manichaean, Meroitic, Nabataean, Old North Arabian, Old
-Persian, Old South Arabian, Palmyrene, Phoenician, Psalter Pahlavi, Samaritan, Syriac, Ugaritic,
-Yezidi.
+Bassa Vah, Chorasmian, Cuneiform, Egyptian, Elymaic, Ethiopic, Hatran, Hebrew, Imperial Aramaic,
+Inscriptional Pahlavi, Inscriptional Parthian, Mandaic, Manichaean, Medefaidrin, Mende Kikakui,
+Meroitic, Nabataean, N'Ko, Old North Arabian, Old Persian, Old South Arabian, Osmanya, Palmyrene,
+Phoenician, Psalter Pahlavi, Samaritan, Sumero-Akkadian, Syriac, Tifinagh, Ugaritic, Vai, Yezidi.
 
 ### Go Noto East Asia
 
-Khitan Small Script, Lisu, Marchen, Miao, Mongolian, Nüshu, Tangut, Tibetan, Yi, etc. excluding
-Han/CJK (Chinese-Japanese-Korean). Vertical text writing is not supported.
+Bopomofo, Hangul, Hiragana and Katakana, Khitan Small Script, Lisu, Marchen, Miao, Mongolian,
+Nüshu, Tangut, Tibetan, Yi, etc. excluding Han/CJK (Chinese-Japanese-Korean). Vertical text
+writing is not supported.
 
 ### Go Noto CJK Core
 
