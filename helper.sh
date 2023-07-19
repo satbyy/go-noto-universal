@@ -102,9 +102,8 @@ create_duployan_subset() {
     cd "$OLDPWD"
 }
 
-# create tibetan subset so that GSUB is not overflow'ed.
-create_tibetan_subset() {
-    local input_font=NotoSerifTibetan-Regular.ttf
+_create_tibetan_subset() {
+    local input_font=$1
     local output_font="${input_font/-/Subset-}"
     local glyphs=0
     local exclude_regex='uni0F([45].|6[^2])0F(9.|A[^D]|B[^12])|uni[[:xdigit:]]{8,12}\.[23]|uni0F(4[3D]|5[27C]|69).|0F..0F74'
@@ -127,6 +126,12 @@ create_tibetan_subset() {
     python3 ../rename_font.py "$output_font" "Noto Tibetan Subset" "NotoTibetanSubset"
 
     cd "$OLDPWD"
+}
+
+# create tibetan subset so that GSUB is not overflow'ed.
+create_tibetan_subset() {
+    _create_tibetan_subset "NotoSerifTibetan-Regular.ttf"
+    _create_tibetan_subset "NotoSerifTibetan-Bold.ttf"
 }
 
 # create Math subset to remove MATH table and MATH-specific glyphs
@@ -232,8 +237,8 @@ create_cjk_unihan_core() {
              NotoSansMathSubset-Regular.ttf
 }
 
-create_cjk_subset() {
-    local input_otf=NotoSansCJKsc-Regular.otf
+_create_cjk_subset() {
+    local input_otf=$1
     local subset_otf="${input_otf/-/Subset-}"
     local subset_ttf="${subset_otf/otf/ttf}"
     local codepoints=""
@@ -289,8 +294,13 @@ create_cjk_subset() {
     cd "$OLDPWD"
 }
 
-create_korean_hangul_subset() {
-    local input_otf=NotoSansCJKkr-Regular.otf
+create_cjk_subset() {
+    _create_cjk_subset NotoSansCJKsc-Regular.otf
+    _create_cjk_subset NotoSansCJKsc-Bold.otf
+}
+
+_create_korean_hangul_subset() {
+    local input_otf=$1
     local subset_otf="${input_otf/-/Subset-}"
     local subset_ttf="${subset_otf/otf/ttf}"
     local codepoints=""
@@ -324,8 +334,13 @@ create_korean_hangul_subset() {
     cd "$OLDPWD"
 }
 
-create_japanese_kana_subset() {
-    local input_otf=NotoSansCJKjp-Regular.otf
+create_korean_hangul_subset() {
+    _create_korean_hangul_subset NotoSansCJKkr-Regular.otf
+    _create_korean_hangul_subset NotoSansCJKkr-Bold.otf
+}
+
+_create_japanese_kana_subset() {
+    local input_otf=$1
     local subset_otf="${input_otf/-/Subset-}"
     local subset_ttf="${subset_otf/otf/ttf}"
     local codepoints=""
@@ -364,6 +379,11 @@ create_japanese_kana_subset() {
     python3 ../rename_font.py "$subset_ttf" "Noto Sans CJKjp Subset" "NotoSansCJKjpSubset"
 
     cd "$OLDPWD"
+}
+
+create_japanese_kana_subset() {
+    _create_japanese_kana_subset NotoSansCJKjp-Regular.otf
+    _create_japanese_kana_subset NotoSansCJKjp-Bold.otf
 }
 
 # Indosphere combines South Asia, S.E.Asia and Asia-Historical

@@ -22,8 +22,10 @@ create_math_subset
 create_tibetan_subset
 drop_vertical_tables NotoSansMongolian-Regular.ttf
 drop_vertical_tables NotoSansNushu-Regular.ttf
+drop_vertical_tables NotoTraditionalNushu-Bold.ttf
 echo "Generating GoNotoCurrent.ttf. Current time: $(date)."
 go_build GoNotoCurrent.ttf "${GoNotoCurrent[@]}"
+go_build GoNotoCurrent-Bold.ttf "${GoNotoCurrentBold[@]}"
 
 # GoNotoAncient.ttf
 drop_vertical_tables NotoSerifDogra-Regular.ttf
