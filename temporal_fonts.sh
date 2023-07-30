@@ -3,7 +3,7 @@ set -e
 
 [[ -z "$VIRTUAL_ENV" ]] && echo "Refusing to run outside of venv. See README.md." && exit 100
 
-python3 -m pip install 'fonttools < 4.41.0' # perf regression
+python3 -m pip install 'fonttools >= 4.41.1'
 
 # import functions and globals
 source url.sh
