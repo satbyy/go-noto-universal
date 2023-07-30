@@ -13,19 +13,30 @@ source categories.sh
 # --- execution starts here ---
 mkdir -p cache/
 
-# GoNotoCurrent.ttf
+# GoNotoCurrentRegular.ttf
 create_cjk_subset
 create_duployan_subset
 create_japanese_kana_subset
 create_korean_hangul_subset
 create_math_subset
 create_tibetan_subset
+create_go_noto_current_with_full_korean
+
 drop_vertical_tables NotoSansMongolian-Regular.ttf
 drop_vertical_tables NotoSansNushu-Regular.ttf
 drop_vertical_tables NotoTraditionalNushu-Bold.ttf
-echo "Generating GoNotoCurrent.ttf. Current time: $(date)."
-go_build GoNotoCurrent.ttf "${GoNotoCurrent[@]}"
+
+echo "Generating GoNotoCurrent-Regular.ttf. Current time: $(date)."
+go_build GoNotoCurrent-Regular.ttf "${GoNotoCurrentRegular[@]}"
+
+echo "Generating GoNotoCurrent-Bold.ttf. Current time: $(date)."
 go_build GoNotoCurrent-Bold.ttf "${GoNotoCurrentBold[@]}"
+
+echo "Generating GoNotoKurrent-Regular.ttf. Current time: $(date)."
+go_build GoNotoKurrent-Regular.ttf "${GoNotoKurrentRegular[@]}"
+
+echo "Generating GoNotoKurrent-Bold.ttf. Current time: $(date)."
+go_build GoNotoKurrent-Bold.ttf "${GoNotoKurrentBold[@]}"
 
 # GoNotoAncient.ttf
 drop_vertical_tables NotoSerifDogra-Regular.ttf

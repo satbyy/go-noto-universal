@@ -7,10 +7,10 @@ ancient) or geographical region (Africa-MiddleEast, Europe-Americas, South Asia,
 We offer two types of combined fonts:
 
 1. Time-based:  
-   - **GoNotoCurrent.ttf** covers pretty much all the scripts in current, widespread use all over the
+   - **GoNotoKurrent** covers pretty much all the scripts in current, widespread use all over the
      world. This is designed to be a "good enough" font for modern, living scripts without being
      exhaustive.
-   - **GoNotoAncient.ttf** covers all the historical, obsolete and liturgical scripts.
+   - **GoNotoAncient** covers all the historical, obsolete and liturgical scripts.
 2. Region-based:  
    Choose a single font based on where you live or whichever region you're interested in:
    Africa - Middle East, East Asia, Europe - Americas, South Asia or South East Asia.
@@ -20,7 +20,9 @@ See [caveats](#caveats) too.
 ## Download
 
 If you simply want to _use_ the fonts, go to [Releases page](https://github.com/satbyy/go-noto-universal/releases/)
-and download what you need. If you're unsure what to download, you probably need GoNotoCurrent.ttf.
+and download what you need. If you're unsure what to download, you probably need
+GoNotoKurrent-Regular.ttf[^1]. If you want better support for emoji and symbols, try
+GoNotoCurrent-Regular.ttf. A **bold** variant of the font is also available (-Bold.ttf).
 
 Development builds are available from [GitHub
 Actions](https://github.com/satbyy/go-noto-universal/actions) page. Click on any workflow with green
@@ -68,7 +70,7 @@ programs we use are `pyftmerge`, `pyftsubset` and `ttx`.
 
 Temporal, i.e., time-based fonts are:
 
-- **Go Noto Current** -- combines 80+ Noto Fonts of scripts which are in current, daily usage. It is
+- **Go Noto Kurrent** -- combines 80+ Noto Fonts of scripts which are in current, daily usage. It is
   a superset of all the "[Regional Fonts](#regional-fonts)" (see below) excluding historical or
   specialty fonts. It includes support for Chinese, Japanese and Korean (CJK) too, using the [Unihan
   IICore][1] subset.
@@ -215,7 +217,7 @@ Note that each of the above include statistics of:
 3. Vertical text layout is not supported for CJK, Dogra, Mongolian, Nandinagari, Nüshu and Tangut,
    even though the upstream Noto Fonts has the support because fonttools does not support merging
    with `vmtx`/`vhea`.
-4. Go Noto Current has limited support for CJK -- it offers the full Unihan IICore subset plus more
+4. Go Noto Kurrent has limited support for CJK -- it offers the full Unihan IICore subset plus more
    glyphs, so it should work ok-ish for daily use but there can be missing glyphs. As before,
    vertical text writing is not supported with this font.
 5. Duployan has limited glyphs, also to avoid GSUB overflow. Cursive connections, contextual forms,
@@ -242,3 +244,6 @@ rendered characters.
 [1]: https://wikipedia.org/wiki/International_Ideographs_Core
 [2]: https://github.com/googlefonts/noto-cjk/
 [3]: https://unicode.org/charts/unihan.html
+
+[^1]: The "K" in "Kurrent" stands for full Korean support, but lacks emoji and symbols. Conversely,
+ "Go Noto Current" has poor Korean support but includes emojis and symbols.

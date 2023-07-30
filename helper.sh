@@ -301,7 +301,8 @@ create_cjk_subset() {
 
 _create_korean_hangul_subset() {
     local input_otf=$1
-    local subset_otf="${input_otf/-/Subset-}"
+    local is_subset=$2
+    local subset_otf="${input_otf/-/$is_subset-}"
     local subset_ttf="${subset_otf/otf/ttf}"
     local codepoints=""
 
@@ -314,6 +315,10 @@ _create_korean_hangul_subset() {
     codepoints+="U+3130-318F," # Hangul compatibility jamo
     codepoints+="U+A960-A97F," # Hangul jamo extended-A
     codepoints+="U+D7B0-D7FF," # Hangul jamo extended-B
+
+    if [[ "$is_subset" == "Full" ]]; then
+        codepoints+="U+AC00-D7AF,"   # Hangul syllables
+    fi
 
     cd cache/
 
@@ -335,8 +340,11 @@ _create_korean_hangul_subset() {
 }
 
 create_korean_hangul_subset() {
-    _create_korean_hangul_subset NotoSansCJKkr-Regular.otf
-    _create_korean_hangul_subset NotoSansCJKkr-Bold.otf
+    _create_korean_hangul_subset NotoSansCJKkr-Regular.otf "Subset"
+    _create_korean_hangul_subset NotoSansCJKkr-Bold.otf "Subset"
+
+    _create_korean_hangul_subset NotoSansCJKkr-Regular.otf "Full"
+    _create_korean_hangul_subset NotoSansCJKkr-Bold.otf "Full"
 }
 
 _create_japanese_kana_subset() {
@@ -384,6 +392,37 @@ _create_japanese_kana_subset() {
 create_japanese_kana_subset() {
     _create_japanese_kana_subset NotoSansCJKjp-Regular.otf
     _create_japanese_kana_subset NotoSansCJKjp-Bold.otf
+}
+
+_create_go_noto_current_with_full_korean() {
+    local weight="$1"
+    local input=("${@:2}")  # list of fonts
+
+    # Exclude these fonts, so as to make space for Korean
+    local no_syms=("${input[@]}")
+    no_syms=("${no_syms[@]/NotoSansSymbols-Regular.ttf/}")
+    no_syms=("${no_syms[@]/NotoSansSymbols-Bold.ttf/}")
+    no_syms=("${no_syms[@]/NotoSansSymbols2-Regular.ttf/}")
+    no_syms=("${no_syms[@]/NotoSansMathSubset-Regular.ttf/}")
+    no_syms=("${no_syms[@]/NotoMusic-Regular.ttf/}")
+
+    # Replace Korean "Subset" with "Full" variant
+    no_syms=("${no_syms[@]/NotoSansCJKkrSubset/NotoSansCJKkrFull}")
+
+    # remove null strings (i.e. '') generaged after find-replace
+    no_syms=($(echo "${no_syms[@]}" | grep -o '[^[:space:]]\+'))
+
+    # -a is array, -g is global variable
+    if [[ "$weight" == "Regular" ]]; then
+       declare -ag GoNotoKurrentRegular=("${no_syms[@]}")
+    else
+       declare -ag GoNotoKurrentBold=("${no_syms[@]}")
+    fi
+}
+
+create_go_noto_current_with_full_korean() {
+  _create_go_noto_current_with_full_korean Regular "${GoNotoCurrentRegular[@]}"
+  _create_go_noto_current_with_full_korean Bold "${GoNotoCurrentBold[@]}"
 }
 
 # Indosphere combines South Asia, S.E.Asia and Asia-Historical
