@@ -3,7 +3,7 @@ set -e
 
 # export these variables
 declare -x GoNotoAncient
-declare -x GoNotoCurrent
+declare -x GoNotoCurrentRegular
 declare -x GoNotoCurrentSerif
 declare -x GoNotoAncientSerif
 
@@ -103,7 +103,7 @@ GoNotoAncient=(
     "NotoMusic-Regular.ttf"
 )
 
-GoNotoCurrent=(
+GoNotoCurrentRegular=(
     # It's recommended to put NotoSans-Regular.ttf as the first element in the
     # list to maximize the amount of meta data retained in the final merged font.
     # ------- South Asia ---------
